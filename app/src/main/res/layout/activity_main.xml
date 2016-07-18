@@ -32,4 +32,14 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="坂野千帆"
+        android:id="@+id/textView4"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView3"
+        android:layout_marginBottom="146dp" />
+
 </RelativeLayout>
