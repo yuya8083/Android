@@ -42,4 +42,12 @@
         android:layout_toEndOf="@+id/textView3"
         android:layout_marginBottom="146dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="長田樹郎"
+        android:id="@+id/textView5"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
