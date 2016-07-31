@@ -1,1 +1,2 @@
 # Android
+MainActivity.javaにToastを使って画面に文字を表示してください
