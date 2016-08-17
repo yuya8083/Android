@@ -1,10 +1,10 @@
 package com.example.yuya0817.testproject;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -12,7 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main3Activity extends AppCompatActivity implements View.OnClickListener {
+public class Main3Activity extends AppCompatActivity implements View.OnClickListener{
     static final String TAG = "ListViewTest";
     ListView listView;
     Button addButton;
@@ -22,7 +22,8 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
+
         findViews();
         setListeners();
         //View showButton = findViewById(R.id.cancel);
@@ -30,9 +31,9 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
         setAdapters();
 
         // リストをクリック
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // リストビューの項目を取得
                 ListView listview = (ListView) parent;
                 String item = (String) listview.getItemAtPosition(position);
@@ -48,6 +49,7 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
                         break;*/
                 }
             }
+
         });
 
 
