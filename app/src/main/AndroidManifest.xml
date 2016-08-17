@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".Main3Activity" />
-        <activity android:name=".starbucks"></activity>
+        <activity android:name=".starbucks" />
+        <activity android:name=".Select_find_method"></activity>
     </application>
 
 </manifest>

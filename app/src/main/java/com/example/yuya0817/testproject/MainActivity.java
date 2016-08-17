@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //作成ボタン
         Button myButton=(Button)findViewById(R.id.button);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //参加ボタン
         Button myButton2=(Button)findViewById(R.id.button2);
         myButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(MainActivity.this, Main3Activity.class);
+                Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
                 startActivity(intent2);
             }
         });
