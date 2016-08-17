@@ -1,4 +1,4 @@
-package com.example.yuya0817.testproject;
+package com.example.yuya0817.ReviveSeat;
 
 import android.content.Intent;
 import android.view.View;

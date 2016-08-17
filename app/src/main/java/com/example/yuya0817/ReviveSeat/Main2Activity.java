@@ -1,4 +1,4 @@
-package com.example.yuya0817.testproject;
+package com.example.yuya0817.ReviveSeat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

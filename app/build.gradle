@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.example.yuya0817.testproject"
+        applicationId "com.example.yuya0817.ReviveSeat"
         minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
