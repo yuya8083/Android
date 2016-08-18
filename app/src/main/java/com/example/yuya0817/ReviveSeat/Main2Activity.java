@@ -16,6 +16,7 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
         editText = (EditText) findViewById(R.id.editText);
 
         buttoncreat = (Button) findViewById(R.id.creat);
