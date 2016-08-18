@@ -8,17 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.yuya0817.ReviveSeat.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.yuya0817.ReviveSeat.Main2Activity" />
-        <activity android:name="com.example.yuya0817.ReviveSeat.Main3Activity" />
-        <activity android:name="com.example.yuya0817.ReviveSeat.starbucks" />
-        <activity android:name="com.example.yuya0817.ReviveSeat.Select_find_method"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".starbucks" />
+        <activity android:name=".Select_find_method" />
+        <activity android:name=".Location_cafename" />
+        <activity android:name=".Category_list"></activity>
     </application>
 
 </manifest>
