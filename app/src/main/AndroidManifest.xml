@@ -20,7 +20,8 @@
         <activity android:name=".starbucks" />
         <activity android:name=".Select_find_method" />
         <activity android:name=".Location_cafename" />
-        <activity android:name=".Category_list"></activity>
+        <activity android:name=".Category_list" />
+        <activity android:name=".Main4Activity"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,8 +18,10 @@ public class Main2Activity extends AppCompatActivity {
 
     private EditText editText;
     private TextView textView,textView2;
-    private Button buttoncreat;
+    private Button button;
     private String stringMessage = "カテゴリを選んでください";
+    private String text;
+    private static String item;
 
     private DialogFragment dialogFragment;
     private FragmentManager flagmentManager;
@@ -28,9 +32,9 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         textView = (TextView)findViewById(R.id.category_select);
-        textView2 = (TextView)findViewById(R.id.category_select);
-        textView2.setClickable(true);
-        textView2.setOnClickListener(new View.OnClickListener() {
+        //textView2 = (TextView)findViewById(R.id.category_select);
+        textView.setClickable(true);
+        textView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 flagmentManager = getFragmentManager();
 
@@ -68,16 +72,39 @@ public class Main2Activity extends AppCompatActivity {
             }
         });*/
 
-        editText = (EditText) findViewById(R.id.editText);
+        editText = (EditText) findViewById(R.id.biko);
 
-        buttoncreat = (Button) findViewById(R.id.creat);
-        buttoncreat.setOnClickListener(new View.OnClickListener() {
+        button=(Button)findViewById(R.id.creat);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // エディットテキストのテキストを取得
-                String text = editText.getText().toString();
+                text = editText.getText().toString();
+                Intent intent = new Intent(Main2Activity.this, Main4Activity.class);
+                // intentへ添え字付で値を保持させる
+                intent.putExtra( "item", item );
+                intent.putExtra( "text", text );
+                // 遷移先から返却されてくる際の識別コード
+                int requestCode = 1001;
+                // 返却値を考慮したActivityの起動を行う
+                startActivityForResult( intent, requestCode );
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult( int requestCode, int resultCode, Intent intent )
+    {
+        // startActivityForResult()の際に指定した識別コードとの比較
+        if( requestCode == 1001 ){
+
+            // 返却結果ステータスとの比較
+            if( resultCode == Activity.RESULT_OK ){
+
+                // 返却されてきたintentから値を取り出す
+                item = intent.getStringExtra( "item" );
+                text = intent.getStringExtra("text");
+            }
+        }
     }
 
     public void setTextView(String message){
@@ -102,18 +129,22 @@ public class Main2Activity extends AppCompatActivity {
                     // 選択１
                     if (idx == 0) {
                         setMassage(menulist[0]);
+                        item=menulist[0];
                     }
                     // 選択２
                     else if (idx == 1) {
                         setMassage(menulist[1]);
+                        item=menulist[1];
                     }
                     // 選択３
                     else if (idx == 2) {
                         setMassage(menulist[2]);
+                        item=menulist[2];
                     }
                     //選択４
                     else if (idx == 3){
                         setMassage(menulist[3]);
+                        item=menulist[3];
                     }
                     // cancel"
                     else {

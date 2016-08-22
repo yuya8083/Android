@@ -128,7 +128,7 @@
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:background="@drawable/flame_text2"
-                android:id="@+id/editText"
+                android:id="@+id/biko"
                 android:hint="備考"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
@@ -158,7 +158,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="カテゴリを選んでください"
                 android:id="@+id/category_select"
-                android:layout_above="@+id/editText"
+                android:layout_above="@+id/biko"
                 android:layout_centerHorizontal="true" />
 
         </RelativeLayout>

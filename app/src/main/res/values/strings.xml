@@ -12,9 +12,9 @@
     <string name="creat">作成</string>
 
     <string-array name="category">
-    <item>勉強</item>
-    <item>趣味</item>
-    <item>恋愛</item>
-    <item>雑談</item>
+        <item>勉強</item>
+        <item>趣味</item>
+        <item>恋愛</item>
+        <item>雑談</item>
     </string-array>
 </resources>
