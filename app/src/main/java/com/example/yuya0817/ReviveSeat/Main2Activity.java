@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.RadioGroup;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -30,6 +31,9 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        RadioGroup radiogroup=(RadioGroup)findViewById(R.id.radiogroup);
+
 
         textView = (TextView)findViewById(R.id.category_select);
         //textView2 = (TextView)findViewById(R.id.category_select);
