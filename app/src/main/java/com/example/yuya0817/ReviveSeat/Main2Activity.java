@@ -12,7 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class Main2Activity extends AppCompatActivity {
     private String stringMessage = "カテゴリを選んでください";
     private String text;
     private static String item;
+    private ArrayList<String> Radiobottunword;
 
     private DialogFragment dialogFragment;
     private FragmentManager flagmentManager;
@@ -31,7 +35,8 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        //RadioGroup radiogroup=(RadioGroup)findViewById(R.id.radiogroup);
+        RadioGroup radiogroup= (RadioGroup) findViewById(R.id.radioButtonGroup);
+
 
 
         textView = (TextView)findViewById(R.id.category_select);
@@ -81,7 +86,9 @@ public class Main2Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Radiobottunword=new ArrayList<String>();
                 text = editText.getText().toString();
+                Radiobottunword.add(text);
                 Intent intent = new Intent(Main2Activity.this, Main4Activity.class);
                 // intentへ添え字付で値を保持させる
                 intent.putExtra( "item", item );
@@ -112,6 +119,12 @@ public class Main2Activity extends AppCompatActivity {
 
     public void setTextView(String message){
         textView.setText(message);
+    }
+
+    public void getRadioBottunState(RadioGroup group,int checkId){
+        if (-1!=(RadioGroup)findViewById(R.id.checkId)){
+
+        }
     }
 
     // DialogFragment を継承したクラス
