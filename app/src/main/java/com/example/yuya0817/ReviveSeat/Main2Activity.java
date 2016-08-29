@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,7 +26,7 @@ public class Main2Activity extends AppCompatActivity {
     private TextView category,time;
     private Button button;
     private String stringMessage = "カテゴリを選択してください";
-    private String text;
+    private String text,outhour,outminute;
     private static String item;
     private ArrayList<String> Radiobottunword;
 
@@ -68,17 +67,13 @@ public class Main2Activity extends AppCompatActivity {
                 final TimePickerDialog dialog = new TimePickerDialog(Main2Activity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        Toast.makeText(Main2Activity.this, String.valueOf(hourOfDay) + ":" + String.valueOf(minute),Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(Main2Activity.this, String.valueOf(hourOfDay) + ":" + String.valueOf(minute),Toast.LENGTH_SHORT).show();
+                        outhour=String.valueOf(hourOfDay);
+                        outminute=String.valueOf(minute);
+                        time.setText(outhour + ":" + outminute);
                     }
                 },hour,minute,true);
                 dialog.show();
-                flagmentManager = getFragmentManager();
-
-                // DialogFragment を継承したAlertDialogFragmentのインスタンス
-                dialogFragment = new AlertDialogFragment();
-                // DialogFragmentの表示
-                dialogFragment.show(flagmentManager, "test alert dialog");
             }
         });
 
@@ -95,6 +90,7 @@ public class Main2Activity extends AppCompatActivity {
                 // intentへ添え字付で値を保持させる
                 intent.putExtra( "item", item );
                 intent.putExtra( "text", text );
+                //intent.putExtra( "time", time );
                 // 遷移先から返却されてくる際の識別コード
                 int requestCode = 1001;
                 // 返却値を考慮したActivityの起動を行う
