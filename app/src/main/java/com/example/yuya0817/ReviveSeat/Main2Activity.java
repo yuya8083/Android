@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -54,18 +58,29 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
+        final Calendar calender = Calendar.getInstance();
+        final int hour = calender.get(Calendar.HOUR_OF_DAY);
+        final int minute = calender.get(Calendar.MINUTE);
+
+
         time.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                flagmentManager2 = getFragmentManager();
+                final TimePickerDialog dialog = new TimePickerDialog(Main2Activity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Toast.makeText(Main2Activity.this, String.valueOf(hourOfDay) + ":" + String.valueOf(minute),Toast.LENGTH_SHORT).show();
+
+                    }
+                },hour,minute,true);
+                dialog.show();
+                flagmentManager = getFragmentManager();
 
                 // DialogFragment を継承したAlertDialogFragmentのインスタンス
-                dialogFragment2 = new AlertDialogFragment();
+                dialogFragment = new AlertDialogFragment();
                 // DialogFragmentの表示
-                dialogFragment2.show(flagmentManager2, "test alert dialog");
+                dialogFragment.show(flagmentManager, "test alert dialog");
             }
         });
-
-
 
         editText = (EditText) findViewById(R.id.biko);
 
@@ -106,12 +121,6 @@ public class Main2Activity extends AppCompatActivity {
 
     public void setTextView(String message){
         category.setText(message);
-    }
-
-    public void getRadioBottunState(RadioGroup group,int checkId){
-        if (-1!=(RadioGroup)findViewById(R.id.checkId)){
-
-        }
     }
 
     // DialogFragment を継承したクラス
