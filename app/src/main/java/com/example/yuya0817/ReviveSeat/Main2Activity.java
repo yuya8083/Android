@@ -22,11 +22,11 @@ import java.util.Calendar;
 
 public class Main2Activity extends AppCompatActivity {
 
-    private EditText editText;
+    private EditText editText,editText2;
     private TextView category,time;
     private Button button;
     private String stringMessage = "カテゴリを選択してください";
-    private String text,outhour,outminute;
+    private String text,outhour,outminute,title;
     private static String item;
     private ArrayList<String> Radiobottunword;
 
@@ -70,7 +70,7 @@ public class Main2Activity extends AppCompatActivity {
                         //Toast.makeText(Main2Activity.this, String.valueOf(hourOfDay) + ":" + String.valueOf(minute),Toast.LENGTH_SHORT).show();
                         outhour=String.valueOf(hourOfDay);
                         outminute=String.valueOf(minute);
-                        time.setText(outhour + ":" + outminute);
+                        time.setText(outhour + "時" + outminute + "分");
                     }
                 },hour,minute,true);
                 dialog.show();
@@ -78,25 +78,31 @@ public class Main2Activity extends AppCompatActivity {
         });
 
         editText = (EditText) findViewById(R.id.biko);
+        editText2 = (EditText)findViewById(R.id.title);
 
         button=(Button)findViewById(R.id.creat);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Radiobottunword=new ArrayList<String>();
+                title = editText2.getText().toString();
                 text = editText.getText().toString();
                 Radiobottunword.add(text);
                 Intent intent = new Intent(Main2Activity.this, Main4Activity.class);
                 // intentへ添え字付で値を保持させる
+                intent.putExtra( "title", title);
                 intent.putExtra( "item", item );
                 intent.putExtra( "text", text );
-                //intent.putExtra( "time", time );
+                intent.putExtra( "hour", outhour);
+                intent.putExtra( "minute", outminute);
                 // 遷移先から返却されてくる際の識別コード
                 int requestCode = 1001;
                 // 返却値を考慮したActivityの起動を行う
                 startActivityForResult( intent, requestCode );
             }
         });
+
+        setTitle("テーブル作成");
     }
 
     @Override
@@ -174,3 +180,4 @@ public class Main2Activity extends AppCompatActivity {
         finish();
     }
 }
+
