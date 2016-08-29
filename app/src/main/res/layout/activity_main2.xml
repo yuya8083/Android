@@ -49,14 +49,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="1">
 
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="100dp"
-                android:background="@drawable/flame_text2"
+                android:background="@drawable/flame_listview"
                 android:id="@+id/biko"
                 android:hint="備考"
                 android:layout_centerVertical="true"
@@ -82,12 +82,33 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:background="@drawable/flame_text"
+                android:background="@drawable/flame_listview"
                 android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="カテゴリを選んでください"
+                android:text="カテゴリを選択してください"
                 android:id="@+id/category_select"
                 android:layout_above="@+id/biko"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:background="@drawable/flame_text"
+                android:gravity="center"
+                android:id="@+id/title"
+                android:layout_above="@+id/category_select"
+                android:layout_centerHorizontal="true"
+                android:hint="タイトルを入力してください" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:background="@drawable/flame_text2"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="終了時刻を選択してください"
+                android:id="@+id/time"
+                android:layout_below="@+id/biko"
                 android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
