@@ -18,14 +18,14 @@ import android.widget.RadioGroup;
 public class Main2Activity extends AppCompatActivity {
 
     private EditText editText;
-    private TextView textView,textView2;
+    private TextView category,time;
     private Button button;
-    private String stringMessage = "カテゴリを選んでください";
+    private String stringMessage = "カテゴリを選択してください";
     private String text;
     private static String item;
 
-    private DialogFragment dialogFragment;
-    private FragmentManager flagmentManager;
+    private DialogFragment dialogFragment,dialogFragment2;
+    private FragmentManager flagmentManager,flagmentManager2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,11 @@ public class Main2Activity extends AppCompatActivity {
         RadioGroup radiogroup=(RadioGroup)findViewById(R.id.radiogroup);
 
 
-        textView = (TextView)findViewById(R.id.category_select);
-        //textView2 = (TextView)findViewById(R.id.category_select);
-        textView.setClickable(true);
-        textView.setOnClickListener(new View.OnClickListener() {
+        category = (TextView)findViewById(R.id.category_select);
+        time = (TextView)findViewById(R.id.time);
+        category.setClickable(true);
+        time.setClickable(true);
+        category.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 flagmentManager = getFragmentManager();
 
@@ -46,6 +47,17 @@ public class Main2Activity extends AppCompatActivity {
                 dialogFragment = new AlertDialogFragment();
                 // DialogFragmentの表示
                 dialogFragment.show(flagmentManager, "test alert dialog");
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                flagmentManager2 = getFragmentManager();
+
+                // DialogFragment を継承したAlertDialogFragmentのインスタンス
+                dialogFragment2 = new AlertDialogFragment();
+                // DialogFragmentの表示
+                dialogFragment2.show(flagmentManager2, "test alert dialog");
             }
         });
 
@@ -112,7 +124,7 @@ public class Main2Activity extends AppCompatActivity {
     }
 
     public void setTextView(String message){
-        textView.setText(message);
+        category.setText(message);
     }
 
     // DialogFragment を継承したクラス
@@ -126,7 +138,7 @@ public class Main2Activity extends AppCompatActivity {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             // タイトル
-            alert.setTitle("カテゴリを選んでください");
+            alert.setTitle("カテゴリを選択してください");
             alert.setItems(menulist, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int idx) {
