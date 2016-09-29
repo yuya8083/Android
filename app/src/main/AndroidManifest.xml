@@ -30,7 +30,9 @@
         <activity android:name=".qrcode" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".wait" />
+        <activity android:name=".arrive_wait"></activity>
     </application>
 
 </manifest>
