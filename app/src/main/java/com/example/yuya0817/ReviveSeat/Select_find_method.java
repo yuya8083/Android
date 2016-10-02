@@ -23,6 +23,15 @@ public class Select_find_method extends AppCompatActivity {
             }
         });
 
+        Button tema = (Button) findViewById(R.id.theme);
+        tema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Select_find_method.this, wait.class);
+                startActivity(intent);
+            }
+        });
+
         Button categori = (Button) findViewById(R.id.category);
         categori.setOnClickListener(new View.OnClickListener() {
             @Override
