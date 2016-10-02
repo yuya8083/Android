@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.yuya0817.ReviveSeat.MakeAccount">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center"
+        android:background="@drawable/flame_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ユーザ名"
+        android:id="@+id/user"
+        android:layout_above="@+id/phone"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/flame_listview"
+        android:gravity="start|center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="電話番号"
+        android:layout_above="@+id/pass"
+        android:layout_alignParentStart="true"
+        android:id="@+id/phone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/flame_listview"
+        android:gravity="start|center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="パスワード"
+        android:id="@+id/pass"
+        android:layout_above="@+id/question"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/flame_listview"
+        android:gravity="start|center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="秘密の質問"
+        android:id="@+id/question"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/flame_listview"
+        android:gravity="start|center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="気になるカテゴリ"
+        android:id="@+id/mycategory"
+        android:layout_below="@+id/question"
+        android:layout_alignParentStart="true" />
+
+    <!-- <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:id="@+id/edituser"
+        android:layout_above="@+id/pass"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editpass"
+        android:layout_above="@+id/phone"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editphone"
+        android:layout_above="@+id/birthday"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editbirthday"
+        android:layout_alignBottom="@+id/birthday"
+        android:layout_alignParentEnd="true" /> -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="start|center"
+        android:background="@drawable/flame_text2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="生年月日"
+        android:id="@+id/birthday"
+        android:layout_below="@+id/mycategory"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:id="@+id/button5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="アカウント作成"
+        android:id="@+id/makeaccount"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

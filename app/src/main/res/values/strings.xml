@@ -17,4 +17,14 @@
         <item>恋愛</item>
         <item>雑談</item>
     </string-array>
+
+    <string-array name="number">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+
 </resources>
