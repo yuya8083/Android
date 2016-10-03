@@ -1,13 +1,13 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
 
     @Override
@@ -31,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
                 startActivity(intent2);
+            }
+        });
+
+        Button myButton3=(Button)findViewById(R.id.button3);
+        myButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(MainActivity.this, TableSet.class);
+                startActivity(intent3);
             }
         });
     }

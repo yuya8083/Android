@@ -1,15 +1,14 @@
 package com.example.yuya0817.ReviveSeat;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category_list extends AppCompatActivity{
+public class Category_list extends Activity {
     static final String TAG = "ListViewTest";
     ListView listView;
     static List<String> dataList = new ArrayList<String>();

@@ -1,10 +1,10 @@
 package com.example.yuya0817.ReviveSeat;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.animation.AnimationUtils;
 
-public class arrive_wait extends AppCompatActivity {
+public class arrive_wait extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

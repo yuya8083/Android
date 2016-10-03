@@ -28,17 +28,15 @@
         <activity android:name=".Category_list" />
         <activity android:name=".Main4Activity" />
         <activity android:name=".qrcode" />
-<<<<<<< HEAD
         <activity android:name=".MakeAccount" />
         <activity android:name=".TableSet" />
-        <activity android:name=".Evaluation"></activity>
-=======
+        <activity android:name=".Evaluation" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".wait" />
-        <activity android:name=".arrive_wait"></activity>
->>>>>>> a143d94ce7e16816aafb2be4ec756a5631b8ce69
+        <activity android:name=".arrive_wait" />
+        <activity android:name=".Confirmation"></activity>
     </application>
 
 </manifest>

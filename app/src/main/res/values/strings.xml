@@ -17,7 +17,6 @@
         <item>恋愛</item>
         <item>雑談</item>
     </string-array>
-<<<<<<< HEAD
 
     <string-array name="number">
         <item>1</item>
@@ -27,8 +26,6 @@
         <item>5</item>
     </string-array>
 
-
-=======
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -45,5 +42,4 @@
     </string>
     <string name="error_invalid_UserName">users</string>
     <string name="error_invalid_username" />
->>>>>>> a143d94ce7e16816aafb2be4ec756a5631b8ce69
 </resources>

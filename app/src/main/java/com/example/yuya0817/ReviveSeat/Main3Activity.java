@@ -1,10 +1,10 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -12,7 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main3Activity extends AppCompatActivity implements View.OnClickListener{
+public class Main3Activity extends Activity implements View.OnClickListener{
     static final String TAG = "ListViewTest";
     ListView listView;
     Button addButton;

@@ -22,20 +22,19 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="70dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="back"
+                android:text="Back"
                 android:id="@+id/back"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
+                android:layout_weight="1"
+                android:background="@color/zxing_custom_viewfinder_laser"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimary"
                 android:onClick="onbackButtontapped" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2" />
+                android:layout_weight="3" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,12 +44,13 @@
                 android:id="@+id/tableset"
                 android:layout_alignBottom="@+id/back"
                 android:layout_centerHorizontal="true"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_gravity="center"/>
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="3" />
+                android:layout_weight="4" />
         </LinearLayout>
 
         <Space
@@ -131,7 +131,7 @@
             android:text="次へ"
             android:id="@+id/next"
             android:layout_gravity="center_horizontal"
-            android:background="@color/zxing_custom_possible_result_points"
+            android:background="@color/zxing_custom_viewfinder_laser"
             android:textColor="#ffffff"
             android:layout_weight="1" />
     </LinearLayout>

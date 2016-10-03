@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 public class TableSet extends Activity {
@@ -25,7 +24,7 @@ public class TableSet extends Activity {
     private Button button;
     private String text,outhour,outminute,title;
     private static String item;
-    private ArrayList<String> Radiobottunword;
+    //private ImageView imageview;
 
     private DialogFragment dialogFragment;
     private FragmentManager flagmentManager;
@@ -35,6 +34,17 @@ public class TableSet extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_set);
 
+        /*imageview = (ImageView)findViewById(R.id.imageView);
+        imageview.setImageResource(R.drawable.backbutton);
+        // ImageViewオブジェクトにクリックイベントを追加する
+        imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // イメージ画像がクリックされたときに実行される処理
+                Intent intent2 = new Intent(TableSet.this, MainActivity.class);
+                startActivity(intent2);
+            }
+        });*/
         category = (TextView)findViewById(R.id.categoryset);
         time = (TextView)findViewById(R.id.timeset);
         category.setClickable(true);
@@ -44,7 +54,7 @@ public class TableSet extends Activity {
                 flagmentManager = getFragmentManager();
 
                 // DialogFragment を継承したAlertDialogFragmentのインスタンス
-                dialogFragment = new Main2Activity.AlertDialogFragment();
+                dialogFragment = new AlertDialogFragment();
                 // DialogFragmentの表示
                 dialogFragment.show(flagmentManager, "test alert dialog");
             }
@@ -79,7 +89,7 @@ public class TableSet extends Activity {
             public void onClick(View v) {
                 title = titletext.getText().toString();
                 text = hosoku.getText().toString();
-                Intent intent = new Intent(TableSet.this, Main4Activity.class);
+                Intent intent = new Intent(TableSet.this, Evaluation.class);
                 // intentへ添え字付で値を保持させる
                 intent.putExtra( "title", title);
                 intent.putExtra( "item", item );
@@ -104,8 +114,11 @@ public class TableSet extends Activity {
             if( resultCode == Activity.RESULT_OK ){
 
                 // 返却されてきたintentから値を取り出す
+                title = intent.getStringExtra("title");
                 item = intent.getStringExtra( "item" );
                 text = intent.getStringExtra("text");
+                outhour = intent.getStringExtra("hour");
+                outminute = intent.getStringExtra("minute");
             }
         }
     }

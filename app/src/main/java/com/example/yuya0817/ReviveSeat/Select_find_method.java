@@ -1,12 +1,12 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Select_find_method extends AppCompatActivity {
+public class Select_find_method extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
