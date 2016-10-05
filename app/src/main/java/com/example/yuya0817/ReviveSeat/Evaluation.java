@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 public class Evaluation extends Activity {
     private String comment,str;
     private Button button;
     int stringToValue;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class Evaluation extends Activity {
                                         boolean fromUser) {
                 // レートが変更された際の処理
                 stringToValue = (int)(ratingBar.getRating());
+                tv = (TextView)findViewById(R.id.textView3);
+                tv.setText("今のレート：" + stringToValue);
                 //stringToValue = Integer.parseInt(str);
                 button=(Button)findViewById(R.id.top);
                 button.setOnClickListener(new View.OnClickListener() {
