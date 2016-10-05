@@ -36,7 +36,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".wait" />
         <activity android:name=".arrive_wait" />
-        <activity android:name=".Confirmation"></activity>
+        <activity android:name=".Confirmation" />
+        <activity android:name=".Sharing"></activity>
     </application>
 
 </manifest>
