@@ -39,7 +39,8 @@
         <activity android:name=".Confirmation" />
         <activity android:name=".Sharing" />
         <activity android:name=".select_share_sheet_host" />
-        <activity android:name=".select_share_sheet_guest"></activity>
+        <activity android:name=".select_share_sheet_guest" />
+        <activity android:name=".matching"></activity>
     </application>
 
 </manifest>
