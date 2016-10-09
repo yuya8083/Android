@@ -37,7 +37,9 @@
         <activity android:name=".wait" />
         <activity android:name=".arrive_wait" />
         <activity android:name=".Confirmation" />
-        <activity android:name=".Sharing"></activity>
+        <activity android:name=".Sharing" />
+        <activity android:name=".select_share_sheet_host" />
+        <activity android:name=".select_share_sheet_guest"></activity>
     </application>
 
 </manifest>
