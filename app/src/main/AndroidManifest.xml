@@ -43,7 +43,8 @@
         <activity
             android:name=".matching"
             android:theme="@style/Theme.ChildTranslucent" />
-        <activity android:name=".share_table_list"></activity>
+        <activity android:name=".share_table_list" />
+        <activity android:name=".chat_system"></activity>
     </application>
 
 </manifest>

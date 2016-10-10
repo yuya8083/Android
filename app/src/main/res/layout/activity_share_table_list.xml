@@ -75,6 +75,13 @@
                     android:id="@+id/textView2" />
             </LinearLayout>
 
+            <Button
+                android:text="ここにする"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button14"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -113,6 +120,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView5" />
             </LinearLayout>
+
+            <Button
+                android:text="ここにする"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button15"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -153,6 +167,13 @@
                     android:id="@+id/textView13" />
             </LinearLayout>
 
+            <Button
+                android:text="ここにする"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button16"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -192,6 +213,13 @@
                     android:id="@+id/textView16" />
             </LinearLayout>
 
+            <Button
+                android:text="ここにする"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button17"
+                android:layout_weight="1" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -229,6 +257,13 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView8" />
             </LinearLayout>
+
+            <Button
+                android:text="ここにする"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button18"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
