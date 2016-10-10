@@ -40,8 +40,10 @@
         <activity android:name=".Sharing" />
         <activity android:name=".select_share_sheet_host" />
         <activity android:name=".select_share_sheet_guest" />
-        <activity android:name=".matching"
-            android:theme="@style/Theme.ChildTranslucent"></activity>
+        <activity
+            android:name=".matching"
+            android:theme="@style/Theme.ChildTranslucent" />
+        <activity android:name=".share_table_list"></activity>
     </application>
 
 </manifest>
