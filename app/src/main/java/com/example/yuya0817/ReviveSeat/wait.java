@@ -29,7 +29,7 @@ public class wait extends Activity {
         public void run() {
             Intent intent = new Intent(wait.this, matching.class);
             startActivity(intent);
-          wait.this.finish();
+            wait.this.finish();
         }
     }
 
