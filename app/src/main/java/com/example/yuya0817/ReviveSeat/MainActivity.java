@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
-                Intent intent2 = new Intent(MainActivity.this, JoinConfirmation.class);
+                Intent intent2 = new Intent(MainActivity.this, share_table_list.class);
                 startActivity(intent2);
             }
         });
