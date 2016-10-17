@@ -17,7 +17,7 @@ public class Confirmation extends Activity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Confirmation.this, Sharing.class);
+                Intent intent = new Intent(Confirmation.this, wait.class);
                 startActivity(intent);
             }
         });
