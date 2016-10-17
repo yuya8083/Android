@@ -27,7 +27,7 @@ public class qrcode extends Activity {
 
                 TextView textView = (TextView)findViewById(R.id.textView);
                 textView.setText(barcodeResult.getText());
-                Intent intent = new Intent(qrcode.this, Main2Activity.class);
+                Intent intent = new Intent(qrcode.this, TableSet.class);
                 startActivity(intent);
             }
 

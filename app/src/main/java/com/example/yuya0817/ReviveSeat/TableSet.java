@@ -89,7 +89,7 @@ public class TableSet extends Activity {
             public void onClick(View v) {
                 title = titletext.getText().toString();
                 text = hosoku.getText().toString();
-                Intent intent = new Intent(TableSet.this, Sharing.class);
+                Intent intent = new Intent(TableSet.this, select_share_sheet_host.class);
                 // intentへ添え字付で値を保持させる
                 intent.putExtra( "title", title);
                 intent.putExtra( "item", item );

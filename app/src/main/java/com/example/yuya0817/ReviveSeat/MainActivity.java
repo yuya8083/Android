@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
         myButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
+                //Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
+                Intent intent2 = new Intent(MainActivity.this, JoinConfirmation.class);
                 startActivity(intent2);
             }
         });
