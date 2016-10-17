@@ -2,6 +2,7 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 
 public class arrive_wait extends Activity {
@@ -12,5 +13,9 @@ public class arrive_wait extends Activity {
         setContentView(R.layout.activity_arrive_wait);
 
         findViewById(R.id.cycle).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
+    }
+
+    public void onBackButtonTapped(View view){
+        finish();
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class select_share_sheet_host extends AppCompatActivity {
 
@@ -56,6 +57,15 @@ public class select_share_sheet_host extends AppCompatActivity {
                 Intent intent = new Intent(select_share_sheet_host.this, select_share_sheet_guest.class);
                 intent.putExtra("host",host);
                 startActivity(intent);
+            }
+        }));
+
+        ImageButton back=(ImageButton)findViewById(R.id.back);
+        back.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(select_share_sheet_host.this, Confirmation.class);
+                startActivity(intent1);
             }
         }));
     }
