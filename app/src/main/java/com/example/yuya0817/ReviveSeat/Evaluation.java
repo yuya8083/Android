@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 
 public class Evaluation extends Activity {
-    private String comment,str;
+    private String comment;
     private Button button;
     int stringToValue;
     //private TextView tv;
