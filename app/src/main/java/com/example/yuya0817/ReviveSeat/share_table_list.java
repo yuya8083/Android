@@ -17,7 +17,7 @@ public class share_table_list extends AppCompatActivity {
         back.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(share_table_list.this, MainActivity.class);
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
                 startActivity(intent1);
             }
             }));

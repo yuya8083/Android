@@ -29,7 +29,7 @@ public class check_in extends Activity {
         qrr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(check_in.this, qrcode.class);
+                Intent intent = new Intent(check_in.this, JoinQrcode.class);
                 startActivity(intent);
             }
         });
