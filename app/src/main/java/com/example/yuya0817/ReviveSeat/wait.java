@@ -18,7 +18,7 @@ public class wait extends Activity {
         findViewById(R.id.cycle).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
         Handler match = new Handler();
         // 第２引数で切り替わる秒数(ミリ秒)を指定、今回は2秒
-        match.postDelayed(new splashHandler(), 5000);
+        match.postDelayed(new wait.splashHandler(), 5000);
     }
 
     public void onBackButtonTapped(View view){
