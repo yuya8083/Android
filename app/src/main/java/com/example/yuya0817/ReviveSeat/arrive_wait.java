@@ -28,7 +28,7 @@ public class arrive_wait extends Activity {
         public void run() {
             Intent intent = new Intent(arrive_wait.this, Sharing.class);
             startActivity(intent);
-            arrive_wait.this.finish();
+            //arrive_wait.this.finish();
         }
     }
 }

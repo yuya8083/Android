@@ -31,7 +31,7 @@
                 android:id="@+id/back"
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimary"
-                android:onClick="onBackButtonTapped (Confirmation)" />
+                android:onClick="onbackButtontapped (Confirmation)" />
 
             <Space
                 android:layout_width="wrap_content"

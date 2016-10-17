@@ -24,10 +24,10 @@ public class matching extends Activity {
             }
         });
         Button share=(Button)findViewById(R.id.share);
-        cancel.setOnClickListener(new View.OnClickListener() {
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(matching.this, wait.class);
+                Intent intent2 = new Intent(matching.this, arrive_wait.class);
                 startActivity(intent2);
             }
         });

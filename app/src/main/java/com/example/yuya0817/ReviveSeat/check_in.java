@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class check_in extends Activity {
 
-    int i = 0;
+    //int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class check_in extends Activity {
         qrr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(check_in.this, JoinQrcode.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(check_in.this, JoinQrcode.class);
+                startActivity(intent2);
             }
         });
 
@@ -38,8 +38,8 @@ public class check_in extends Activity {
         chatt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(check_in.this, chat_system.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(check_in.this, chat_system.class);
+                startActivity(intent3);
             }
         });
     }

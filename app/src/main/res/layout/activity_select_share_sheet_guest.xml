@@ -32,7 +32,7 @@
             android:id="@+id/back"
             android:textColor="#ffffff"
             android:background="@color/colorPrimary"
-            android:onClick="onbackButtontapped"
+            android:onClick="onbackButtontapped (select_share_sheet_host)"
             android:layout_height="50dp" />
 
         <TextView

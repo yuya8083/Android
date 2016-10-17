@@ -22,7 +22,7 @@ public class Confirmation extends Activity {
             }
         });
     }
-    public void onBackButtonTapped(View view){
+    public void onbackButtontapped(View view){
         finish();
     }
 }

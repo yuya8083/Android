@@ -22,7 +22,7 @@ public class select_share_sheet_guest extends Activity {
             }
         });
     }
-    public void onBackButtonTapped(View view){
+    public void onbackButtontapped(View view){
         finish();
     }
 }

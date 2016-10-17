@@ -31,7 +31,7 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinConfirmation.this, arrive_wait.class);
+                Intent intent = new Intent(JoinConfirmation.this, orner_wait.class);
                 startActivity(intent);
             }
         });
