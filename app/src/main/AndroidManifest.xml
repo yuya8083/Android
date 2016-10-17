@@ -44,7 +44,8 @@
             android:name=".matching"
             android:theme="@style/Theme.ChildTranslucent" />
         <activity android:name=".share_table_list" />
-        <activity android:name=".chat_system"></activity>
+        <activity android:name=".chat_system" />
+        <activity android:name=".map_window"></activity>
     </application>
 
 </manifest>
