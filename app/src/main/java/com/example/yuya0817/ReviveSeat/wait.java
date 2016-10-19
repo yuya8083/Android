@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 
 
 public class wait extends Activity {
@@ -19,11 +20,19 @@ public class wait extends Activity {
         Handler match = new Handler();
         // 第２引数で切り替わる秒数(ミリ秒)を指定、今回は2秒
         match.postDelayed(new wait.splashHandler(), 5000);
+
+        Button returnButton = (Button) findViewById(R.id.cancel);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    public void onBackButtonTapped(View view){
-        finish();
-    }
+//    public void onBackButtonTapped(View view){
+//        finish();
+//    }
 
     class splashHandler implements Runnable {
         public void run() {

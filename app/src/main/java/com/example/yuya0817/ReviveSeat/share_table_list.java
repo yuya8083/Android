@@ -67,9 +67,17 @@ public class share_table_list extends Activity {
                 startActivity(intent5);
             }
         });
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
-    public void onBackButtonTapped(View view){
-        finish();
-    }
+//    public void onBackButtonTapped(View view){
+//        finish();
+//    }
 }

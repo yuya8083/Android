@@ -30,8 +30,7 @@
                 android:text="Back"
                 android:id="@+id/back"
                 android:textColor="#ffffff"
-                android:background="@color/colorPrimary"
-                android:onClick="onbackButtontapped (Confirmation)" />
+                android:background="@color/colorPrimary" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -207,7 +206,7 @@
             <ImageView
                 android:layout_width="157dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/table"
+                android:src="@drawable/table"
                 android:id="@+id/imageView3"
                 android:background="@mipmap/ic_launcher" />
 

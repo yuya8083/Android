@@ -21,8 +21,16 @@ public class select_share_sheet_guest extends Activity {
                 startActivity(intent);
             }
         });
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
-    public void onbackButtontapped(View view){
-        finish();
-    }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }

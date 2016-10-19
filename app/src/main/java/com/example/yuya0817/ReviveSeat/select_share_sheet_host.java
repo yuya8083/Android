@@ -8,14 +8,12 @@ import android.widget.Button;
 
 public class select_share_sheet_host extends Activity {
 
-    String host;
+    private String host;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_share_sheet_host);
-
-
 
         Button button1=(Button)findViewById(R.id.button1);
         button1.setOnClickListener((new View.OnClickListener() {
@@ -59,6 +57,14 @@ public class select_share_sheet_host extends Activity {
             }
         }));
 
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 //        ImageButton back=(ImageButton)findViewById(R.id.back);
 //        back.setOnClickListener((new View.OnClickListener() {
 //            @Override
@@ -68,7 +74,7 @@ public class select_share_sheet_host extends Activity {
 //            }
 //        }));
     }
-    public void onbackButtontapped(View view){
-        finish();
-    }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }
