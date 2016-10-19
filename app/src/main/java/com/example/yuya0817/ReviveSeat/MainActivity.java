@@ -48,7 +48,8 @@ public class MainActivity extends Activity {
         myButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
+                //Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
+                Intent intent4 = new Intent(MainActivity.this, check_in.class);
                 startActivity(intent4);
             }
         });

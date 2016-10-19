@@ -1,12 +1,12 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class select_share_sheet_guest extends AppCompatActivity {
+public class select_share_sheet_guest extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,5 +21,16 @@ public class select_share_sheet_guest extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }

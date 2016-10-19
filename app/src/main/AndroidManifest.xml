@@ -64,10 +64,14 @@
 
         <activity
             android:name=".JoinConfirmation"
-            android:label="@string/title_activity_map_confirmation"></activity>
+            android:label="@string/title_activity_map_confirmation" />
         <activity android:name=".share_table_list" />
         <activity android:name=".chat_system" />
-        <activity android:name=".map_window"></activity>
+        <activity android:name=".map_window" />
+        <activity android:name=".orner_wait" />
+        <activity android:name=".JoinQrcode" />
+        <activity android:name=".JoinSharing" />
+        <activity android:name=".JoinEvaluation"></activity>
     </application>
 
 </manifest>

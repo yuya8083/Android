@@ -206,7 +206,7 @@
             <ImageView
                 android:layout_width="157dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/table"
+                android:src="@drawable/table"
                 android:id="@+id/imageView3"
                 android:background="@mipmap/ic_launcher" />
 

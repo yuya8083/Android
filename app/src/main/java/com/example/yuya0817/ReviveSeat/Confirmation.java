@@ -13,7 +13,7 @@ public class Confirmation extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
 
-        Button myButton=(Button)findViewById(R.id.button);
+        Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -21,5 +21,16 @@ public class Confirmation extends Activity {
                 startActivity(intent);
             }
         });
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }

@@ -1,22 +1,19 @@
 package com.example.yuya0817.ReviveSeat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
-public class select_share_sheet_host extends AppCompatActivity {
+public class select_share_sheet_host extends Activity {
 
-    String host;
+    private String host;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_share_sheet_host);
-
-
 
         Button button1=(Button)findViewById(R.id.button1);
         button1.setOnClickListener((new View.OnClickListener() {
@@ -27,7 +24,7 @@ public class select_share_sheet_host extends AppCompatActivity {
         }));
 
         Button button2=(Button)findViewById(R.id.button2);
-        button1.setOnClickListener((new View.OnClickListener() {
+        button2.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 host="R.id.Button2";
@@ -35,7 +32,7 @@ public class select_share_sheet_host extends AppCompatActivity {
         }));
 
         Button button3=(Button)findViewById(R.id.button3);
-        button1.setOnClickListener((new View.OnClickListener() {
+        button3.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 host="R.id.Button3";
@@ -43,15 +40,15 @@ public class select_share_sheet_host extends AppCompatActivity {
         }));
 
         Button button4=(Button)findViewById(R.id.button4);
-        button1.setOnClickListener((new View.OnClickListener() {
+        button4.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 host="R.id.Button4";
             }
         }));
 
-        Button next=(Button)findViewById(R.id.next);
-        button1.setOnClickListener((new View.OnClickListener() {
+        Button next=(Button)findViewById(R.id.button7);
+        next.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(select_share_sheet_host.this, select_share_sheet_guest.class);
@@ -60,13 +57,24 @@ public class select_share_sheet_host extends AppCompatActivity {
             }
         }));
 
-        ImageButton back=(ImageButton)findViewById(R.id.back);
-        back.setOnClickListener((new View.OnClickListener() {
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(select_share_sheet_host.this, Confirmation.class);
-                startActivity(intent1);
+                finish();
             }
-        }));
+        });
+
+//        ImageButton back=(ImageButton)findViewById(R.id.back);
+//        back.setOnClickListener((new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent1 = new Intent(select_share_sheet_host.this, Confirmation.class);
+//                startActivity(intent1);
+//            }
+//        }));
     }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }

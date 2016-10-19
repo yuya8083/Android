@@ -102,6 +102,14 @@ public class TableSet extends Activity {
                 startActivityForResult( intent, requestCode );
             }
         });
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -183,7 +191,7 @@ public class TableSet extends Activity {
         }
     }
 
-    public void onbackButtontapped(View view){
-        finish();
-    }
+//    public void onbackButtontapped(View view){
+//        finish();
+//    }
 }
