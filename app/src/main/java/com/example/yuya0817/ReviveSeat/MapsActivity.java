@@ -1,8 +1,8 @@
 package com.example.yuya0817.ReviveSeat;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,24 +14,24 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class JoinConfirmation extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_join_confirmation);
+        setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Button myButton=(Button)findViewById(R.id.join);
+        Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(JoinConfirmation.this, orner_wait.class);
+                Intent intent = new Intent(MapsActivity.this, JoinQrcode.class);
                 startActivity(intent);
             }
         });
@@ -67,8 +67,4 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng(41.84, 140.77), 15);
         mMap.moveCamera(cUpdate);
     }
-
-//    public void onbackButtontapped(View view){
-//        finish();
-//    }
 }

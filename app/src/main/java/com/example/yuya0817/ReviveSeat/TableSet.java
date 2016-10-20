@@ -107,7 +107,8 @@ public class TableSet extends Activity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent=new Intent(TableSet.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

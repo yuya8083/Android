@@ -43,4 +43,5 @@
     <string name="error_invalid_UserName">users</string>
     <string name="error_invalid_username" />
     <string name="title_activity_map_confirmation">Map</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
