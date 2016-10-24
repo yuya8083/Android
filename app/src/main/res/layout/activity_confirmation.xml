@@ -185,46 +185,44 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="97dp"
-                android:layout_height="143dp"
-                android:weightSum="1">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <Button
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="73dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button8" />
 
                 <Button
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button9" />
 
             </LinearLayout>
 
             <ImageView
-                android:layout_width="157dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/table"
-                android:id="@+id/imageView3"
-                android:background="@mipmap/ic_launcher" />
+                android:id="@+id/imageView3" />
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <Button
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="77dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button11" />
 
                 <Button
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button10" />
             </LinearLayout>
         </LinearLayout>
