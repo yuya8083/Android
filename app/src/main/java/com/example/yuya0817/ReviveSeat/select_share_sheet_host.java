@@ -35,32 +35,65 @@ public class select_share_sheet_host extends Activity  {
         Toast.makeText(select_share_sheet_host.this, text, Toast.LENGTH_SHORT).show();
 
         toggleButton1=(ToggleButton)findViewById(R.id.button1);
-        if (toggleButton1.isChecked()) {
-        sheet1=true;
-        }else {
-            sheet1=false;
-        }
+        toggleButton1.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toggleButton1.isChecked()) {
+                    sheet1=true;
+                    toggleButton1.setTextOn("ホスト");
+                }else {
+                    sheet1=false;
+                    toggleButton1.setTextOff("off");
+                }
 
-        toggleButton2=(ToggleButton)findViewById(R.id.button1);
-        if (toggleButton2.isChecked()) {
-            sheet2=true;
-        }else {
-            sheet2=false;
-        }
+            }
+        }));
 
-        toggleButton3=(ToggleButton)findViewById(R.id.button1);
-        if (toggleButton3.isChecked()) {
-            sheet3=true;
-        }else {
-            sheet3=false;
-        }
 
-        toggleButton4=(ToggleButton)findViewById(R.id.button1);
-        if (toggleButton4.isChecked()) {
-            sheet4=true;
-        }else {
-            sheet4=false;
-        }
+        toggleButton2=(ToggleButton)findViewById(R.id.button2);
+        toggleButton2.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toggleButton2.isChecked()) {
+                    sheet2=true;
+                    toggleButton2.setTextOn("ホスト");
+                }else {
+                    sheet2=false;
+                    toggleButton2.setTextOff("off");
+                }
+
+            }
+        }));
+        toggleButton3=(ToggleButton)findViewById(R.id.button3);
+        toggleButton3.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toggleButton3.isChecked()) {
+                    sheet3=true;
+                    toggleButton3.setTextOn("ホスト");
+                }else {
+                    sheet3=false;
+                    toggleButton3.setTextOff("off");
+                }
+
+
+            }
+        }));
+
+        toggleButton4=(ToggleButton)findViewById(R.id.button4);
+        toggleButton4.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (toggleButton4.isChecked()) {
+                    sheet4=true;
+                    toggleButton4.setTextOn("ホスト");
+                }else {
+                    sheet4=false;
+                    toggleButton4.setTextOff("off");
+                }
+
+            }
+        }));
 
 
         /*Button button1=(Button)findViewById(R.id.button1);
