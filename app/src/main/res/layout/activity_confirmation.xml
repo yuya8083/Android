@@ -192,13 +192,13 @@
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button8" />
+                    android:id="@+id/button1" />
 
                 <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button9" />
+                    android:id="@+id/button2" />
 
             </LinearLayout>
 
@@ -217,13 +217,13 @@
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button11" />
+                    android:id="@+id/button3" />
 
                 <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button10" />
+                    android:id="@+id/button4" />
             </LinearLayout>
         </LinearLayout>
 

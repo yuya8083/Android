@@ -11,14 +11,13 @@ public class select_share_sheet_guest extends Activity {
 
 
     private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
-    String horg1,horg2,horg3,horg4;
+    private String horg1,horg2,horg3,horg4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_share_sheet_guest);
 
 
-        boolean sheet[];
         // インテントを取得
         Intent data = getIntent();
         // インテントに保存されたデータを取得
@@ -27,68 +26,94 @@ public class select_share_sheet_guest extends Activity {
         final String hour = data.getStringExtra("hour");
         final String minute = data.getStringExtra("minute");
         final String text = data.getStringExtra("text");
-        boolean sheet1 = data.getBooleanExtra("sheet1",true);
-        boolean sheet2 = data.getBooleanExtra("sheet2",true);
-        boolean sheet3 = data.getBooleanExtra("sheet3",true);
-        boolean sheet4 = data.getBooleanExtra("sheet4",true);
+        boolean sheet1 = data.getBooleanExtra("sheet1", true);
+        boolean sheet2 = data.getBooleanExtra("sheet2", true);
+        boolean sheet3 = data.getBooleanExtra("sheet3", true);
+        boolean sheet4 = data.getBooleanExtra("sheet4", true);
 
 
-
-
-        toggleButton1=(ToggleButton)findViewById(R.id.button1);
+        toggleButton1 = (ToggleButton) findViewById(R.id.button1);
         if (sheet1) {
             toggleButton1.setTextOn("ホスト");
             toggleButton1.setTextOff("ホスト");
             toggleButton1.setChecked(true);
-            horg1="host";
-        }else {
-            if (toggleButton1.isChecked()){
-                horg1="guest";
-        }else {
-                horg1="vacant";
-        }}
+            horg1 = "ホスト";
 
-        toggleButton2=(ToggleButton)findViewById(R.id.button2);
+        } else {
+            toggleButton1.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (toggleButton1.isChecked()) {
+                        horg1 = "ゲスト";
+                    } else {
+                        horg1 = "空席";
+                    }
+
+                }
+            }));
+        }
+
+        toggleButton2 = (ToggleButton) findViewById(R.id.button2);
         if (sheet2) {
             toggleButton2.setTextOn("ホスト");
             toggleButton2.setTextOff("ホスト");
             toggleButton2.setChecked(true);
-            horg2="host";
-        }else {
-            if (toggleButton2.isChecked()){
-                horg2="guest";
-            }else {
-                horg1="vacant";
-            }}
+            horg2 = "ホスト";
+        } else {
+            toggleButton2.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (toggleButton2.isChecked()) {
+                        horg2 = "ゲスト";
+                    } else {
+                        horg2 = "空席";
+                    }
+
+                }
+            }));
+        }
 
         toggleButton3=(ToggleButton)findViewById(R.id.button3);
         if (sheet3) {
             toggleButton3.setTextOn("ホスト");
             toggleButton3.setTextOff("ホスト");
             toggleButton3.setChecked(true);
-            horg3="host";
+            horg3="ホスト";
         }else {
-            if (toggleButton3.isChecked()){
-                horg3="guest";
-            }else {
-                horg3="vacant";
-            }}
+            toggleButton3.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (toggleButton3.isChecked()) {
+                        horg3 = "ゲスト";
+                    } else {
+                        horg3 = "空席";
+                    }
+
+                }
+            }));
+        }
 
         toggleButton4=(ToggleButton)findViewById(R.id.button4);
         if (sheet4) {
             toggleButton4.setTextOn("ホスト");
             toggleButton4.setTextOff("ホスト");
             toggleButton4.setChecked(true);
-            horg4="host";
+            horg4="ホスト";
         }else {
-            if (toggleButton4.isChecked()){
-                horg4="guest";
-            }else {
-                horg4="vacant";
-            }}
+            toggleButton4.setOnClickListener((new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (toggleButton4.isChecked()) {
+                        horg4 = "ゲスト";
+                    } else {
+                        horg4 = "空席";
+                    }
+
+                }
+            }));
+        }
 
         Button myButton=(Button)findViewById(R.id.button7);
-        final boolean finalSheet = sheet1;
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
