@@ -71,7 +71,11 @@
         <activity android:name=".orner_wait" />
         <activity android:name=".JoinQrcode" />
         <activity android:name=".JoinSharing" />
-        <activity android:name=".JoinEvaluation"></activity>
+        <activity android:name=".JoinEvaluation" />
+        <activity android:name=".Check_in" />
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

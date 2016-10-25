@@ -100,6 +100,7 @@ public class TableSet extends Activity {
                 int requestCode = 1001;
                 // 返却値を考慮したActivityの起動を行う
                 startActivityForResult( intent, requestCode );
+//                startActivity(intent);
             }
         });
 
@@ -107,7 +108,8 @@ public class TableSet extends Activity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent2=new Intent(TableSet.this, MainActivity.class);
+                startActivity(intent2);
             }
         });
     }

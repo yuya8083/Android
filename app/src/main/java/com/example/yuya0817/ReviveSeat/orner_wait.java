@@ -35,8 +35,10 @@ public class orner_wait extends Activity {
 
     class splashHandler implements Runnable {
         public void run() {
-            Intent intent = new Intent(orner_wait.this, check_in.class);
+            Intent intent = new Intent(orner_wait.this, Check_in.class);
+            //Log.d("1","1");
             startActivity(intent);
+            //Log.d("2","2");
             orner_wait.this.finish();
         }
     }

@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yuya0817.ReviveSeat.wait"
-    android:background="#ffffff">
+    tools:context="com.example.yuya0817.ReviveSeat.wait">
 
     <ImageView
         android:id="@+id/cycle"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/cycle"
+        android:src="@drawable/cycling"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

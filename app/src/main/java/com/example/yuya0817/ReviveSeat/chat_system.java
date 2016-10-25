@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import android.widget.ListView;
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,9 +22,13 @@ import io.socket.SocketIO;
 import io.socket.SocketIOException;
 
 
+
 public class chat_system extends Activity {
 
-    private EditText editText;
+
+
+
+
     private ArrayAdapter<String> adapter;
     private SocketIO socket;
     private Handler handler = new Handler();
@@ -32,23 +39,37 @@ public class chat_system extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_chat_system);
 
-
-
-        editText = (EditText)findViewById(R.id.editText);
+        // ListViewの設定
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ListView listView = (ListView)findViewById(R.id.listView1);
+        listView.setAdapter(adapter);
+        editText = (EditText)findViewById(R.id.editText1);
 
         try {
             connect();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    private void connect() throws MalformedURLException{
-        socket = new SocketIO("http://10.0.2.2:3000/");
+    private void connect() throws MalformedURLException {
+        SocketIO socket = new SocketIO("https://cmapp0001.herokuapp.com/");
         socket.connect(iocallback);
     }
 
+
+
+        EditText editText = (EditText)findViewById(R.id.editText);
+
+
+
+
     private IOCallback iocallback = new IOCallback() {
+
+
+        @Override
+        public void onDisconnect() {
+
+        }
 
         @Override
         public void onConnect() {
@@ -56,17 +77,12 @@ public class chat_system extends Activity {
         }
 
         @Override
-        public void onDisconnect() {
-            System.out.println("onDisconnect");
+        public void onMessage(String s, IOAcknowledge ioAcknowledge) {
+
         }
 
         @Override
         public void onMessage(JSONObject json, IOAcknowledge ack) {
-            System.out.println("onMessage");
-        }
-
-        @Override
-        public void onMessage(String data, IOAcknowledge ack) {
             System.out.println("onMessage");
         }
 
@@ -83,7 +99,6 @@ public class chat_system extends Activity {
                                     // メッセージが空でなければ追加
                                     adapter.insert(message.getString("message"), 0);
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -92,19 +107,18 @@ public class chat_system extends Activity {
                 }
             }).start();
         }
-
         @Override
         public void onError(SocketIOException socketIOException) {
             System.out.println("onError");
             socketIOException.printStackTrace();
         }
     };
-
     public void sendEvent(View view){
         // 文字が入力されていなければ何もしない
         if (editText.getText().toString().length() == 0) {
             return;
         }
+
 
         try {
             // イベント送信
@@ -112,9 +126,13 @@ public class chat_system extends Activity {
             json.put("message", editText.getText().toString());
             socket.emit("message:send", json);
 
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
 
         // テキストフィールドをリセット
         editText.setText("");

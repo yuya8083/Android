@@ -26,6 +26,10 @@
         <item>5</item>
     </string-array>
 
+    <string name="search_form_label">検索フォーム</string>
+    <string name="button_label">送信</string>
+    <string name="message_label">メッセージ</string>
+
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
@@ -43,4 +47,5 @@
     <string name="error_invalid_UserName">users</string>
     <string name="error_invalid_username" />
     <string name="title_activity_map_confirmation">Map</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
