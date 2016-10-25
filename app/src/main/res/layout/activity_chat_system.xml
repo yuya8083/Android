@@ -22,7 +22,7 @@
             android:inputType="textPersonName"
             android:text="Name"
             android:ems="10"
-            android:id="@+id/editText5"
+            android:id="@+id/editText"
             android:layout_weight="0.98" />
 
         <EditText

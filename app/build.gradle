@@ -29,4 +29,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:8.4.0'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services:9.6.1'
+
+    compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
 }
