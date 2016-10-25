@@ -10,7 +10,7 @@ import android.widget.ToggleButton;
 
 public class select_share_sheet_host extends Activity  {
 
-    private String title,item,hour,minute,text,host;
+    private String title,item,hour,minute,text;
     private boolean sheet1,sheet2,sheet3,sheet4;
     private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
 
@@ -34,117 +34,76 @@ public class select_share_sheet_host extends Activity  {
         Toast.makeText(select_share_sheet_host.this, minute, Toast.LENGTH_SHORT).show();
         Toast.makeText(select_share_sheet_host.this, text, Toast.LENGTH_SHORT).show();
 
-        toggleButton1=(ToggleButton)findViewById(R.id.button1);
+        toggleButton1 = (ToggleButton) findViewById(R.id.button1);
         toggleButton1.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (toggleButton1.isChecked()) {
-                    sheet1=true;
-                    toggleButton1.setTextOn("ホスト");
-                }else {
-                    sheet1=false;
-                    toggleButton1.setTextOff("off");
+                    sheet1 = true;
+                } else {
+                    sheet1 = false;
                 }
 
             }
         }));
 
 
-        toggleButton2=(ToggleButton)findViewById(R.id.button2);
+        toggleButton2 = (ToggleButton) findViewById(R.id.button2);
         toggleButton2.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (toggleButton2.isChecked()) {
-                    sheet2=true;
-                    toggleButton2.setTextOn("ホスト");
-                }else {
-                    sheet2=false;
-                    toggleButton2.setTextOff("off");
+                    sheet2 = true;
+                } else {
+                    sheet2 = false;
                 }
 
             }
         }));
-        toggleButton3=(ToggleButton)findViewById(R.id.button3);
+        toggleButton3 = (ToggleButton) findViewById(R.id.button3);
         toggleButton3.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (toggleButton3.isChecked()) {
-                    sheet3=true;
-                    toggleButton3.setTextOn("ホスト");
-                }else {
-                    sheet3=false;
-                    toggleButton3.setTextOff("off");
+                    sheet3 = true;
+                } else {
+                    sheet3 = false;
                 }
 
 
             }
         }));
 
-        toggleButton4=(ToggleButton)findViewById(R.id.button4);
+        toggleButton4 = (ToggleButton) findViewById(R.id.button4);
         toggleButton4.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (toggleButton4.isChecked()) {
-                    sheet4=true;
-                    toggleButton4.setTextOn("ホスト");
-                }else {
-                    sheet4=false;
-                    toggleButton4.setTextOff("off");
+                    sheet4 = true;
+                } else {
+                    sheet4 = false;
                 }
 
             }
         }));
 
 
-        /*Button button1=(Button)findViewById(R.id.button1);
-        button1.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                host="R.id.Button1";
-            }
-        }));
-
-        Button button2=(Button)findViewById(R.id.button2);
-        button2.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                host="R.id.Button2";
-            }
-        }));
-
-        Button button3=(Button)findViewById(R.id.button3);
-        button3.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                host="R.id.Button3";
-            }
-        }));
-
-        Button button4=(Button)findViewById(R.id.button4);
-        button4.setOnClickListener((new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                host="R.id.Button4";
-            }
-             }));
-*/
-        Button next=(Button)findViewById(R.id.button7);
+        Button next = (Button) findViewById(R.id.button7);
         next.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(select_share_sheet_host.this, select_share_sheet_guest.class);
 
                 // intentへ添え字付で値を保持させる
-                intent.putExtra( "title", title);
-                intent.putExtra( "item", item );
-                intent.putExtra( "hour", hour);
-                intent.putExtra( "minute", minute);
-                intent.putExtra( "text", text );
-                intent.putExtra("host",host);
-                intent.putExtra("sheet1",sheet1);
-                intent.putExtra("sheet2",sheet2);
-                intent.putExtra("sheet3",sheet3);
-                intent.putExtra("sheet4",sheet4);
+                intent.putExtra("title", title);
+                intent.putExtra("item", item);
+                intent.putExtra("hour", hour);
+                intent.putExtra("minute", minute);
+                intent.putExtra("text", text);
+                intent.putExtra("sheet1", sheet1);
+                intent.putExtra("sheet2", sheet2);
+                intent.putExtra("sheet3", sheet3);
+                intent.putExtra("sheet4", sheet4);
 
 
                 startActivity(intent);
@@ -159,21 +118,12 @@ public class select_share_sheet_host extends Activity  {
             }
         });
 
-//        ImageButton back=(ImageButton)findViewById(R.id.back);
-//        back.setOnClickListener((new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent1 = new Intent(select_share_sheet_host.this, Confirmation.class);
-//                startActivity(intent1);
-//            }
-//        }));
-    }
 //    public void onbackButtontapped(View view){
 //        finish();
 //    }
 
 
-
+    }
 
 
 }
