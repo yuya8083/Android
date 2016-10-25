@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +26,7 @@ public class Confirmation extends Activity {
     private String title,item,hour,minute,text;
     private int categoryid,shopid,tableid,userid,seatinfo;
 
+    private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +45,41 @@ public class Confirmation extends Activity {
         hour = data.getStringExtra("hour");
         minute = data.getStringExtra("minute");
         text = data.getStringExtra("text");
-        final boolean sheet1 = data.getBooleanExtra("sheet1",true);
-        final boolean sheet2 = data.getBooleanExtra("sheet2",true);
-        final boolean sheet3 = data.getBooleanExtra("sheet3",true);
-        final boolean sheet4 = data.getBooleanExtra("sheet4",true);
+//        final boolean sheet1 = data.getBooleanExtra("sheet1",true);
+//        final boolean sheet2 = data.getBooleanExtra("sheet2",true);
+//        final boolean sheet3 = data.getBooleanExtra("sheet3",true);
+//        final boolean sheet4 = data.getBooleanExtra("sheet4",true);
+//        final String title = data.getStringExtra("title");
+//        final String item = data.getStringExtra("item");
+//        final String hour = data.getStringExtra("hour");
+//        final String minute = data.getStringExtra("minute");
+//        final String text = data.getStringExtra("text");
+        String sheet1 = data.getStringExtra("sheet1");
+        String sheet2 = data.getStringExtra("sheet2");
+        String sheet3 = data.getStringExtra("sheet3");
+        String sheet4 = data.getStringExtra("sheet4");
+
+        toggleButton1=(ToggleButton)findViewById(R.id.button1);
+            toggleButton1.setTextOn(sheet1);
+            toggleButton1.setTextOff(sheet1);
+            toggleButton1.setChecked(true);
+
+
+
+        toggleButton2=(ToggleButton)findViewById(R.id.button2);
+        toggleButton2.setTextOn(sheet2);
+        toggleButton2.setTextOff(sheet2);
+        toggleButton2.setChecked(true);
+
+        toggleButton3=(ToggleButton)findViewById(R.id.button3);
+        toggleButton3.setTextOn(sheet3);
+        toggleButton3.setTextOff(sheet3);
+        toggleButton3.setChecked(true);
+
+        toggleButton4=(ToggleButton)findViewById(R.id.button4);
+        toggleButton4.setTextOn(sheet4);
+        toggleButton4.setTextOff(sheet4);
+        toggleButton4.setChecked(true);
 
 
         titletext.setText(title);
