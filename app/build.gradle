@@ -27,7 +27,7 @@ dependencies {
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'com.google.android.gms:play-services:9.6.1'
-    compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
+//    compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
     testCompile 'junit:junit:4.12'
     compile files('libraries/socketio.jar')
 }

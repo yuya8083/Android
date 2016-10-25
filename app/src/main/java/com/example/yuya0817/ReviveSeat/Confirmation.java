@@ -3,11 +3,27 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+
+import io.socket.IOAcknowledge;
+import io.socket.IOCallback;
+import io.socket.SocketIO;
+import io.socket.SocketIOException;
+
 public class Confirmation extends Activity {
+
+    private Handler handler = new Handler();
+    private SocketIO socket;
+    private String title,item,hour,minute,text;
+    private int categoryid,shopid,tableid,userid,seatinfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +36,13 @@ public class Confirmation extends Activity {
         TextView hosokutext = (TextView)findViewById(R.id.hosokutext);
 
         // インテントを取得
-        final Intent data = getIntent();
+        Intent data = getIntent();
         // インテントに保存されたデータを取得
-        final String title = data.getStringExtra("title");
-        final String item = data.getStringExtra("item");
-        final String hour = data.getStringExtra("hour");
-        final String minute = data.getStringExtra("minute");
-        final String text = data.getStringExtra("text");
+        title = data.getStringExtra("title");
+        item = data.getStringExtra("item");
+        hour = data.getStringExtra("hour");
+        minute = data.getStringExtra("minute");
+        text = data.getStringExtra("text");
         final boolean sheet1 = data.getBooleanExtra("sheet1",true);
         final boolean sheet2 = data.getBooleanExtra("sheet2",true);
         final boolean sheet3 = data.getBooleanExtra("sheet3",true);
@@ -38,10 +54,21 @@ public class Confirmation extends Activity {
         timetext.setText(hour + "時" + minute + "分");
         hosokutext.setText(text);
 
+        categoryid= Integer.parseInt(item);
+        shopid=1;
+        tableid=1;
+        userid=1;
+        seatinfo=1002;
+
         Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    connect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(Confirmation.this, wait.class);
                 startActivity(intent);
             }
@@ -55,7 +82,82 @@ public class Confirmation extends Activity {
             }
         });
     }
-//    public void onbackButtontapped(View view){
-//        finish();
-//    }
+
+    private void connect() throws MalformedURLException {
+        SocketIO socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
+        socket.connect(iocallback);
+    }
+
+    private IOCallback iocallback = new IOCallback() {
+
+        @Override
+        public void onConnect() {
+            System.out.println("onConnect");
+        }
+
+        @Override
+        public void onDisconnect() {
+            System.out.println("onDisconnect");
+        }
+
+        @Override
+        public void onMessage(JSONObject json, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void onMessage(String data, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void on(String event, IOAcknowledge ack, Object... args) {
+            final JSONObject message = (JSONObject)args[0];
+
+            new Thread(new Runnable() {
+                public void run() {
+                    handler.post(new Runnable() {
+                        public void run() {
+                            try {
+                                if(message.getString("share_id") != null) {
+                                    // メッセージが空でなければ追加
+                                    message.put("share_id", message);
+                                    //adapter.insert(message.getString("message"), 0);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }).start();
+        }
+
+        @Override
+        public void onError(SocketIOException socketIOException) {
+            System.out.println("onError");
+            socketIOException.printStackTrace();
+        }
+    };
+
+    public void sendEvent(View view){
+        try {
+            // イベント送信
+            JSONObject json = new JSONObject();
+            json.put("title", title);
+            json.put("category_id", categoryid);
+            json.put("endtime", hour + ":" + minute);
+            json.put("explain", text);
+            json.put("shopid", shopid);
+            json.put("tableid", tableid);
+            json.put("userid", userid);
+            json.put("seatinfo", seatinfo);
+
+            socket.emit("sharetable_start", json);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
