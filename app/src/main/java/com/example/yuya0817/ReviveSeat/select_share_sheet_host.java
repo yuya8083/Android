@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
-public class select_share_sheet_host extends Activity {
+public class select_share_sheet_host extends Activity  {
 
     private String title,item,hour,minute,text,host;
+    private boolean sheet1,sheet2,sheet3,sheet4;
+    private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,36 @@ public class select_share_sheet_host extends Activity {
         Toast.makeText(select_share_sheet_host.this, minute, Toast.LENGTH_SHORT).show();
         Toast.makeText(select_share_sheet_host.this, text, Toast.LENGTH_SHORT).show();
 
-        Button button1=(Button)findViewById(R.id.button1);
+        toggleButton1=(ToggleButton)findViewById(R.id.button1);
+        if (toggleButton1.isChecked()) {
+        sheet1=true;
+        }else {
+            sheet1=false;
+        }
+
+        toggleButton2=(ToggleButton)findViewById(R.id.button1);
+        if (toggleButton2.isChecked()) {
+            sheet2=true;
+        }else {
+            sheet2=false;
+        }
+
+        toggleButton3=(ToggleButton)findViewById(R.id.button1);
+        if (toggleButton3.isChecked()) {
+            sheet3=true;
+        }else {
+            sheet3=false;
+        }
+
+        toggleButton4=(ToggleButton)findViewById(R.id.button1);
+        if (toggleButton4.isChecked()) {
+            sheet4=true;
+        }else {
+            sheet4=false;
+        }
+
+
+        /*Button button1=(Button)findViewById(R.id.button1);
         button1.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,8 +93,8 @@ public class select_share_sheet_host extends Activity {
             public void onClick(View v) {
                 host="R.id.Button4";
             }
-        }));
-
+             }));
+*/
         Button next=(Button)findViewById(R.id.button7);
         next.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -76,6 +108,12 @@ public class select_share_sheet_host extends Activity {
                 intent.putExtra( "minute", minute);
                 intent.putExtra( "text", text );
                 intent.putExtra("host",host);
+                intent.putExtra("sheet1",sheet1);
+                intent.putExtra("sheet2",sheet2);
+                intent.putExtra("sheet3",sheet3);
+                intent.putExtra("sheet4",sheet4);
+
+
                 startActivity(intent);
             }
         }));
@@ -100,4 +138,9 @@ public class select_share_sheet_host extends Activity {
 //    public void onbackButtontapped(View view){
 //        finish();
 //    }
+
+
+
+
+
 }

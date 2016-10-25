@@ -27,6 +27,10 @@ public class Confirmation extends Activity {
         final String hour = data.getStringExtra("hour");
         final String minute = data.getStringExtra("minute");
         final String text = data.getStringExtra("text");
+        final boolean sheet1 = data.getBooleanExtra("sheet1",true);
+        final boolean sheet2 = data.getBooleanExtra("sheet2",true);
+        final boolean sheet3 = data.getBooleanExtra("sheet3",true);
+        final boolean sheet4 = data.getBooleanExtra("sheet4",true);
 
 
         titletext.setText(title);
