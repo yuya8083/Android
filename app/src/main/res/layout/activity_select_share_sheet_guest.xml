@@ -52,13 +52,13 @@
                 android:layout_height="143dp"
                 android:weightSum="1">
 
-                <Button
+                <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="73dp"
                     android:id="@+id/button8" />
 
-                <Button
+                <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -78,13 +78,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <Button
+                <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:id="@+id/button11" />
 
-                <Button
+                <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
