@@ -9,7 +9,7 @@
     </style>
 
 
-    <drawable name="backcolor">#4400ff00</drawable>
+    <drawable name="backcolor">#44000000</drawable>
     　　<style name="Theme.ChildTranslucent" parent="android:style/Theme.Translucent">
     　　　　<item name="android:windowBackground">@drawable/backcolor</item>
     　　　　<item name="android:windowNoTitle">true</item>
