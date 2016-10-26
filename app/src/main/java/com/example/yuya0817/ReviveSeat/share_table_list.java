@@ -3,24 +3,57 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.MalformedURLException;
+import java.util.Objects;
+
+import io.socket.IOAcknowledge;
+import io.socket.IOCallback;
+import io.socket.SocketIO;
+import io.socket.SocketIOException;
 
 public class share_table_list extends Activity {
 
+    private Handler handler = new Handler();
+    private SocketIO socket;
+    private Objects a;
+    private TextView textView1;
+
+    private void connect() throws MalformedURLException {
+        SocketIO socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
+        socket.connect(iocallback);
+    }
+    public void sendEvent(View view){
+        try {
+            // イベント送信
+            JSONObject json = new JSONObject();
+            json.put("sharetable_list", null);
+
+            socket.emit("sharetable_list", a);
+            socket.emit("sharetable_back",a);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_table_list);
 
-//        ImageButton back=(ImageButton)findViewById(R.id.back);
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(share_table_list.this, MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+
+
+
+
+
 
 
         Button list1=(Button)findViewById(R.id.list1);
@@ -76,6 +109,59 @@ public class share_table_list extends Activity {
             }
         });
     }
+    private IOCallback iocallback = new IOCallback() {
+
+        @Override
+        public void onConnect() {
+            System.out.println("onConnect");
+        }
+
+        @Override
+        public void onDisconnect() {
+            System.out.println("onDisconnect");
+        }
+
+        @Override
+        public void onMessage(JSONObject json, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void onMessage(String data, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void on(String event, IOAcknowledge ack, Object... args) {
+            final JSONObject message = (JSONObject)args[0];
+
+            new Thread(new Runnable() {
+                public void run() {
+                    handler.post(new Runnable() {
+                        public void run() {
+                            try {
+                                if(message.getString("share_id") != null) {
+                                    // メッセージが空でなければ追加
+                                    message.put("share_id", message);
+                                    //adapter.insert(message.getString("message"), 0);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }).start();
+        }
+
+        @Override
+        public void onError(SocketIOException socketIOException) {
+            System.out.println("onError");
+            socketIOException.printStackTrace();
+        }
+    };
+
 
 //    public void onBackButtonTapped(View view){
 //        finish();
