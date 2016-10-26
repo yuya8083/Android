@@ -97,11 +97,11 @@ public class Confirmation extends Activity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+                /*try {
                     connect();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }*/
                 Intent intent = new Intent(Confirmation.this, wait.class);
                 startActivity(intent);
             }
@@ -116,8 +116,8 @@ public class Confirmation extends Activity {
         });
     }
 
-    private void connect() throws MalformedURLException {
-        SocketIO socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
+    private void onConnect() throws MalformedURLException {
+        socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
         socket.connect(iocallback);
     }
 

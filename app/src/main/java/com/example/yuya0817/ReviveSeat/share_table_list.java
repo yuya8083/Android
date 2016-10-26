@@ -12,7 +12,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
-import java.util.Objects;
 
 import io.socket.IOAcknowledge;
 import io.socket.IOCallback;
@@ -23,21 +22,24 @@ public class share_table_list extends Activity {
 
     private Handler handler = new Handler();
     private SocketIO socket;
-    private Objects a;
+    private Object a[];
     private TextView textView1;
+    private String servermessage,test="test";
+    private IOAcknowledge ack;
 
-    private void connect() throws MalformedURLException {
-        SocketIO socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
+    private void connectSocketIO() throws MalformedURLException {
+        socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
         socket.connect(iocallback);
     }
     public void sendEvent(View view){
         try {
             // イベント送信
             JSONObject json = new JSONObject();
-            json.put("sharetable_list", null);
 
-            socket.emit("sharetable_list", a);
-            socket.emit("sharetable_back",a);
+            json.put("test", "1");
+
+            socket.emit("test");
+            //socket.emit("sharetable_back",a);
 
 
         } catch (JSONException e) {
@@ -50,6 +52,12 @@ public class share_table_list extends Activity {
         setContentView(R.layout.activity_share_table_list);
 
 
+
+
+
+        textView1=(TextView)findViewById(R.id.textView1) ;
+
+        //iocallback.on("test_back",ack,a);
 
 
 
@@ -140,11 +148,20 @@ public class share_table_list extends Activity {
                     handler.post(new Runnable() {
                         public void run() {
                             try {
-                                if(message.getString("share_id") != null) {
+                                servermessage=message.toString();
+                                servermessage="ks";
+                                message.put("share_id", message);
+
+                                textView1.setText(servermessage);
+                                /*if(message.getString("share_id") != null) {
                                     // メッセージが空でなければ追加
+                                    servermessage=message.toString();
+                                    servermessage="ks";
                                     message.put("share_id", message);
+
+                                    textView1.setText(servermessage);
                                     //adapter.insert(message.getString("message"), 0);
-                                }
+                                }*/
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -163,7 +180,7 @@ public class share_table_list extends Activity {
     };
 
 
-//    public void onBackButtonTapped(View view){
-//        finish();
-//    }
+    public void onBackButtonTapped(View view){
+        finish();
+    }
 }
