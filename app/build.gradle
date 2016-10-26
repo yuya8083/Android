@@ -30,4 +30,5 @@ dependencies {
     //compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
     testCompile 'junit:junit:4.12'
     compile files('libraries/socketio.jar')
+    compile 'com.github.nkzawa:socket.io-client:0.3.0'
 }
