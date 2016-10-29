@@ -2,10 +2,10 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class Top extends AppCompatActivity {
+public class Top extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

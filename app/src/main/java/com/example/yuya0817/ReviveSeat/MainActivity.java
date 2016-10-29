@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         myButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(MainActivity.this, select_share_sheet_host.class);
+                Intent intent4 = new Intent(MainActivity.this, Top.class);
                 //Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
 
 
