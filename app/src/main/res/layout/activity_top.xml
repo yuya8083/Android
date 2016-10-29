@@ -11,13 +11,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuya0817.ReviveSeat.Top">
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/Revive_rogo"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="144dp"
-        android:id="@+id/imageView2" />
+        app:srcCompat="@drawable/revive_rogo"
+        android:id="@+id/imageView4"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:contentDescription="" />
 </RelativeLayout>
 
