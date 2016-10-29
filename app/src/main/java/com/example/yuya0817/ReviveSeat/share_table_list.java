@@ -4,17 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
@@ -70,7 +65,7 @@ public class share_table_list extends Activity {
         textView1=(TextView)findViewById(R.id.textView1) ;
 
 
-        mSocket.connect();
+        /*mSocket.connect();
         mSocket.emit("test","a");
         mSocket.on("test_back", new Emitter.Listener() {
             @Override
@@ -85,7 +80,7 @@ public class share_table_list extends Activity {
             }
         });
 
-        mSocket.connect();
+        mSocket.connect();*/
 
 
 
@@ -152,7 +147,7 @@ public class share_table_list extends Activity {
     }
 
 
-    Emitter.Listener onNewMessage = new Emitter.Listener() {
+    /*Emitter.Listener onNewMessage = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
             share_table_list.super.runOnUiThread(new Runnable() {
@@ -169,7 +164,7 @@ public class share_table_list extends Activity {
                 }
             });
         }
-    };
+    };*/
     /*private IOCallback iocallback = new IOCallback() {
 
         @Override
