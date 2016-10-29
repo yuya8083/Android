@@ -50,7 +50,7 @@ public class MyIntentService extends IntentService {
 
             Log.e("intent", "1");
 //            socket.emit("sharetable_start", json);
-            socket.emit("test", json);
+//            socket.emit("test", json);
             Log.e("intent", "2");
 
         } catch (JSONException e) {

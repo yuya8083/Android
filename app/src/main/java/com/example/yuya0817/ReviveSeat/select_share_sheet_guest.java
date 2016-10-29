@@ -113,7 +113,7 @@ public class select_share_sheet_guest extends Activity {
             }));
         }
 
-        Button myButton=(Button)findViewById(R.id.button7);
+        Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
