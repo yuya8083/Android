@@ -4,34 +4,48 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
 import io.socket.IOAcknowledge;
-import io.socket.IOCallback;
-import io.socket.SocketIO;
-import io.socket.SocketIOException;
 
 public class share_table_list extends Activity {
 
     private Handler handler = new Handler();
-    private SocketIO socket;
+    //private SocketIO socket;
     private Object a[];
     private TextView textView1;
     private String servermessage,test="test";
     private IOAcknowledge ack;
 
-    private void connectSocketIO() throws MalformedURLException {
+    /*private void connectSocketIO() throws MalformedURLException {
         socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
         socket.connect(iocallback);
+    }*/
+    private Socket mSocket;
+
+    {
+        try {
+            IO.Options opts = new IO.Options();
+            // IO.socket("サーバーから提示提供されたURL");
+            mSocket = IO.socket("https://reviveseatserver.herokuapp.com/");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
-    public void sendEvent(View view){
+
+    /*public void sendEvent(View view){
         try {
             // イベント送信
             JSONObject json = new JSONObject();
@@ -45,7 +59,7 @@ public class share_table_list extends Activity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +67,32 @@ public class share_table_list extends Activity {
 
 
 
-
-
         textView1=(TextView)findViewById(R.id.textView1) ;
 
+
+        mSocket.connect();
+        mSocket.emit("test","a");
+        mSocket.on("test_back", new Emitter.Listener() {
+            @Override
+            public void call(final Object... arg) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data=(JSONObject)arg[0];
+                        textView1.setText(arg[0].toString());
+                    }
+                });
+            }
+        });
+
+        mSocket.connect();
+
+
+
+
+        //textView1.setText(onNewMessage.toString());
+
         //iocallback.on("test_back",ack,a);
-
-
 
 
 
@@ -117,7 +150,27 @@ public class share_table_list extends Activity {
             }
         });
     }
-    private IOCallback iocallback = new IOCallback() {
+
+
+    Emitter.Listener onNewMessage = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            share_table_list.super.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    JSONObject data=(JSONObject)args[0];
+                    Log.d("受信データ", String.valueOf(args[0]));
+                    textView1=(TextView)findViewById(R.id.textView1) ;
+                    try {
+                        textView1.setText(data.getString(""));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    };
+    /*private IOCallback iocallback = new IOCallback() {
 
         @Override
         public void onConnect() {
@@ -161,7 +214,7 @@ public class share_table_list extends Activity {
 
                                     textView1.setText(servermessage);
                                     //adapter.insert(message.getString("message"), 0);
-                                }*/
+                                }
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -178,7 +231,7 @@ public class share_table_list extends Activity {
             socketIOException.printStackTrace();
         }
     };
-
+*/
 
     public void onBackButtonTapped(View view){
         finish();
