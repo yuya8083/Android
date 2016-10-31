@@ -11,13 +11,19 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.engineio.client.Socket;
 import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
+import io.socket.IOAcknowledge;
+import io.socket.IOCallback;
 import io.socket.SocketIO;
+import io.socket.SocketIOException;
 
 
 //import com.github.nkzawa.socketio.client.Socket;
@@ -26,20 +32,22 @@ public class Confirmation extends Activity {
 
     private Handler handler = new Handler();
     public static SocketIO socket;
-    public static String title, item, hour, minute, text;
-    public static int categoryid, shopid, tableid, userid, seatinfo;
+    public static String title,item,hour,minute,text;
+    public static int categoryid,shopid,tableid,userid,seatinfo;
+//    public static String title, item, hour, minute, text;
+//    public static int categoryid, shopid, tableid, userid, seatinfo;
 
-    //public static SocketIO getsocket(){return socket;}
+    public static SocketIO getsocket(){return socket;}
 
     private ToggleButton toggleButton1, toggleButton2, toggleButton3, toggleButton4;
 
-    private Socket mSocket;
-
+    private com.github.nkzawa.socketio.client.Socket mSocket;
     {
         try {
             IO.Options opts = new IO.Options();
             // IO.socket("サーバーから提示提供されたURL");
-            mSocket = IO.socket("https://reviveseatserver.herokuapp.com/");
+         // mSocket = IO.socket("https://reviveseatserver.herokuapp.com/socketio-test.html");
+            mSocket = IO.socket("https://revuveserver.herokuapp.com/");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -121,6 +129,10 @@ public class Confirmation extends Activity {
                     e.printStackTrace();
                 }
 
+//                Log.d("3","3");
+//                mSocket.on("test", onNewMessage);
+//                Log.d("4","4");
+
 
                 Log.d("3","3");
                 mSocket.on("test_back", onNewMessage);
@@ -143,50 +155,85 @@ public class Confirmation extends Activity {
         });
     }
 
+    private void connecting() throws MalformedURLException {
+//        mSocket.connect();
+//        //String sendData = "3000,1," + linkData();
+//        //Log.d("SENDDATA", sendData);
+//        // イベント送信 mSocket.emit("サーバー班が決めたkey", sendData);
+//        Log.d("1","1");
+//        mSocket.emit("test", "test");
+//        Log.d("2","2");
+
+//        socket = new SocketIO("https://reviveseatserver.herokuapp.com");
+        socket = new SocketIO("https://reviveseatserver.herokuapp.com/socketio-test.html");
+//        SocketIO socket = new SocketIO("http://172.20.10.2:2010");
+        Intent intent = new Intent(this, MyIntentService.class);
+        intent.putExtra("title", title);
+        intent.putExtra("category_id", categoryid);
+        intent.putExtra("endtime", hour + ":" + minute);
+        intent.putExtra("explain", text);
+        intent.putExtra("shopid", shopid);
+        intent.putExtra("tableid", tableid);
+        intent.putExtra("userid", userid);
+        intent.putExtra("seatinfo", seatinfo);
+
+        Log.e("title", title);
+        Log.e("category_id", item);
+        Log.e("explain", text);
+        Log.e("shopid", Integer.toString(shopid));
+        Log.e("tableid", Integer.toString(tableid));
+        Log.e("userid", Integer.toString(userid));
+        Log.e("seatinfo", Integer.toString(seatinfo));
+    }
 
 
-        private Emitter.Listener onNewMessage = new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-                Log.d("5", "5");
-                Confirmation.super.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("6", "6");
-                        Log.d("受信データ", String.valueOf(args[0]));
-                    }
-                });
-            }
-        };
+    private Emitter.Listener onNewMessage = new Emitter.Listener() {
+        @Override
+        public void call(final Object... args) {
+            Log.d("5", "5");
+            Confirmation.super.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("6", "6");
+                    Log.d("受信データ", String.valueOf(args[0]));
+                }
+            });
+        }
+    };
 
-        private void connect() throws MalformedURLException {
-            mSocket.connect();
-            //String sendData = "3000,1," + linkData();
-            //Log.d("SENDDATA", sendData);
-            // イベント送信 mSocket.emit("サーバー班が決めたkey", sendData);
-            Log.d("1", "1");
-            mSocket.emit("test", "1");
-            Log.d("2", "2");
-
+    private void connect() throws MalformedURLException {
+        mSocket.connect();
+        //String sendData = "3000,1," + linkData();
+        //Log.d("SENDDATA", sendData);
+        // イベント送信 mSocket.emit("サーバー班が決めたkey", sendData);
+        Log.d("1", "1");
+        mSocket.emit("test", "1");
+        Log.d("2", "2");
 //        SocketIO socket = new SocketIO("https://reviveseatserver.herokuapp.com");
-//        Intent intent = new Intent(this, MyIntentService.class);
-//        intent.putExtra("title", title);
-//        intent.putExtra("category_id", categoryid);
-//        intent.putExtra("endtime", hour + ":" + minute);
-//        intent.putExtra("explain", text);
-//        intent.putExtra("shopid", shopid);
-//        intent.putExtra("tableid", tableid);
-//        intent.putExtra("userid", userid);
-//        intent.putExtra("seatinfo", seatinfo);
-//
-//        Log.e("title",title);
-//        Log.e("category_id", item);
-//        Log.e("explain", text);
-//        Log.e("shopid", Integer.toString(shopid));
-//        Log.e("tableid", Integer.toString(tableid));
-//        Log.e("userid", Integer.toString(userid));
-//        Log.e("seatinfo", Integer.toString(seatinfo));
-//
+        Intent intent = new Intent(this, MyIntentService.class);
+        intent.putExtra("title", title);
+        intent.putExtra("category_id", categoryid);
+        intent.putExtra("endtime", hour + ":" + minute);
+        intent.putExtra("explain", text);
+        intent.putExtra("shopid", shopid);
+        intent.putExtra("tableid", tableid);
+        intent.putExtra("userid", userid);
+        intent.putExtra("seatinfo", seatinfo);
+
+        Log.e("title",title);
+        Log.e("category_id", item);
+        Log.e("explain", text);
+        Log.e("shopid", Integer.toString(shopid));
+        Log.e("tableid", Integer.toString(tableid));
+        Log.e("userid", Integer.toString(userid));
+        Log.e("seatinfo", Integer.toString(seatinfo));
+
+        Log.e("",intent.toString());
+
+        this.startService(intent);
+
+        Log.e("ok", "intent");
+
 //        Log.e("",intent.toString());
 //
 //        this.startService(intent);
@@ -194,62 +241,63 @@ public class Confirmation extends Activity {
 //        Log.e("ok", "intent");
 
 
+        socket.connect(iocallback);
+    }
 //        socket.connect(iocallback);
+
+    private IOCallback iocallback = new IOCallback() {
+
+        @Override
+        public void onConnect() {
+            System.out.println("onConnect");
         }
 
-//    private IOCallback iocallback = new IOCallback() {
-//
-//        @Override
-//        public void onConnect() {
-//            System.out.println("onConnect");
-//        }
-//
-//        @Override
-//        public void onDisconnect() {
-//            System.out.println("onDisconnect");
-//        }
-//
-//        @Override
-//        public void onMessage(JSONObject json, IOAcknowledge ack) {
-//            System.out.println("onMessage");
-//        }
-//
-//        @Override
-//        public void onMessage(String data, IOAcknowledge ack) {
-//            System.out.println("onMessage");
-//        }
-//
-//        @Override
-//        public void on(String event, IOAcknowledge ack, Object... args) {
-//            final JSONObject message = (JSONObject)args[0];
-//
-//            new Thread(new Runnable() {
-//                public void run() {
-//                    handler.post(new Runnable() {
-//                        public void run() {
-//                            try {
-//                                if(message.getString("share_id") != null) {
-//                                    // メッセージが空でなければ追加
-//                                    message.put("share_id", message);
-//                                    //adapter.insert(message.getString("message"), 0);
-//                                }
-//
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
-//                }
-//            }).start();
-//        }
-//
-//        @Override
-//        public void onError(SocketIOException socketIOException) {
-//            System.out.println("onError");
-//            socketIOException.printStackTrace();
-//        }
-//    };
-//
+        @Override
+        public void onDisconnect() {
+            System.out.println("onDisconnect");
+        }
+
+        @Override
+        public void onMessage(JSONObject json, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void onMessage(String data, IOAcknowledge ack) {
+            System.out.println("onMessage");
+        }
+
+        @Override
+        public void on(String event, IOAcknowledge ack, Object... args) {
+            final JSONObject message = (JSONObject)args[0];
+
+            new Thread(new Runnable() {
+                public void run() {
+                    handler.post(new Runnable() {
+                        public void run() {
+                            try {
+                                if(message.getString("share_id") != null) {
+                                    // メッセージが空でなければ追加
+                                    message.put("share_id", message);
+                                    //adapter.insert(message.getString("message"), 0);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }).start();
+        }
+
+        @Override
+        public void onError(SocketIOException socketIOException) {
+            System.out.println("onError");
+            socketIOException.printStackTrace();
+        }
+    };
+
 //    public void sendEvent(View view){
 //        try {
 //            // イベント送信
@@ -271,33 +319,31 @@ public class Confirmation extends Activity {
 //        }
 //    }
 
-//    private void post(){
-//        //MyIntentServiceを起動する
-//        Intent intent = new Intent(this, MyIntentService.class);
-//        intent.putExtra("title", title);
-//        intent.putExtra("category_id", categoryid);
-//        intent.putExtra("endtime", hour + ":" + minute);
-//        intent.putExtra("explain", text);
-//        intent.putExtra("shopid", shopid);
-//        intent.putExtra("tableid", tableid);
-//        intent.putExtra("userid", userid);
-//        intent.putExtra("seatinfo", seatinfo);
-//        this.startService(intent);
-//    }
-
-        @Override
-        protected void onResume() {
-            super.onResume();
-        }
-
-        @Override
-        protected void onPause() {
-            super.onPause();
-        }
-
-        @Override
-        public void onStop() {
-            super.onStop();
-        }
+    private void post(){
+        //MyIntentServiceを起動する
+        Intent intent = new Intent(this, MyIntentService.class);
+        intent.putExtra("title", title);
+        intent.putExtra("category_id", categoryid);
+        intent.putExtra("endtime", hour + ":" + minute);
+        intent.putExtra("explain", text);
+        intent.putExtra("shopid", shopid);
+        intent.putExtra("tableid", tableid);
+        intent.putExtra("userid", userid);
+        intent.putExtra("seatinfo", seatinfo);
+        this.startService(intent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+}
 

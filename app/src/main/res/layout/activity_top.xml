@@ -13,9 +13,9 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/revive_rogo"
+        android:src="@drawable/reviveseat_rogo"
         android:id="@+id/imageView4"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
