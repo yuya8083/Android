@@ -77,9 +77,9 @@
         <activity android:name=".Check_in" />
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <service android:name="MyIntentService"></service>
-        <activity android:name=".MainActivity"></activity>
+            android:label="@string/title_activity_maps" />
+        <service android:name="MyIntentService" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
