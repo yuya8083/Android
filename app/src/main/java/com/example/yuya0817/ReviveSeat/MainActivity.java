@@ -10,18 +10,16 @@ import android.widget.Button;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 
-import io.socket.IOAcknowledge;
-import io.socket.IOCallback;
-import io.socket.SocketIO;
-import io.socket.SocketIOException;
-
-import static com.example.yuya0817.ReviveSeat.Confirmation.socket;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 
 public class MainActivity extends Activity {
-    public SocketIO socketIO;
+    //public SocketIO socketIO;
+    public Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,55 +59,109 @@ public class MainActivity extends Activity {
         myButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(MainActivity.this, select_share_sheet_host.class);
+                Intent intent4 = new Intent(MainActivity.this, Top.class);
                 //Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
+//                try {
+//                    socketIO = new SocketIO("https://reviveseatserver.herokuapp.com/socketio-test.html");
+//                    Log.d("1","1");
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                }
+//                socketIO.connect(new IOCallback() {
+//                    @Override
+//                    public void onMessage(JSONObject json, IOAcknowledge ack) {
+//                        try {
+//                            System.out.println("Server said:" + json.toString(2));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onMessage(String data, IOAcknowledge ack) {
+//                        System.out.println("Server said: " + data);
+//                    }
+//
+//                    @Override
+//                    public void onError(SocketIOException socketIOException) {
+//                        System.out.println("an Error occured");
+//                        socketIOException.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    public void onDisconnect() {
+//                        System.out.println("Connection terminated.");
+//                    }
+//
+//                    @Override
+//                    public void onConnect() {
+//                        System.out.println("Connection established");
+//                        socket.emit("test", "Hello Server!");
+//                    }
+//
+//                    @Override
+//                    public void on(String event, IOAcknowledge ack, Object... args) {
+//                        System.out.println("Server triggered event '" + event + "'");
+//                    }
+//                });
+
                 try {
-                    socketIO = new SocketIO("https://reviveseatserver.herokuapp.com/socketio-test.html");
+                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
                     Log.d("1","1");
-                } catch (MalformedURLException e) {
+                } catch (URISyntaxException e) {
                     e.printStackTrace();
+                    Log.e("-1","-1");
                 }
-                socketIO.connect(new IOCallback() {
+                socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+
                     @Override
-                    public void onMessage(JSONObject json, IOAcknowledge ack) {
+                    public void call(Object... args) {
+                        Log.d("2","2");
+                        socket.emit("test", "hi");
+                        // Sending an object
+                        JSONObject obj = new JSONObject();
                         try {
-                            System.out.println("Server said:" + json.toString(2));
+                            obj.put("hello", "server");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        socket.emit("test", obj);
+                        socket.disconnect();
                     }
 
-                    @Override
-                    public void onMessage(String data, IOAcknowledge ack) {
-                        System.out.println("Server said: " + data);
-                    }
+                }).on("test_back", new Emitter.Listener() {
 
                     @Override
-                    public void onError(SocketIOException socketIOException) {
-                        System.out.println("an Error occured");
-                        socketIOException.printStackTrace();
+                    public void call(Object... args) {
+                        Log.d("3","3");
+                        JSONObject obj = (JSONObject)args[0];
                     }
 
-                    @Override
-                    public void onDisconnect() {
-                        System.out.println("Connection terminated.");
-                    }
+                }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
 
                     @Override
-                    public void onConnect() {
-                        System.out.println("Connection established");
-                        socket.emit("test", "Hello Server!");
+                    public void call(Object... args) {
+                        Log.d("4","4");
                     }
 
-                    @Override
-                    public void on(String event, IOAcknowledge ack, Object... args) {
-                        System.out.println("Server triggered event '" + event + "'");
-                    }
                 });
+                socket.connect();
 
                 // This line is cached until the connection is establisched.
                 startActivity(intent4);
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

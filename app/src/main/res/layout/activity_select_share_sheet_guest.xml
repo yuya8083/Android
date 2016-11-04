@@ -35,69 +35,85 @@
             android:layout_height="50dp" />
 
         <TextView
-            android:text="　　　　　　シェアする席を選択してください"
+            android:text="シェアする席を選択してください"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
-            android:layout_weight="0.08" />
+            android:layout_weight="0.08"
+            android:gravity="center"
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.22"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="97dp"
-                android:layout_height="143dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:layout_weight="1">
+
+                <ToggleButton
+                    android:text="Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button1"
+                    android:checked="false"
+                    android:textOff="off"
+                    android:textOn="ゲスト"
+                    android:layout_marginTop="60dp"
+                    android:layout_weight="0.40" />
+
+                <ToggleButton
+                    android:text="Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/button2"
+                    android:textOff="off"
+                    android:textOn="ゲスト"
+                    android:layout_marginBottom="30dp"
+                    android:layout_weight="0.40" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/table"
+                android:id="@+id/imageView3"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:weightSum="1">
 
                 <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="73dp"
-                    android:id="@+id/button1"
-                    android:checked="false"
-                    android:textOff="off"
-                    android:textOn="ゲスト" />
-
-                <ToggleButton
-                    android:text="Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/button2"
-                    android:textOff="off"
-                    android:textOn="ゲスト" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="157dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/table"
-                android:id="@+id/imageView3"
-                android:background="@mipmap/ic_launcher" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ToggleButton
-                    android:text="Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="77dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button3"
                     android:textOff="off"
-                    android:textOn="ゲスト" />
+                    android:textOn="ゲスト"
+                    android:layout_marginTop="60dp"
+                    android:layout_weight="0.40" />
 
                 <ToggleButton
                     android:text="Button"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/button4"
                     android:textOff="off"
-                    android:textOn="ゲスト" />
+                    android:textOn="ゲスト"
+                    android:layout_marginBottom="30dp"
+                    android:layout_weight="0.40" />
             </LinearLayout>
         </LinearLayout>
 
@@ -110,11 +126,11 @@
 
         <Button
             android:text="次へ"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/next"
-            android:layout_gravity="end"
-            android:layout_weight="0.07" />
+            android:layout_weight="0.08"
+            android:layout_gravity="center" />
 
     </LinearLayout>
 </RelativeLayout>
