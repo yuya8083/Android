@@ -8,6 +8,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.example.yuya0817.ReviveSeat.R.id.user;
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
@@ -48,13 +50,32 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     private View mProgressView;
     private View mLoginFormView;
 
+    public static final String PREFERENCES_FILE_NAME = "preference";
+    // ログイン処理
+    public void login(){
+        SharedPreferences settings = getSharedPreferences(PREFERENCES_FILE_NAME, 0); // 0 -> MODE_PRIVATE
+        SharedPreferences.Editor editor = settings.edit();
+         editor.putLong("logged-in", 1);
+        editor.commit();
+        }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Button loginButton = (Button) findViewById(R.id.sign_in_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //socket.emit('username',user);
+                login();
+            }
+        });
+
         // Set up the login form.
-        mUserNameView = (AutoCompleteTextView) findViewById(R.id.user);
+        mUserNameView = (AutoCompleteTextView) findViewById(user);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
