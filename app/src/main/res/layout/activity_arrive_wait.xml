@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     tools:context="com.example.yuya0817.ReviveSeat.wait">
 
-    <ImageView
-        android:id="@+id/cycle"
+    <ProgressBar
+        android:id="@+id/product_image_loading"
+        android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/cycling"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        style="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
