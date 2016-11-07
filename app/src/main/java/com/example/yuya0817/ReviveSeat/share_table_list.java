@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
@@ -65,7 +68,7 @@ public class share_table_list extends Activity {
         textView1=(TextView)findViewById(R.id.textView1) ;
 
 
-        /*mSocket.connect();
+
         mSocket.emit("test","a");
         mSocket.on("test_back", new Emitter.Listener() {
             @Override
@@ -80,14 +83,12 @@ public class share_table_list extends Activity {
             }
         });
 
-        mSocket.connect();*/
+        mSocket.connect();
 
 
 
 
-        //textView1.setText(onNewMessage.toString());
 
-        //iocallback.on("test_back",ack,a);
 
 
 
@@ -201,7 +202,7 @@ public class share_table_list extends Activity {
                                 message.put("share_id", message);
 
                                 textView1.setText(servermessage);
-                                /*if(message.getString("share_id") != null) {
+                                if(message.getString("share_id") != null) {
                                     // メッセージが空でなければ追加
                                     servermessage=message.toString();
                                     servermessage="ks";
@@ -225,8 +226,8 @@ public class share_table_list extends Activity {
             System.out.println("onError");
             socketIOException.printStackTrace();
         }
-    };
-*/
+    };*/
+
 
     public void onBackButtonTapped(View view){
         finish();
