@@ -15,7 +15,7 @@ public class arrive_wait extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arrive_wait);
 
-        findViewById(R.id.cycle).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
+        findViewById(R.id.product_image_loading).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
         Handler match = new Handler();
         // 第２引数で切り替わる秒数(ミリ秒)を指定、今回は2秒
         match.postDelayed(new arrive_wait.splashHandler(), 5000);

@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void call(Object... args) {
                         Log.d("2","2");
-                        socket.emit("test", "hi");
+                        //socket.emit("test", "hi");
                         // Sending an object
                         JSONObject obj = new JSONObject();
                         try {
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
                             e.printStackTrace();
                         }
                         socket.emit("test", obj);
-                        socket.disconnect();
+                        //socket.disconnect();
                     }
 
                 }).on("test_back", new Emitter.Listener() {
@@ -134,7 +134,9 @@ public class MainActivity extends Activity {
                     @Override
                     public void call(Object... args) {
                         Log.d("3","3");
-                        JSONObject obj = (JSONObject)args[0];
+                        JSONObject obj2 = (JSONObject)args[0];
+                        Log.d("recieve", obj2.toString());
+                        socket.disconnect();
                     }
 
                 }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
@@ -152,16 +154,16 @@ public class MainActivity extends Activity {
             }
         });
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//    }
 }
