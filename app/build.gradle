@@ -31,8 +31,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libraries/socketio.jar')
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
-    compile ('io.socket:socket.io-client:0.8.2') {
+    compile('io.socket:socket.io-client:0.8.2') {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
+    compile files('C:/Users/chihobanno/AndroidStudioProjects/Revive/libraries/socketio.jar')
+    compile files('C:/Users/chihobanno/AndroidStudioProjects/Revive/library/socketio.jar')
 }

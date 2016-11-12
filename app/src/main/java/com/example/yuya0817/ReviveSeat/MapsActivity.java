@@ -1,8 +1,8 @@
 package com.example.yuya0817.ReviveSeat;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,8 +14,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    public io.socket.client.Socket socket;
     private GoogleMap mMap;
 
     @Override
@@ -26,6 +35,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        Emitter on = socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //送信
+                //socket.emit();
+                JSONObject obj = new JSONObject();
+                socket.disconnect();
+            }
+        }).on("shop_address", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //住所
+                JSONObject obj = (JSONObject) args[0];
+            }
+        }).on("shop_name", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //店名
+                JSONObject obj = (JSONObject) args[1];
+            }
+        }).on("detail_back", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //座席番号
+                JSONObject obj = (JSONObject) args[1];
+            }
+        });
 
         Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +82,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-            }
+                try {
+                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                Emitter on = socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        //送信
+                        socket.emit("detail",0);
+                        socket.disconnect();
+                    }
+                });}
         });
     }
 
