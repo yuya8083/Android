@@ -17,6 +17,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 
+
 public class MainActivity extends Activity {
     //public SocketIO socketIO;
     public Socket socket;
@@ -59,7 +60,7 @@ public class MainActivity extends Activity {
         myButton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(MainActivity.this, Top.class);
+                Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
                 //Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
 //                try {
 //                    socketIO = new SocketIO("https://reviveseatserver.herokuapp.com/socketio-test.html");
@@ -136,6 +137,7 @@ public class MainActivity extends Activity {
                         Log.d("3","3");
                         JSONObject obj2 = (JSONObject)args[0];
                         Log.d("recieve", obj2.toString());
+                        System.out.println(obj2);
                         socket.disconnect();
                     }
 
@@ -153,6 +155,7 @@ public class MainActivity extends Activity {
                 startActivity(intent4);
             }
         });
+
     }
 //    @Override
 //    protected void onResume() {

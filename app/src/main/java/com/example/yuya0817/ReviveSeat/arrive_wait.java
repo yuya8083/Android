@@ -44,6 +44,7 @@ public class arrive_wait extends Activity {
                         socket.disconnect();
                     }
                 });
+                arrive_wait.this.finish();
                 //socket.connect();
             }
         });
@@ -57,7 +58,19 @@ public class arrive_wait extends Activity {
         public void run() {
             Intent intent = new Intent(arrive_wait.this, Sharing.class);
             startActivity(intent);
-            //arrive_wait.this.finish();
+            try {
+                socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            Emitter on = socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+                @Override
+                public void call(Object... args) {
+                    //送信
+                    socket.emit("detail",1);
+                    socket.disconnect();
+                }
+            });
         }
     }
 }

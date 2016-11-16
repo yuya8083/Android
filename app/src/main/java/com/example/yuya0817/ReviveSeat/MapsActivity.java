@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,11 +27,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public io.socket.client.Socket socket;
     private GoogleMap mMap;
+    private TextView ct;
+    private TextView sn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -38,36 +42,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
-        } catch (URISyntaxException e) {
+        }
+        catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        Emitter on = socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 //送信
-                //socket.emit();
-                JSONObject obj = new JSONObject();
-                socket.disconnect();
+                 JSONObject obj = new JSONObject();
+                socket.emit("test", "接続してやー");
+                System.out.println("ぜろ");
+
             }
-        }).on("shop_address", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                //住所
-                JSONObject obj = (JSONObject) args[0];
-            }
-        }).on("shop_name", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                //店名
-                JSONObject obj = (JSONObject) args[1];
-            }
-        }).on("detail_back", new Emitter.Listener() {
+
+//        }).on("shop_name", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... args) {
+//                //店名
+//                JSONObject obj = (JSONObject) args[1];
+//                ct=(TextView)findViewById(R.id.cafenametext);
+//                //ct.setText((CharSequence) args[1]);
+//                ct.setText("実験");
+//            }
+
+        }).on("test_back", new Emitter.Listener() {//shop_address
             @Override
             public void call(Object... args) {
                 //座席番号
-                JSONObject obj = (JSONObject) args[1];
+                System.out.println("いち");
+                JSONObject obj2 = (JSONObject)args[0];
+                System.out.println("に");
+                sn=(TextView)findViewById(R.id.adresstext);
+                System.out.println("さん");
+                sn.setText(obj2.toString());//int a = Integer.parseInt(args[0]);
+//                Log.d("recieve",obj.toString());
+                System.out.println("よん");
+                socket.disconnect();
             }
         });
+        socket.connect();
+
+        ct=(TextView)findViewById(R.id.cafenametext);
+        //ct.setText((CharSequence) args[1]);
+        ct.setText("実験");
 
         Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-                Emitter on = socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+                socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
                         //送信
@@ -112,6 +131,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        System.out.println("ご");
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
