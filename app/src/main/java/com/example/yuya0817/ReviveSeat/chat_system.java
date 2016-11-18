@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-
 import android.widget.ListView;
-
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,11 +20,7 @@ import io.socket.SocketIO;
 import io.socket.SocketIOException;
 
 
-
 public class chat_system extends Activity {
-
-
-
 
 
     private ArrayAdapter<String> adapter;
@@ -137,4 +131,5 @@ public class chat_system extends Activity {
         // テキストフィールドをリセット
         editText.setText("");
     }
+
 }

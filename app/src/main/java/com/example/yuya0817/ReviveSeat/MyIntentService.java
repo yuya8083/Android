@@ -34,7 +34,7 @@ public class MyIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         // 非同期処理を行うメソッド。タスクはonHandleIntentメソッド内で実行する
-        socket = Confirmation.getsocket();
+        //socket = Confirmation.getsocket();
         try {
             Log.e("intent", "0");
             // イベント送信
