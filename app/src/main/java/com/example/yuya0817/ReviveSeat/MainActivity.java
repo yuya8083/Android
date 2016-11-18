@@ -19,7 +19,6 @@ import io.socket.emitter.Emitter;
 
 
 
-
 public class MainActivity extends Activity {
 
     private io.socket.client.Socket socket;
@@ -53,7 +52,7 @@ public class MainActivity extends Activity {
         myButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(MainActivity.this, share_table_list.class);
+                Intent intent3 = new Intent(MainActivity.this,select_menu_food.class);
                 startActivity(intent3);
             }
         });
