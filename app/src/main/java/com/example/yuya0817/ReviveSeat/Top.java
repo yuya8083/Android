@@ -3,7 +3,8 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 
 public class Top extends Activity {
 
@@ -12,16 +13,31 @@ public class Top extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top);
 
-        Handler match = new Handler();
-        // 第２引数で切り替わる秒数(ミリ秒)を指定、今回は5秒
-        match.postDelayed(new Top.splashHandler(), 5000);
-    }
 
-    class splashHandler implements Runnable {
-        public void run() {
-            Intent intent = new Intent(Top.this, MainActivity.class);
-            startActivity(intent);
-            //arrive_wait.this.finish();
+        Button share = (Button) findViewById(R.id.button1);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Top.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button sannka = (Button) findViewById(R.id.button2);
+        sannka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Top.this, share_table_list.class);
+                startActivity(intent);
+            }
+        });
+
+        class splashHandler implements Runnable {
+            public void run() {
+                Intent intent = new Intent(Top.this, MainActivity.class);
+                startActivity(intent);
+                //arrive_wait.this.finish();
+            }
         }
     }
 }

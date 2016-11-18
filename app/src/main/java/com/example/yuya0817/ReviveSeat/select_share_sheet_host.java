@@ -27,6 +27,11 @@ public class select_share_sheet_host extends Activity  {
         minute = data.getStringExtra("minute");
         text = data.getStringExtra("text");
 
+        seat1="0";
+        seat2="0";
+        seat3="0";
+        seat4="0";
+
 //        Toast.makeText(select_share_sheet_host.this, title, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(select_share_sheet_host.this, item, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(select_share_sheet_host.this, hour, Toast.LENGTH_SHORT).show();

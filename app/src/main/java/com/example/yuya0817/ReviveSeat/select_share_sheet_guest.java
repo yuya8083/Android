@@ -3,6 +3,7 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ToggleButton;
@@ -11,7 +12,7 @@ public class select_share_sheet_guest extends Activity {
 
 
     private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
-    private String horg1,horg2,horg3,horg4;
+    private String horg1,horg2,horg3,horg4,seat1,seat2,seat3,seat4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,14 @@ public class select_share_sheet_guest extends Activity {
         boolean sheet2 = data.getBooleanExtra("sheet2", true);
         boolean sheet3 = data.getBooleanExtra("sheet3", true);
         boolean sheet4 = data.getBooleanExtra("sheet4", true);
-
+        seat1 = data.getStringExtra("seat1");
+        seat2 = data.getStringExtra("seat2");
+        seat3 = data.getStringExtra("seat3");
+        seat4 = data.getStringExtra("seat4");
+        Log.d("seat1",seat1);
+        Log.d("seat2",seat2);
+        Log.d("seat3",seat3);
+        Log.d("seat4",seat4);
 
         toggleButton1 = (ToggleButton) findViewById(R.id.button1);
         if (sheet1) {
@@ -45,8 +53,10 @@ public class select_share_sheet_guest extends Activity {
                 public void onClick(View v) {
                     if (toggleButton1.isChecked()) {
                         horg1 = "ゲスト";
+                        seat1 = "2";
                     } else {
                         horg1 = "空席";
+                        seat1 = "0";
                     }
 
                 }
@@ -65,8 +75,10 @@ public class select_share_sheet_guest extends Activity {
                 public void onClick(View v) {
                     if (toggleButton2.isChecked()) {
                         horg2 = "ゲスト";
+                        seat2 = "2";
                     } else {
                         horg2 = "空席";
+                        seat2 = "0";
                     }
 
                 }
@@ -85,8 +97,10 @@ public class select_share_sheet_guest extends Activity {
                 public void onClick(View v) {
                     if (toggleButton3.isChecked()) {
                         horg3 = "ゲスト";
+                        seat3 = "2";
                     } else {
                         horg3 = "空席";
+                        seat3 = "0";
                     }
 
                 }
@@ -105,8 +119,10 @@ public class select_share_sheet_guest extends Activity {
                 public void onClick(View v) {
                     if (toggleButton4.isChecked()) {
                         horg4 = "ゲスト";
+                        seat4 = "2";
                     } else {
                         horg4 = "空席";
+                        seat4 = "0";
                     }
 
                 }
@@ -129,6 +145,10 @@ public class select_share_sheet_guest extends Activity {
                 intent.putExtra("sheet2",horg2);
                 intent.putExtra("sheet3",horg3);
                 intent.putExtra("sheet4",horg4);
+                intent.putExtra("seat1",seat1);
+                intent.putExtra("seat2",seat2);
+                intent.putExtra("seat3",seat3);
+                intent.putExtra("seat4",seat4);
                 startActivity(intent);
             }
         });
