@@ -17,6 +17,8 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+import static com.example.yuya0817.ReviveSeat.R.id.textView1;
+
 //import com.github.nkzawa.socketio.client.IO;
 //import com.github.nkzawa.socketio.client.Socket;
 
@@ -48,29 +50,13 @@ public class share_table_list extends Activity {
 //            e.printStackTrace();
 //        }
 //    }
-
-    /*public void sendEvent(View view){
-        try {
-            // イベント送信
-            JSONObject json = new JSONObject();
-
-            json.put("test", "1");
-
-            socket.emit("test");
-            //socket.emit("sharetable_back",a);
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_table_list);
 
         category_id = (TextView)findViewById(R.id.textView);
-        titletext = (TextView)findViewById(R.id.textView1);
+        titletext = (TextView)findViewById(textView1);
         shopname = (TextView)findViewById(R.id.textView2);
 
         refine = 0;
@@ -131,8 +117,8 @@ public class share_table_list extends Activity {
 //        textView1=(TextView)findViewById(R.id.textView1) ;
 
 
-        /*mSocket.connect();
-        mSocket.emit("test","a");
+
+        /*mSocket.emit("test","a");
         mSocket.on("test_back", new Emitter.Listener() {
             @Override
             public void call(final Object... arg) {
@@ -147,16 +133,6 @@ public class share_table_list extends Activity {
         });2
 
         mSocket.connect();*/
-
-
-
-
-        //textView1.setText(onNewMessage.toString());
-
-        //iocallback.on("test_back",ack,a);
-
-
-
 
         Button list1=(Button)findViewById(R.id.list1);
         list1.setOnClickListener(new View.OnClickListener() {
@@ -210,90 +186,54 @@ public class share_table_list extends Activity {
                 finish();
             }
         });
+
+//        try {
+//            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//            Log.d("1","1");
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//            Log.e("-1","-1");
+//        }
+//        socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+//
+//            @Override
+//            public void call(Object... args) {
+//                Log.d("2","2");
+//                //socket.emit("sharetable_list", "hi");
+//                // Sending an object
+//                JSONObject obj = new JSONObject();
+//                try {
+//                    obj.put("hello", "server");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                //socket.emit("sharetable_list", obj);
+//                socket.emit("sharetable_test_back",obj);
+//                textView1.setText((CharSequence) obj);
+//                socket.disconnect();
+//            }
+//
+//        }).on("sharetable_list_back", new Emitter.Listener() {
+//
+//
+//            @Override
+//            public void call(Object... args) {
+//                Log.d("3","3");
+//                JSONObject obj = (JSONObject)args[0];
+//                textView1.setText((CharSequence) obj);
+//            }
+//
+//        }).on(io.socket.client.Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+//
+//            @Override
+//            public void call(Object... args) {
+//                Log.d("4","4");
+//            }
+//
+//        });
+//        socket.connect();
+
     }
-
-
-    /*Emitter.Listener onNewMessage = new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {
-            share_table_list.super.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    JSONObject data=(JSONObject)args[0];
-                    Log.d("受信データ", String.valueOf(args[0]));
-                    textView1=(TextView)findViewById(R.id.textView1) ;
-                    try {
-                        textView1.setText(data.getString(""));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-    };*/
-    /*private IOCallback iocallback = new IOCallback() {
-
-        @Override
-        public void onConnect() {
-            System.out.println("onConnect");
-        }
-
-        @Override
-        public void onDisconnect() {
-            System.out.println("onDisconnect");
-        }
-
-        @Override
-        public void onMessage(JSONObject json, IOAcknowledge ack) {
-            System.out.println("onMessage");
-        }
-
-        @Override
-        public void onMessage(String data, IOAcknowledge ack) {
-            System.out.println("onMessage");
-        }
-
-        @Override
-        public void on(String event, IOAcknowledge ack, Object... args) {
-            final JSONObject message = (JSONObject)args[0];
-
-            new Thread(new Runnable() {
-                public void run() {
-                    handler.post(new Runnable() {
-                        public void run() {
-                            try {
-                                servermessage=message.toString();
-                                servermessage="ks";
-                                message.put("share_id", message);
-
-                                textView1.setText(servermessage);
-                                /*if(message.getString("share_id") != null) {
-                                    // メッセージが空でなければ追加
-                                    servermessage=message.toString();
-                                    servermessage="ks";
-                                    message.put("share_id", message);
-
-                                    textView1.setText(servermessage);
-                                    //adapter.insert(message.getString("message"), 0);
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-            }).start();
-        }
-
-        @Override
-        public void onError(SocketIOException socketIOException) {
-            System.out.println("onError");
-            socketIOException.printStackTrace();
-        }
-    };
-*/
-
     public void onBackButtonTapped(View view){
         finish();
     }

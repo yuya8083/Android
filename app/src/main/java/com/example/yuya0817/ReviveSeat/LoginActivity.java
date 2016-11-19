@@ -28,15 +28,24 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static com.example.yuya0817.ReviveSeat.R.id.user;
 
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
+    public Socket socket;
     private static final int REQUEST_READ_CONTACTS = 0;
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
@@ -64,6 +73,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
 
         Button loginButton = (Button) findViewById(R.id.sign_in_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +81,40 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             public void onClick(View v) {
                 //socket.emit('username',user);
                 login();
+            }
+        });
+
+        loginButton = (Button) findViewById(R.id.sign_in_button);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                Emitter on = socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        //送信
+                        socket.emit("hname", mUserNameView);
+                        socket.emit("huserid", mPasswordView);// Sending an object
+                        JSONObject obj = new JSONObject();
+                        socket.disconnect();
+                    }
+                }).on("detail_back", new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        JSONObject obj = (JSONObject) args[0];
+
+                        if (obj.equals("0")) {//obj.args[0].equals("0"))
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
+                //socket.connect();
+                //login();
             }
         });
 
