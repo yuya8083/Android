@@ -3,42 +3,51 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
-import io.socket.IOAcknowledge;
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
+//import com.github.nkzawa.socketio.client.IO;
+//import com.github.nkzawa.socketio.client.Socket;
 
 public class share_table_list extends Activity {
 
-    private Handler handler = new Handler();
-    //private SocketIO socket;
-    private Object a[];
-    private TextView textView1;
-    private String servermessage,test="test";
-    private IOAcknowledge ack;
+//    private Handler handler = new Handler();
+//    //private SocketIO socket;
+//    private Object a[];
+//    private TextView textView1;
+//    private String servermessage,test="test";
+//    private IOAcknowledge ack;
+//
+//    /*private void connectSocketIO() throws MalformedURLException {
+//        socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
+//        socket.connect(iocallback);
+//    }*/
+//    private Socket mSocket;
 
-    /*private void connectSocketIO() throws MalformedURLException {
-        socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
-        socket.connect(iocallback);
-    }*/
-    private Socket mSocket;
+    public Socket socket;
+    private TextView titletext,category_id,shopname;
+    public int i,refine;
 
-    {
-        try {
-            IO.Options opts = new IO.Options();
-            // IO.socket("サーバーから提示提供されたURL");
-            mSocket = IO.socket("https://reviveseatserver.herokuapp.com/");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
+//    {
+//        try {
+//            IO.Options opts = new IO.Options();
+//            // IO.socket("サーバーから提示提供されたURL");
+//            mSocket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /*public void sendEvent(View view){
         try {
@@ -60,9 +69,66 @@ public class share_table_list extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_table_list);
 
+        category_id = (TextView)findViewById(R.id.textView);
+        titletext = (TextView)findViewById(R.id.textView1);
+        shopname = (TextView)findViewById(R.id.textView2);
+
+        refine = 0;
+
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+            Log.d("1","1");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            Log.e("-1","-1");
+        }
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+
+            @Override
+            public void call(Object... args) {
+                Log.d("2","2");
+                // Sending an object
+                JSONObject json = new JSONObject();
+                try {
+                    json.put("refine",refine);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                socket.emit("sharetable_list",json);
+            }
+
+        }).on("sharetable_list_back", new Emitter.Listener() {
+
+            @Override
+            public void call(Object... args) {
+                System.out.println(String.valueOf(args[0]));
+//                title.setText(String.valueOf(args[0]));
 
 
-        textView1=(TextView)findViewById(R.id.textView1) ;
+//                titletext.setText("こんにちは");
+//                try {
+//                    JSONObject jsonObject = new JSONObject(String.valueOf(args[0]));
+//                    title.setText((Integer) jsonObject.get("[0].title"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+                //title.setText(String.valueOf(args[0]).getChars("[0].title"));
+//                socket.disconnect();
+            }
+
+        }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+
+            @Override
+            public void call(Object... args) {
+                Log.d("4","4");
+            }
+
+        });
+        socket.connect();
+
+
+
+//        textView1=(TextView)findViewById(R.id.textView1) ;
 
 
         /*mSocket.connect();
@@ -78,7 +144,7 @@ public class share_table_list extends Activity {
                     }
                 });
             }
-        });
+        });2
 
         mSocket.connect();*/
 

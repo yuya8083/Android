@@ -20,6 +20,7 @@ import io.socket.emitter.Emitter;
 public class MainActivity extends Activity {
     //public SocketIO socketIO;
     public Socket socket;
+    public JSONObject response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,59 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 //Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
                 Intent intent2 = new Intent(MainActivity.this, share_table_list.class);
+//                try {
+//                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//                    Log.d("1","1");
+//                } catch (URISyntaxException e) {
+//                    e.printStackTrace();
+//                    Log.e("-1","-1");
+//                }
+//                socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//                        Log.d("2","2");
+//                        // Sending an object
+//                        socket.emit("sharetable_list");
+//                    }
+//
+//                }).on("sharetable_list_back", new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//
+////                        try {
+////                            Log.d("king","king");
+//////                            response = new JSONObject(String.valueOf(args[0]));
+//////                            //各項目の取得
+//////                            System.out.println(response.get("0.shareid"));
+//////                            System.out.println(response.get("0.title"));
+//////                            System.out.println(response.get("0.category_id"));
+//////                            System.out.println(response.get("0.explain"));
+//////                            System.out.println(response.get("0.shopname"));
+////
+////                            //JSONObject data = (JSONObject) response.get("sharetable_list_back");
+//////                            Log.d("reci",response.toString());
+//////                            Object defaultResponce = data.get("default");
+//////
+//////                            Log.d("TAG", defaultResponce + "");
+////                        }
+////                        catch (JSONException e) {
+////                            e.printStackTrace();
+////                        }
+//                        System.out.println(String.valueOf(args[0]));
+//                        socket.disconnect();
+//                    }
+//
+//                }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//                        Log.d("4","4");
+//                    }
+//
+//                });
+//                socket.connect();
                 startActivity(intent2);
             }
         });
