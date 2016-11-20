@@ -19,7 +19,7 @@ public class Top extends Activity {
             @Override
             public void onClick(View v) {
 //                Intent intent = new Intent(Top.this, qrcode.class);
-                Intent intent = new Intent(Top.this, TableSearch.class);
+                Intent intent = new Intent(Top.this, Load.class);
                 startActivity(intent);
             }
         });
