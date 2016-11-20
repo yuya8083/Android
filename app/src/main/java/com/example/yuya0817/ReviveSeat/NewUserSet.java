@@ -45,14 +45,26 @@ public class NewUserSet extends Activity {
                 password = editpass.getText().toString();
                 password2 = editpass2.getText().toString();
 
-                if(Objects.equals(password, password2)){
-                    if(7 < password.length()) {
-                        if (username.isEmpty()) {
-                            // 入力必須エラー
-                            AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                            builder.setMessage("ユーザ名が入力されていません");
-                            builder.show();
-                        }else {
+                Log.d("-","ero");
+
+                if (username.isEmpty() && (password.isEmpty() || password2.isEmpty())) {
+                    // 入力必須エラー
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+                    builder.setMessage("ユーザ名とパスワードが入力されていません");
+                    builder.show();
+                }else if (username.isEmpty()){
+                    // 入力必須エラー
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+                    builder.setMessage("ユーザ名が入力されていません");
+                    builder.show();
+                }else if (password.isEmpty() || password2.isEmpty()){
+                    // 入力必須エラー
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+                    builder.setMessage("パスワードが入力されていません");
+                    builder.show();
+                }else {
+                    if(Objects.equals(password, password2)){
+                        if(7 < password.length()) {
                             Intent intent = new Intent(NewUserSet.this, Top.class);
                             try {
                                 socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -104,17 +116,88 @@ public class NewUserSet extends Activity {
                             });
                             socket.connect();
                             startActivity(intent);
+                        }else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+                            builder.setMessage("パスワードの文字数が足りません(8文字以上)");
+                            builder.show();
                         }
-                    }else{
+                    }else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                        builder.setMessage("パスワードの文字数が足りません(8文字以上)");
+                        builder.setMessage("パスワードが一致しません");
                         builder.show();
                     }
-                }else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                    builder.setMessage("パスワードが一致しません");
-                    builder.show();
                 }
+
+//                if(Objects.equals(password, password2)){
+//                    if(7 < password.length()) {
+//                        if (username.isEmpty()) {
+//                            // 入力必須エラー
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+//                            builder.setMessage("ユーザ名が入力されていません");
+//                            builder.show();
+//                        }else {
+//                            Intent intent = new Intent(NewUserSet.this, Top.class);
+//                            try {
+//                                socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//                                Log.d("1","1");
+//                            } catch (URISyntaxException e) {
+//                                e.printStackTrace();
+//                            }
+//                            socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+//
+//                                @Override
+//                                public void call(Object... args) {
+//                                    Log.d("2","2");
+//                                    // Sending an object
+//                                    JSONObject obj = new JSONObject();
+//                                    try {
+//                                        obj.put("username", username);
+//                                        obj.put("password", password);
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    socket.emit("newuser", obj);
+//                                    //socket.disconnect();
+//                                }
+//
+//                            }).on("newuser_back", new Emitter.Listener() {
+//
+//                                @Override
+//                                public void call(Object... args) {
+//                                    Log.d("3","3");
+//                                    System.out.println(String.valueOf(args[0]));
+////                        JSONObject obj2 = (JSONObject)args[0];
+////                        try {
+////                            share_id = obj2.getInt("share_id");
+////                        } catch (JSONException e) {
+////                            return;
+////                        }
+//                                    //Log.d("recieve", String.valueOf(share_id));
+//                                    //socket.on("",);
+//                                    socket.disconnect();
+//                                }
+//
+//                            }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+//
+//                                @Override
+//                                public void call(Object... args) {
+//                                    Log.d("4","4");
+//                                }
+//
+//                            });
+//                            socket.connect();
+//                            startActivity(intent);
+//                        }
+//                    }else{
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+//                        builder.setMessage("パスワードの文字数が足りません(8文字以上)");
+//                        builder.show();
+//                    }
+//                }else {
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
+//                    builder.setMessage("パスワードが一致しません");
+//                    builder.show();
+//                }
             }
         });
 
