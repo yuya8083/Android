@@ -40,6 +40,7 @@ public class share_table_list extends Activity {
     public Socket socket;
     private TextView titletext,category_id,shopname;
     public int i,refine;
+    private String title;
 
 //    {
 //        try {
@@ -63,6 +64,7 @@ public class share_table_list extends Activity {
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//            socket = IO.socket("http://133.25.196.30:2010");
             Log.d("1","1");
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -87,7 +89,30 @@ public class share_table_list extends Activity {
 
             @Override
             public void call(Object... args) {
-                System.out.println(String.valueOf(args[0]));
+//                System.out.println(String.valueOf(args[0]));
+                System.out.println(String.valueOf(args[0].toString()));
+//                JSONObject json = (JSONObject)args[0];
+////                JSONObject json = new JSONObject();
+//                try {
+//                    JSONArray datas = json.getJSONArray(Arrays.toString(args));
+//
+////                    JSONObject item = json.getJSONObject("message");
+//
+//                    JSONObject data = datas.getJSONObject(0);
+//                    title = data.getString("[0].title");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//                titletext.setText(title);
+
+//                for (i=0; i<10; i++){
+//                    try {
+//                        shareid = json.getString("ユーザID");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+
 //                title.setText(String.valueOf(args[0]));
 
 
@@ -99,7 +124,7 @@ public class share_table_list extends Activity {
 //                    e.printStackTrace();
 //                }
                 //title.setText(String.valueOf(args[0]).getChars("[0].title"));
-//                socket.disconnect();
+                socket.disconnect();
             }
 
         }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {

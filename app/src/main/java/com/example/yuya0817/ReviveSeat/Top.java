@@ -18,8 +18,8 @@ public class Top extends Activity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Top.this, qrcode.class);
-                Intent intent = new Intent(Top.this, Load.class);
+                Intent intent = new Intent(Top.this, qrcode.class);
+//                Intent intent = new Intent(Top.this, JoinEvaluation.class);
                 startActivity(intent);
             }
         });

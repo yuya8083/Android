@@ -12,12 +12,8 @@ import android.widget.ToggleButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-import java.net.MalformedURLException;
-
-
 import java.net.URISyntaxException;
-
+import java.util.Objects;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -26,10 +22,12 @@ import io.socket.emitter.Emitter;
 public class Confirmation extends Activity {
 
 
-    private io.socket.client.Socket socket;
-    public String title,item,hour,minute,text,seat1,seat2,seat3,seat4,seat;
+    private Socket socket;
+    public String title,item,hour,minute,text,seat1,seat2,seat3,seat4,seat,shareid;
     public int categoryid,shopid,tableid,userid,seatinfo,share_id;
     private ToggleButton toggleButton1, toggleButton2, toggleButton3, toggleButton4;
+    TextView sharenum;
+    private int count;
 
 
     @Override
@@ -41,6 +39,8 @@ public class Confirmation extends Activity {
         TextView categorytext = (TextView) findViewById(R.id.categorytext);
         TextView timetext = (TextView) findViewById(R.id.timetext);
         TextView hosokutext = (TextView) findViewById(R.id.hosokutext);
+
+        sharenum = (TextView) findViewById(R.id.number);
 
         // インテントを取得
         Intent data = getIntent();
@@ -64,6 +64,23 @@ public class Confirmation extends Activity {
         Log.d("seat2",seat2);
         Log.d("seat3",seat3);
         Log.d("seat4",seat4);
+
+        count = 0;
+
+        if(Objects.equals(seat1, "2")){
+            count++;
+        }
+        if(Objects.equals(seat2, "2")){
+            count++;
+        }
+        if(Objects.equals(seat3, "2")){
+            count++;
+        }
+        if(Objects.equals(seat4, "2")){
+            count++;
+        }
+
+        sharenum.setText("シェア人数　" + count + "人");
 
         seat = seat1+seat2+seat3+seat4;
         Log.d("seat",seat);
@@ -106,18 +123,18 @@ public class Confirmation extends Activity {
             @Override
             public void onClick(View v) {
                 Log.d("0","0");
-
                 Intent intent = new Intent(Confirmation.this, wait.class);
 
-                //mSocket.on("test_back", onNewMessage);
-                intent = new Intent(Confirmation.this, wait.class);
-                Log.d("7","7");
-
+                try {
+                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
                 socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
 
                     @Override
                     public void call(Object... args) {
-                        Log.d("2","2-1");
+                        Log.d("2","2");
                         // Sending an object
                         JSONObject obj = new JSONObject();
                         try {
@@ -141,6 +158,15 @@ public class Confirmation extends Activity {
                     @Override
                     public void call(Object... args) {
                         Log.d("3","3");
+                        System.out.println(String.valueOf(args[0]));
+//                        try {
+//                            JSONObject json = new JSONObject();
+//                            shareid = json.getString("share_id");
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        share_id = Integer.valueOf(shareid);
+//                        System.out.println(share_id);
 
                         socket.disconnect();
                     }

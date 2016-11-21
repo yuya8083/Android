@@ -3,6 +3,7 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,9 +24,10 @@ import static com.example.yuya0817.ReviveSeat.R.id.pass;
 
 public class NewUserSet extends Activity {
 
-    private String username,password,password2;
+    private String username,password,password2,shareid;
     EditText editname,editpass,editpass2;
     private Socket socket;
+    public SharedPreferences dataStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,9 @@ public class NewUserSet extends Activity {
         editname = (EditText)findViewById(R.id.username);
         editpass = (EditText)findViewById(pass);
         editpass2 = (EditText)findViewById(R.id.pass2);
+
+        // "DataStore"という名前でインスタンスを生成
+        dataStore = getSharedPreferences("DataStore", MODE_PRIVATE);
 
         Button button=(Button)findViewById(R.id.next);
         button.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +100,22 @@ public class NewUserSet extends Activity {
                                 public void call(Object... args) {
                                     Log.d("3","3");
                                     System.out.println(String.valueOf(args[0]));
+//                                    try {
+//                                        shareid = obj2.getString(String.valueOf(args[0]));
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+                                    try {
+                                        JSONObject obj2 = (JSONObject)args[0];
+                                        shareid = obj2.getString("ユーザID");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    System.out.println(shareid);
+                                    // 入力文字列を"input"に書き込む
+                                    SharedPreferences.Editor editor = dataStore.edit();
+                                    editor.putString("input", shareid);
+                                    editor.apply();
 //                        JSONObject obj2 = (JSONObject)args[0];
 //                        try {
 //                            share_id = obj2.getInt("share_id");
