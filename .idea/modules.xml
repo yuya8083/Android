@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Revive.iml" filepath="$PROJECT_DIR$/Revive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ReviveSeat_ver2.iml" filepath="$PROJECT_DIR$/ReviveSeat_ver2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

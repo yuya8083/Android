@@ -9,11 +9,12 @@ import android.widget.Button;
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
+import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 
 public class wait extends Activity {
-    public io.socket.client.Socket socket;
+    public Socket socket;
 
 
     @Override
@@ -31,12 +32,33 @@ public class wait extends Activity {
                 catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-                socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+                socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
                         //送信
                         socket.emit("decide",0);
                         socket.disconnect();
+                    }
+                }).on("decide_back", new Emitter.Listener() {
+                    @Override
+                    public void call(final Object... args) {//detail_back.shop_name
+                        wait.super.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for(int i=0; i<3; i++)
+                                {
+                                    System.out.println(String.valueOf(args[i])); //うけとった文字列が何か調べてる！
+                                }
+                                socket.disconnect();
+                                if(args[0].equals(null))
+                                {
+                                }
+                                else{
+                                    Intent intent = new Intent(wait.this, matching.class);
+                                    startActivity(intent);
+                                }
+                            }
+                        });
                     }
                 });
                 socket.connect();
@@ -44,29 +66,29 @@ public class wait extends Activity {
             }
         });
 
-    socket.on("decide_back", new Emitter.Listener() {
-        @Override
-        public void call(final Object... args) {//detail_back.shop_name
-            wait.super.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    for(int i=0; i<3; i++)
-                    {
-                        System.out.println(String.valueOf(args[i])); //うけとった文字列が何か調べてる！
-                    }
-                    socket.disconnect();
-                    if(args[0].equals(null))
-                    {
-                    }
-                    else{
-                        Intent intent = new Intent(wait.this, matching.class);
-                        startActivity(intent);
-                    }
-                }
-            });
-        }
-    });
-    socket.connect();
+//    socket.on("decide_back", new Emitter.Listener() {
+//        @Override
+//        public void call(final Object... args) {//detail_back.shop_name
+//            wait.super.runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    for(int i=0; i<3; i++)
+//                    {
+//                        System.out.println(String.valueOf(args[i])); //うけとった文字列が何か調べてる！
+//                    }
+//                    socket.disconnect();
+//                    if(args[0].equals(null))
+//                    {
+//                    }
+//                    else{
+//                        Intent intent = new Intent(wait.this, matching.class);
+//                        startActivity(intent);
+//                    }
+//                }
+//            });
+//        }
+//    });
+//    socket.connect();
     }
 
 //    public void onBackButtonTapped(View view){

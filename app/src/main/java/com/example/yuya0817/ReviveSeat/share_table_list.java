@@ -90,8 +90,8 @@ public class share_table_list extends Activity {
             @Override
             public void call(Object... args) {
 //                System.out.println(String.valueOf(args[0]));
-                System.out.println(String.valueOf(args[0].toString()));
-//                JSONObject json = (JSONObject)args[0];
+                System.out.println(String.valueOf(args[0]));
+                JSONObject json = (JSONObject)args[0];
 ////                JSONObject json = new JSONObject();
 //                try {
 //                    JSONArray datas = json.getJSONArray(Arrays.toString(args));
