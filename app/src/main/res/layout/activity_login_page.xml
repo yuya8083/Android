@@ -1,39 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_top"
+    android:id="@+id/activity_login_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.yuya0817.ReviveSeat.Top">
-
+    tools:context="com.example.yuya0817.ReviveSeat.LoginPage">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<!--<<<<<<< HEAD-->
-        <!--android:layout_height="match_parent">-->
-<!--=======-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:weightSum="1">-->
-<!--&gt;>>>>>> dbe70592e5d1941ca6f8bd1683a6309edca25b29-->
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/reviveseat_rogo"
-            android:id="@+id/imageView4"
-            android:layout_weight="2" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="ログイン"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:id="@+id/logintext" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/username"
+            android:layout_weight="1"
+            android:hint="ユーザ名" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password"
+            android:layout_weight="1"
+            android:hint="パスワード" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -44,22 +72,22 @@
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
 
             <Button
-                android:text="シェアする"
+                android:text="決定"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:id="@+id/next"
+                android:layout_weight="3"
                 android:background="@color/zxing_custom_viewfinder_laser"
                 android:textColor="#ffffff"
-                android:id="@+id/sharebutton" />
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="2" />
         </LinearLayout>
 
         <Space
@@ -79,14 +107,14 @@
                 android:layout_weight="1" />
 
             <Button
-                android:text="参加する"
+                android:text="新規登録"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/joinbutton"
-                android:layout_gravity="center"
+                android:id="@+id/register"
                 android:layout_weight="1"
                 android:background="@color/zxing_viewfinder_laser"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -97,35 +125,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
-<!--=======-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentStart="true" />-->
+            android:layout_weight="1" />
 
-        <!--<Button-->
-            <!--android:text="シェアする"-->
-            <!--android:layout_width="170dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/button1"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textColor="@color/cast_expanded_controller_text_color"-->
-            <!--android:layout_weight="0.20" />-->
-
-        <!--<Button-->
-            <!--android:text="参加する"-->
-            <!--android:layout_width="170dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/button2"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:background="@color/zxing_viewfinder_laser"-->
-            <!--android:layout_marginTop="20dp"-->
-            <!--android:textColor="@color/cast_expanded_controller_text_color"-->
-            <!--android:layout_weight="0.20" />-->
-
-<!--&gt;>>>>>> dbe70592e5d1941ca6f8bd1683a6309edca25b29-->
     </LinearLayout>
-
 </RelativeLayout>
-

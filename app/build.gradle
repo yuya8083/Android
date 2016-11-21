@@ -21,20 +21,22 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    // compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
+    compile files('libraries/socketio.jar')
+    compile('io.socket:socket.io-client:0.8.2') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.android.support:design:23.4.0'
     compile 'com.google.android.gms:play-services-maps:9.6.1'
     compile 'com.google.android.gms:play-services:9.6.1'
-    // compile files('/Users/rirei/Android/app/src/main/res/layout/Android/app/src/main/res/layout/work6/libraries/socketio.jar')
-    testCompile 'junit:junit:4.12'
-    compile files('libraries/socketio.jar')
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
-    compile('io.socket:socket.io-client:0.8.2') {
+    testCompile 'junit:junit:4.12'
+    compile ('io.socket:socket.io-client:0.8.2') {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
-    compile files('C:/Users/chihobanno/AndroidStudioProjects/Revive/libraries/socketio.jar')
-    compile files('C:/Users/chihobanno/AndroidStudioProjects/Revive/library/socketio.jar')
 }

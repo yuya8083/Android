@@ -10,6 +10,7 @@ import android.widget.Button;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
@@ -21,6 +22,7 @@ import io.socket.emitter.Emitter;
 public class MainActivity extends Activity {
     //public SocketIO socketIO;
     public Socket socket;
+    public JSONObject response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,59 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 //Intent intent2 = new Intent(MainActivity.this, Select_find_method.class);
                 Intent intent2 = new Intent(MainActivity.this, share_table_list.class);
+//                try {
+//                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+//                    Log.d("1","1");
+//                } catch (URISyntaxException e) {
+//                    e.printStackTrace();
+//                    Log.e("-1","-1");
+//                }
+//                socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//                        Log.d("2","2");
+//                        // Sending an object
+//                        socket.emit("sharetable_list");
+//                    }
+//
+//                }).on("sharetable_list_back", new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//
+////                        try {
+////                            Log.d("king","king");
+//////                            response = new JSONObject(String.valueOf(args[0]));
+//////                            //各項目の取得
+//////                            System.out.println(response.get("0.shareid"));
+//////                            System.out.println(response.get("0.title"));
+//////                            System.out.println(response.get("0.category_id"));
+//////                            System.out.println(response.get("0.explain"));
+//////                            System.out.println(response.get("0.shopname"));
+////
+////                            //JSONObject data = (JSONObject) response.get("sharetable_list_back");
+//////                            Log.d("reci",response.toString());
+//////                            Object defaultResponce = data.get("default");
+//////
+//////                            Log.d("TAG", defaultResponce + "");
+////                        }
+////                        catch (JSONException e) {
+////                            e.printStackTrace();
+////                        }
+//                        System.out.println(String.valueOf(args[0]));
+//                        socket.disconnect();
+//                    }
+//
+//                }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+//
+//                    @Override
+//                    public void call(Object... args) {
+//                        Log.d("4","4");
+//                    }
+//
+//                });
+//                socket.connect();
                 startActivity(intent2);
             }
         });
@@ -51,7 +106,7 @@ public class MainActivity extends Activity {
         myButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(MainActivity.this, TableSet.class);
+                Intent intent3 = new Intent(MainActivity.this,select_menu_food.class);
                 startActivity(intent3);
             }
         });
@@ -61,50 +116,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
-                //Intent intent4 = new Intent(MainActivity.this, JoinConfirmation.class);
-//                try {
-//                    socketIO = new SocketIO("https://reviveseatserver.herokuapp.com/socketio-test.html");
-//                    Log.d("1","1");
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                }
-//                socketIO.connect(new IOCallback() {
-//                    @Override
-//                    public void onMessage(JSONObject json, IOAcknowledge ack) {
-//                        try {
-//                            System.out.println("Server said:" + json.toString(2));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onMessage(String data, IOAcknowledge ack) {
-//                        System.out.println("Server said: " + data);
-//                    }
-//
-//                    @Override
-//                    public void onError(SocketIOException socketIOException) {
-//                        System.out.println("an Error occured");
-//                        socketIOException.printStackTrace();
-//                    }
-//
-//                    @Override
-//                    public void onDisconnect() {
-//                        System.out.println("Connection terminated.");
-//                    }
-//
-//                    @Override
-//                    public void onConnect() {
-//                        System.out.println("Connection established");
-//                        socket.emit("test", "Hello Server!");
-//                    }
-//
-//                    @Override
-//                    public void on(String event, IOAcknowledge ack, Object... args) {
-//                        System.out.println("Server triggered event '" + event + "'");
-//                    }
-//                });
+
 
                 try {
                     socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -114,6 +126,35 @@ public class MainActivity extends Activity {
                     Log.e("-1","-1");
                 }
                 socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+
+
+                    @Override
+                    public void call(Object... args) {
+                        Log.d("2","2");
+                        socket.emit("test", "hi");
+                        // Sending an object
+                        JSONObject obj = new JSONObject();
+                        try {
+                            obj.put("hello", "server");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        socket.emit("test", obj);
+                        socket.disconnect();
+                    }
+
+                }).on("test_back", new Emitter.Listener() {
+
+                    @Override
+                    public void call(Object... args) {
+                        Log.d("3","3");
+                        JSONObject obj = (JSONObject)args[0];
+                    }
+
+                }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+
+
+
 
                     @Override
                     public void call(Object... args) {
@@ -157,16 +198,18 @@ public class MainActivity extends Activity {
         });
 
     }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//    }
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//    }
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
 }
