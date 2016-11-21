@@ -40,6 +40,15 @@ public class Check_in extends Activity {
             }
         });
 
+        Button yoyakuu = (Button) findViewById(R.id.chat);
+        yoyakuu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(Check_in.this, chat_system.class);//予約画面へ
+                startActivity(intent4);
+            }
+        });
+
         Button returnButton = (Button) findViewById(R.id.cancel);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
