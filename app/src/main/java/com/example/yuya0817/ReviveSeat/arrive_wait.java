@@ -3,9 +3,7 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import java.net.URISyntaxException;
@@ -22,10 +20,36 @@ public class arrive_wait extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arrive_wait);
 
-        findViewById(R.id.product_image_loading).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
-        Handler match = new Handler();
-        // 第２引数で切り替わる秒数(ミリ秒)を指定、今回は2秒
-        match.postDelayed(new arrive_wait.splashHandler(), 2000);
+        Button chatt = (Button) findViewById(R.id.chat);
+        chatt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(arrive_wait.this, chat_system.class);
+                startActivity(intent);
+            }
+        });
+
+        Button cansell = (Button) findViewById(R.id.cansel);
+        cansell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+                Emitter on = socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        //送信
+                        socket.emit("decide",1);
+                        socket.disconnect();
+                    }
+                });
+                Intent intent = new Intent(arrive_wait.this, Top.class);
+                startActivity(intent);
+            }
+        });
 
         Button returnButton = (Button) findViewById(R.id.cancel);
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +64,7 @@ public class arrive_wait extends Activity {
                     @Override
                     public void call(Object... args) {
                         //送信
-                        socket.emit("detail",0);
+                        socket.emit("decide",0);
                         socket.disconnect();
                     }
                 });
@@ -48,29 +72,24 @@ public class arrive_wait extends Activity {
                 //socket.connect();
             }
         });
-    }
 
-//    public void onBackButtonTapped(View view){
-//        finish();
-//    }
-
-    class splashHandler implements Runnable {
-        public void run() {
-            Intent intent = new Intent(arrive_wait.this, Sharing.class);
-            startActivity(intent);
-            try {
-                socket = IO.socket("https://reviveseatserver.herokuapp.com/");
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
+        socket.on("gcheck_back", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {//detail_back.shop_name
+                arrive_wait.super.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        socket.disconnect();
+                        if(args[0].equals("1"))
+                        {
+                            Intent intent = new Intent(arrive_wait.this, Sharing.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
-            Emitter on = socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
-                @Override
-                public void call(Object... args) {
-                    //送信
-                    socket.emit("detail",1);
-                    socket.disconnect();
-                }
-            });
-        }
+        });
+        socket.connect();
+
     }
 }

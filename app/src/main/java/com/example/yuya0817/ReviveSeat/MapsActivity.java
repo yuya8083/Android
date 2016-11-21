@@ -29,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private TextView ct;
     private TextView sn;
+    public double xy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,52 +42,63 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         try {
-            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");//http://133.25.196.30:2010
         }
         catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
+
+
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 //送信
-                 JSONObject obj = new JSONObject();
+                JSONObject obj = new JSONObject();
                 socket.emit("test", "接続してやー");
                 System.out.println("ぜろ");
-
             }
+//            private Emitter.Listener 受け取る変数！ = new Emitter.Listener() {
+//
+//            };
 
-//        }).on("shop_name", new Emitter.Listener() {
-//            @Override
-//            public void call(Object... args) {
-//                //店名
-//                JSONObject obj = (JSONObject) args[1];
-//                ct=(TextView)findViewById(R.id.cafenametext);
-//                //ct.setText((CharSequence) args[1]);
-//                ct.setText("実験");
-//            }
+      }).on("shop_address", new Emitter.Listener() {//shop_address
+           @Override
+           public void call(final Object... args) {//detail_back.shop_address
+               MapsActivity.super.runOnUiThread(new Runnable() {
+                   @Override
+                   public void run() {
+                       //住所
+                       System.out.println("ねみぃ");
+                       System.out.println(String.valueOf(args[0])); //うけとった文字列が何か調べてる！
+                       ct = (TextView) findViewById(R.id.cafenametext);
+                       ct.setText((CharSequence) args[0]);
+                       System.out.println("いち");
+                   }
+               });
+           }
 
-        }).on("test_back", new Emitter.Listener() {//shop_address
+      }).on("shop_name", new Emitter.Listener() {
             @Override
-            public void call(Object... args) {
-                //座席番号
-                System.out.println("いち");
-                JSONObject obj2 = (JSONObject)args[0];
-                System.out.println("に");
-                sn=(TextView)findViewById(R.id.adresstext);
-                System.out.println("さん");
-                sn.setText(obj2.toString());//int a = Integer.parseInt(args[0]);
-//                Log.d("recieve",obj.toString());
-                System.out.println("よん");
-                socket.disconnect();
+            public void call(final Object... args) {//detail_back.shop_name
+                MapsActivity.super.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(String.valueOf(args[0])); //うけとった文字列が何か調べてる！
+                    //店名
+
+                        System.out.println("に");
+                        sn=(TextView)findViewById(R.id.adresstext);
+                        System.out.println("さん");
+                        sn.setText((CharSequence) args[0]);
+                        socket.disconnect();
+                    }
+                });
             }
+
         });
         socket.connect();
 
-        ct=(TextView)findViewById(R.id.cafenametext);
-        //ct.setText((CharSequence) args[1]);
-        ct.setText("実験");
 
         Button myButton=(Button)findViewById(R.id.next);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         socket.emit("detail",0);
                         socket.disconnect();
                     }
-                });}
+                });
+            }
         });
     }
 
@@ -130,14 +143,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         System.out.println("ご");
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");//http://133.25.196.30:2010
+        }
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng(41.84, 140.77), 15);
-        mMap.moveCamera(cUpdate);
+        socket.on("shop_x", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MapsActivity.super.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(String.valueOf(args[0])); //うけとった文字列が何か調べてる！
+                        sn=(TextView)findViewById(R.id.adresstext);
+                        sn.setText((CharSequence) args[0]);
+                        xy = (double)args[0];
+                    }
+                });
+            }
+        }).on("shop_y", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                MapsActivity.super.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(String.valueOf(args[0])); //うけとった文字列が何か調べてる！
+                        //店名
+// Add a marker in Sydney and move the camera
+                        LatLng cafe = new LatLng(xy, (double)args[0]);
+                        mMap.addMarker(new MarkerOptions().position(cafe).title("shop_locate"));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(cafe));
+
+                        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng(41.84, 140.77), 15);
+                        mMap.moveCamera(cUpdate);
+                        socket.disconnect();
+                    }
+                });
+            }
+
+        });
+        socket.connect();
+
     }
 }

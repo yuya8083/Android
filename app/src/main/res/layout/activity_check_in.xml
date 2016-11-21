@@ -10,14 +10,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuya0817.ReviveSeat.Check_in">
 
+    <TextView
+        android:text="店舗に到着後、QRコードを読み取りチェックインしてください"
+        android:textSize="20dp"
+        android:layout_marginTop="132dp"
+        android:id="@+id/textView6"
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:weightSum="1"
-        android:layout_below="@+id/textView6"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="36dp">
+        android:layout_marginBottom="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -38,14 +48,14 @@
                 android:layout_marginTop="94dp" />
 
             <Button
-                android:text="キャンセル"
+                android:text="商品予約"
                 android:textColor="#ffffff"
-                android:background="#f80606"
+                android:background="@color/zxing_possible_result_points"
                 android:layout_height="50dp"
-                android:id="@+id/cancel"
+                android:id="@+id/yoyaku"
                 android:layout_width="150dp"
                 android:layout_marginTop="30dp"
-                android:onClick="onBackButtonTapped (check_in)" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -76,14 +86,16 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:text="店舗に到着後、QRコードを読み取りチェックインしてください"
-        android:textSize="20dp"
-        android:layout_marginTop="132dp"
-        android:id="@+id/textView6"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <Button
+        android:text="キャンセル"
+        android:textColor="#ffffff"
+        android:background="#f80606"
+        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:onClick="onBackButtonTapped (check_in)"
+        android:id="@+id/cansel"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp" />
 
 </RelativeLayout>
