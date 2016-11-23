@@ -96,8 +96,6 @@ public class share_table_list extends Activity {
             titletext[i].setText(title[i]);
         }
 
-//        titletext.setText(title[0]);
-
         Button list0=(Button)findViewById(R.id.list0);
         list0.setOnClickListener(new View.OnClickListener() {
             @Override

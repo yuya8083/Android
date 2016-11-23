@@ -113,7 +113,6 @@ public class Top extends Activity {
 
                         @Override
                         public void call(Object... args) {
-                            finish();
                             flag = 1;
                         }
 
