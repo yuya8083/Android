@@ -3,19 +3,31 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class orner_wait extends Activity {
 
-    public io.socket.client.Socket socket;
+    public Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orner_wait);
+
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+            Log.d("1","1");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         socket.on("answer_back", new Emitter.Listener() {
             @Override

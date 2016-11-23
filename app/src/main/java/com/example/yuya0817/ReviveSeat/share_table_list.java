@@ -3,161 +3,109 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URISyntaxException;
-
-import io.socket.client.IO;
 import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
-
-import static com.example.yuya0817.ReviveSeat.R.id.textView1;
-
-//import com.github.nkzawa.socketio.client.IO;
-//import com.github.nkzawa.socketio.client.Socket;
 
 public class share_table_list extends Activity {
 
-//    private Handler handler = new Handler();
-//    //private SocketIO socket;
-//    private Object a[];
-//    private TextView textView1;
-//    private String servermessage,test="test";
-//    private IOAcknowledge ack;
-//
-//    /*private void connectSocketIO() throws MalformedURLException {
-//        socket = new SocketIO("https://reviveseatserver.herokuapp.com/");
-//        socket.connect(iocallback);
-//    }*/
-//    private Socket mSocket;
-
     public Socket socket;
-    private TextView titletext,category_id,shopname;
-    public int i,refine;
-    private String title;
+    TextView titletext0,titletext1,titletext2,titletext3,titletext4,titletext5,
+            titletext6,titletext7,titletext8,titletext9,
+            category_idtext0,category_idtext1,category_idtext2,
+            category_idtext3,category_idtext4,category_idtext5,category_idtext6,
+            category_idtext7,category_idtext8,category_idtext9,
+            shopnametext0,shopnametext1,shopnametext2,shopnametext3,shopnametext4,
+            shopnametext5,shopnametext6,shopnametext7,shopnametext8,shopnametext9;
 
-//    {
-//        try {
-//            IO.Options opts = new IO.Options();
-//            // IO.socket("サーバーから提示提供されたURL");
-//            mSocket = IO.socket("https://reviveseatserver.herokuapp.com/");
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private int i;
+
+//    TextView category_idtext[] = new TextView[10];
+//    TextView shopnametext[] = new TextView[10];
+//    TextView titletext[] = new TextView[10];
+
+    String category_id[] = new String[10];
+    String shopname[] = new String[10];
+    String title[] = new String[10];
+    String shareid[] = new String[10];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_table_list);
 
-        category_id = (TextView)findViewById(R.id.textView);
-        titletext = (TextView)findViewById(textView1);
-        shopname = (TextView)findViewById(R.id.textView2);
-
-        refine = 0;
-
-        try {
-            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
-//            socket = IO.socket("http://133.25.196.30:2010");
-            Log.d("1","1");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            Log.e("-1","-1");
+        // インテントを取得
+        Intent data = getIntent();
+        // インテントに保存されたデータを取得
+        for (i=0; i<10; i++){
+            category_id[i] = data.getStringExtra(i+".category_id");
+            shopname[i] = data.getStringExtra(i+".shopname");
+            title[i] = data.getStringExtra(i+".title");
+            shareid[i] = data.getStringExtra(i+".shareid");
         }
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+        category_idtext0 = (TextView)findViewById(R.id.category0);
+        category_idtext1 = (TextView)findViewById(R.id.category1);
+        category_idtext2 = (TextView)findViewById(R.id.category2);
+        category_idtext3 = (TextView)findViewById(R.id.category3);
+        category_idtext4 = (TextView)findViewById(R.id.category4);
+        category_idtext5 = (TextView)findViewById(R.id.category5);
+        category_idtext6 = (TextView)findViewById(R.id.category6);
+        category_idtext7 = (TextView)findViewById(R.id.category7);
+        category_idtext8 = (TextView)findViewById(R.id.category8);
+        category_idtext9 = (TextView)findViewById(R.id.category9);
 
+        shopnametext0 = (TextView)findViewById(R.id.shopname0);
+        shopnametext1 = (TextView)findViewById(R.id.shopname1);
+        shopnametext2 = (TextView)findViewById(R.id.shopname2);
+        shopnametext3 = (TextView)findViewById(R.id.shopname3);
+        shopnametext4 = (TextView)findViewById(R.id.shopname4);
+        shopnametext5 = (TextView)findViewById(R.id.shopname5);
+        shopnametext6 = (TextView)findViewById(R.id.shopname6);
+        shopnametext7 = (TextView)findViewById(R.id.shopname7);
+        shopnametext8 = (TextView)findViewById(R.id.shopname8);
+        shopnametext9 = (TextView)findViewById(R.id.shopname9);
+
+        titletext0 = (TextView)findViewById(R.id.title0);
+        titletext1 = (TextView)findViewById(R.id.title1);
+        titletext2 = (TextView)findViewById(R.id.title2);
+        titletext3 = (TextView)findViewById(R.id.title3);
+        titletext4 = (TextView)findViewById(R.id.title4);
+        titletext5 = (TextView)findViewById(R.id.title5);
+        titletext6 = (TextView)findViewById(R.id.title6);
+        titletext7 = (TextView)findViewById(R.id.title7);
+        titletext8 = (TextView)findViewById(R.id.title8);
+        titletext9 = (TextView)findViewById(R.id.title9);
+
+
+        TextView category_idtext[] = {category_idtext0,category_idtext1,category_idtext2,
+                category_idtext3,category_idtext4,category_idtext5,category_idtext6,
+                category_idtext7, category_idtext8,category_idtext9};
+
+        TextView shopnametext[] = {shopnametext0,shopnametext1,shopnametext2,shopnametext3,
+                shopnametext4,shopnametext5,shopnametext6,shopnametext7,
+                shopnametext8,shopnametext9};
+
+        TextView titletext[] = {titletext0,titletext1,titletext2,titletext3,titletext4,
+                titletext5,titletext6,titletext7,titletext8,titletext9};
+
+        for (i=0; i<10; i++){
+            category_idtext[i].setText(category_id[i]);
+            shopnametext[i].setText(shopname[i]);
+            titletext[i].setText(title[i]);
+        }
+
+//        titletext.setText(title[0]);
+
+        Button list0=(Button)findViewById(R.id.list0);
+        list0.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void call(Object... args) {
-                Log.d("2","2");
-                // Sending an object
-                JSONObject json = new JSONObject();
-                try {
-                    json.put("refine",refine);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                socket.emit("sharetable_list",json);
+            public void onClick(View v) {
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
+                startActivity(intent1);
             }
-
-        }).on("sharetable_list_back", new Emitter.Listener() {
-
-            @Override
-            public void call(Object... args) {
-//                System.out.println(String.valueOf(args[0]));
-                System.out.println(String.valueOf(args[0]));
-                JSONObject json = (JSONObject)args[0];
-////                JSONObject json = new JSONObject();
-//                try {
-//                    JSONArray datas = json.getJSONArray(Arrays.toString(args));
-//
-////                    JSONObject item = json.getJSONObject("message");
-//
-//                    JSONObject data = datas.getJSONObject(0);
-//                    title = data.getString("[0].title");
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                titletext.setText(title);
-
-//                for (i=0; i<10; i++){
-//                    try {
-//                        shareid = json.getString("ユーザID");
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-
-//                title.setText(String.valueOf(args[0]));
-
-
-//                titletext.setText("こんにちは");
-//                try {
-//                    JSONObject jsonObject = new JSONObject(String.valueOf(args[0]));
-//                    title.setText((Integer) jsonObject.get("[0].title"));
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                //title.setText(String.valueOf(args[0]).getChars("[0].title"));
-                socket.disconnect();
-            }
-
-        }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
-
-            @Override
-            public void call(Object... args) {
-                Log.d("4","4");
-            }
-
         });
-        socket.connect();
-
-
-
-//        textView1=(TextView)findViewById(R.id.textView1) ;
-
-
-
-        /*mSocket.emit("test","a");
-        mSocket.on("test_back", new Emitter.Listener() {
-            @Override
-            public void call(final Object... arg) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject data=(JSONObject)arg[0];
-                        textView1.setText(arg[0].toString());
-                    }
-                });
-            }
-        });2
-
-        mSocket.connect();*/
 
         Button list1=(Button)findViewById(R.id.list1);
         list1.setOnClickListener(new View.OnClickListener() {
@@ -204,6 +152,42 @@ public class share_table_list extends Activity {
             }
         });
 
+        Button list6=(Button)findViewById(R.id.list6);
+        list6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
+                startActivity(intent1);
+            }
+        });
+
+        Button list7=(Button)findViewById(R.id.list7);
+        list7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
+                startActivity(intent1);
+            }
+        });
+
+        Button list8=(Button)findViewById(R.id.list8);
+        list8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
+                startActivity(intent1);
+            }
+        });
+
+        Button list9=(Button)findViewById(R.id.list9);
+        list9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(share_table_list.this, JoinConfirmation.class);
+                startActivity(intent1);
+            }
+        });
+
         Button returnButton = (Button) findViewById(R.id.back);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,54 +196,5 @@ public class share_table_list extends Activity {
             }
         });
 
-//        try {
-//            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
-//            Log.d("1","1");
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//            Log.e("-1","-1");
-//        }
-//        socket.on(io.socket.client.Socket.EVENT_CONNECT, new Emitter.Listener() {
-//
-//            @Override
-//            public void call(Object... args) {
-//                Log.d("2","2");
-//                //socket.emit("sharetable_list", "hi");
-//                // Sending an object
-//                JSONObject obj = new JSONObject();
-//                try {
-//                    obj.put("hello", "server");
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//                //socket.emit("sharetable_list", obj);
-//                socket.emit("sharetable_test_back",obj);
-//                textView1.setText((CharSequence) obj);
-//                socket.disconnect();
-//            }
-//
-//        }).on("sharetable_list_back", new Emitter.Listener() {
-//
-//
-//            @Override
-//            public void call(Object... args) {
-//                Log.d("3","3");
-//                JSONObject obj = (JSONObject)args[0];
-//                textView1.setText((CharSequence) obj);
-//            }
-//
-//        }).on(io.socket.client.Socket.EVENT_DISCONNECT, new Emitter.Listener() {
-//
-//            @Override
-//            public void call(Object... args) {
-//                Log.d("4","4");
-//            }
-//
-//        });
-//        socket.connect();
-
-    }
-    public void onBackButtonTapped(View view){
-        finish();
     }
 }
