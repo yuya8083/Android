@@ -18,21 +18,32 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="カテゴリ"
+            android:textSize="25dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="#ffffff"
             android:layout_weight="1"
-            android:id="@+id/category" />
+            android:id="@+id/category"
+            android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="テーマ"
+            android:textSize="25dp"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="15dp"
             android:id="@+id/theme"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/holo_green_light" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="店舗"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
             android:id="@+id/cafe"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
     </LinearLayout>
 </RelativeLayout>

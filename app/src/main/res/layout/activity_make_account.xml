@@ -9,37 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuya0817.ReviveSeat.MakeAccount">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="ユーザー名"
-            android:ems="10"
-            android:id="@+id/editText3" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="パスワード"
-            android:ems="10"
-            android:id="@+id/editText4" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="パスワード(確認)"
-            android:ems="10"
-            android:id="@+id/editText5" />
-    </LinearLayout>
-
     <!-- <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -90,8 +59,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="アカウント作成"
+        android:layout_marginBottom=""
         android:id="@+id/makeaccount"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp"
+            android:text="ユーザー名"
+            android:ems="10"
+            android:id="@+id/editText3" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="10dp"
+            android:text="パスワード"
+            android:ems="10"
+            android:id="@+id/editText4" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="パスワード(確認)"
+            android:layout_marginBottom="300dp"
+            android:ems="10"
+            android:id="@+id/editText5" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -37,7 +37,7 @@ public class LoginPage extends Activity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginPage.this, JoinConfirmation.class);//NewUserSet
+                Intent intent = new Intent(LoginPage.this, NewUserSet.class);
                 startActivity(intent);
             }
         });

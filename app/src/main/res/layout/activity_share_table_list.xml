@@ -13,7 +13,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="vertical"
@@ -64,7 +66,8 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView"
-                    android:background="@color/colorPrimary"
+                    android:textColor="#ffffff"
+                    android:background="@color/cast_intro_overlay_button_background_color"
                     android:layout_width="70dp"
                     android:gravity="center" />
 
@@ -110,6 +113,7 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView3"
+                    android:textColor="#ffffff"
                     android:background="@android:color/holo_green_light"
                     android:layout_width="68dp"
                     android:gravity="center" />
@@ -156,6 +160,7 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView11"
+                    android:textColor="#ffffff"
                     android:background="@color/zxing_possible_result_points"
                     android:layout_width="71dp"
                     android:gravity="center" />
@@ -202,6 +207,7 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView14"
+                    android:textColor="#ffffff"
                     android:background="@android:color/holo_red_light"
                     android:layout_width="72dp"
                     android:gravity="center" />
@@ -241,13 +247,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView17"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@color/colorAccent"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -286,12 +294,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView20"
+                    android:textColor="#ffffff"
                     android:background="@android:color/holo_purple"
                     android:layout_width="71dp"
                     android:gravity="center" />
@@ -331,13 +341,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView23"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@color/zxing_custom_viewfinder_laser"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -376,13 +388,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView26"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@android:color/holo_green_dark"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -421,13 +435,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView29"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@android:color/holo_orange_dark"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -466,13 +482,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true">
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/textView32"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="?android:attr/textColorHint"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
