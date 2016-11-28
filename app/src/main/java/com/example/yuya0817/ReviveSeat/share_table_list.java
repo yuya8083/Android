@@ -144,7 +144,7 @@ public class share_table_list extends Activity {
         list2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(share_table_list.this, JoinConfirmation.class);
+                Intent intent2 = new Intent(share_table_list.this, chat_system.class);
                 startActivity(intent2);
             }
         });
