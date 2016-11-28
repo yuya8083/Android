@@ -30,11 +30,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView ct;
     private TextView sn;
     public double xy;
+    int shareid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        Intent data = getIntent();
+        shareid = data.getIntExtra("shareid", 0);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -105,6 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapsActivity.this, JoinQrcode.class);
+                intent.putExtra("shareid", shareid);
                 startActivity(intent);
             }
         });

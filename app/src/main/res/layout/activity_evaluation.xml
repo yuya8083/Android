@@ -43,7 +43,7 @@
             android:layout_gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="ゲストさん"
-            android:id="@+id/geust" />
+            android:id="@+id/guest" />
 
         <Space
             android:layout_width="match_parent"

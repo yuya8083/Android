@@ -6,7 +6,7 @@
     tools:context="com.example.yuya0817.ReviveSeat.wait">
 
     <ProgressBar
-        android:id="@+id/product_image_loading"
+        android:id="@+id/progressBar"
         android:layout_gravity="center"
         android:layout_width="200dp"
         android:layout_height="200dp"

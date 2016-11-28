@@ -23,7 +23,7 @@ public class Top extends Activity {
     String shopname[] = new String[10];
     String title[] = new String[10];
     String shareid[] = new String[10];
-    private int refine,flag,i;
+    private int refine,flag,i,j;
     Intent intent2;
 
     @Override
@@ -42,13 +42,16 @@ public class Top extends Activity {
             e.printStackTrace();
         }
 
+        j = 19;
+
         //作成ボタン
         Button myButton=(Button)findViewById(R.id.sharebutton);
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Top.this, qrcode.class);
-                Intent intent = new Intent(Top.this, MapsActivity.class);
+                Intent intent = new Intent(Top.this, qrcode.class);
+//                Intent intent = new Intent(Top.this, JoinQrcode.class);
+//                intent.putExtra("shareid", j);
                 startActivity(intent);
             }
         });
@@ -76,7 +79,7 @@ public class Top extends Activity {
 
                     @Override
                     public void call(Object... args) {
-//                            System.out.println(String.valueOf(args[0]));
+                        System.out.println(String.valueOf(args[0]));
                         try {
                             JSONArray datas = (JSONArray) args[0];
                             for (i = 0; i < 10; i++) {

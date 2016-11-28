@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,17 +25,21 @@ public class JoinEvaluation extends Activity {
     private String comment;
     Button button;
     int stringToValue,recieveuserid,senduserid;
-    //private TextView tv;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluation);
 
-        System.out.println("Join");
-
         recieveuserid = 1;
         senduserid = 2;
+
+        tv = (TextView)findViewById(R.id.guest);
+
+        Intent data = getIntent();
+        String host = data.getStringExtra("ホスト");
+//        tv.setText("test user");
 
         RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
         // リスナー登録
@@ -82,15 +87,6 @@ public class JoinEvaluation extends Activity {
                             }
                             System.out.println(String.valueOf(obj));
                             socket.emit("sethyoka", obj);
-                            socket.disconnect();
-                        }
-
-                    }).on("newuser_back", new Emitter.Listener() {
-
-                        @Override
-                        public void call(Object... args) {
-                            Log.d("3","3");
-                            System.out.println(String.valueOf(args[0]));
                             socket.disconnect();
                         }
 

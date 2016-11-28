@@ -176,6 +176,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -245,6 +246,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -314,6 +316,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -383,6 +386,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -452,6 +456,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -521,6 +526,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -590,6 +596,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -659,6 +666,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -728,6 +736,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }
@@ -797,6 +806,7 @@ public class share_table_list extends Activity {
                 intent.putExtra("shop_name", shop_name);
                 intent.putExtra("shop_x", shop_x);
                 intent.putExtra("shop_y", shop_y);
+                intent.putExtra("shareid", shareid);
 
                 startActivity(intent);
             }

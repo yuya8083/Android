@@ -7,17 +7,22 @@ import android.view.View;
 import android.widget.Button;
 
 public class Check_in extends Activity {
+    int shareid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_in);
 
+        Intent data = getIntent();
+        shareid = data.getIntExtra("shareid", 0);
+
         Button mapp = (Button) findViewById(R.id.map);
         mapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Check_in.this, MapsActivity.class);
+                intent.putExtra("shareid", shareid);
                 startActivity(intent);
             }
         });
@@ -27,6 +32,7 @@ public class Check_in extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(Check_in.this, JoinQrcode.class);
+                intent2.putExtra("shareid", shareid);
                 startActivity(intent2);
             }
         });
@@ -40,7 +46,7 @@ public class Check_in extends Activity {
             }
         });
 
-        Button yoyakuu = (Button) findViewById(R.id.chat);
+        Button yoyakuu = (Button) findViewById(R.id.yoyaku);
         yoyakuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
