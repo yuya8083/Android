@@ -10,13 +10,11 @@ import android.widget.Button;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
-
 
 
 public class MainActivity extends Activity {
@@ -106,7 +104,7 @@ public class MainActivity extends Activity {
         myButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(MainActivity.this,select_menu_food.class);
+                Intent intent3 = new Intent(MainActivity.this,select_menu_food.class);//
                 startActivity(intent3);
             }
         });
