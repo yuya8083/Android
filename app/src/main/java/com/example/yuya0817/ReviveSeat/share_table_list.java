@@ -2,6 +2,7 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -94,6 +96,17 @@ public class share_table_list extends Activity {
             category_idtext[i].setText(category_id[i]);
             shopnametext[i].setText(shopname[i]);
             titletext[i].setText(title[i]);
+            if (Objects.equals(category_id[i], "1")){
+                category_idtext[i].setBackgroundColor(Color.rgb(25,135,229)); //青
+            }else if (Objects.equals(category_id[i], "2")){
+                category_idtext[i].setBackgroundColor(Color.rgb(11,218,81)); //緑
+            }else if (Objects.equals(category_id[i], "3")){
+                category_idtext[i].setBackgroundColor(Color.rgb(243,213,26)); //黄色
+            }else if (Objects.equals(category_id[i], "4")){
+                category_idtext[i].setBackgroundColor(Color.rgb(249,37,0)); //赤
+            }else {
+                category_idtext[i].setBackgroundColor(Color.rgb(255,183,76)); //オレンジ
+            }
         }
 
         Button list0=(Button)findViewById(R.id.list0);
