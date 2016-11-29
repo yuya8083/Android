@@ -20,13 +20,6 @@ import io.socket.emitter.Emitter;
 public class share_table_list extends Activity {
 
     public Socket socket;
-//    TextView titletext0,titletext1,titletext2,titletext3,titletext4,titletext5,
-//            titletext6,titletext7,titletext8,titletext9,
-//            category_idtext0,category_idtext1,category_idtext2,
-//            category_idtext3,category_idtext4,category_idtext5,category_idtext6,
-//            category_idtext7,category_idtext8,category_idtext9,
-//            shopnametext0,shopnametext1,shopnametext2,shopnametext3,shopnametext4,
-//            shopnametext5,shopnametext6,shopnametext7,shopnametext8,shopnametext9;
 
     TextView category_idtext[] = new TextView[10];
     TextView shopnametext[] = new TextView[10];
@@ -96,18 +89,6 @@ public class share_table_list extends Activity {
         titletext[7] = (TextView)findViewById(R.id.title7);
         titletext[8] = (TextView)findViewById(R.id.title8);
         titletext[9] = (TextView)findViewById(R.id.title9);
-
-
-//        TextView category_idtext[] = {category_idtext0,category_idtext1,category_idtext2,
-//                category_idtext3,category_idtext4,category_idtext5,category_idtext6,
-//                category_idtext7, category_idtext8,category_idtext9};
-//
-//        TextView shopnametext[] = {shopnametext0,shopnametext1,shopnametext2,shopnametext3,
-//                shopnametext4,shopnametext5,shopnametext6,shopnametext7,
-//                shopnametext8,shopnametext9};
-//
-//        TextView titletext[] = {titletext0,titletext1,titletext2,titletext3,titletext4,
-//                titletext5,titletext6,titletext7,titletext8,titletext9};
 
         for (i=0; i<10; i++){
             category_idtext[i].setText(category_id[i]);
