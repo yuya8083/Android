@@ -66,6 +66,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/category0"
                     android:background="@color/colorPrimary"
+                    android:textColor="#ffffff"
                     android:layout_width="70dp"
                     android:gravity="center" />
 
@@ -110,9 +111,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category1"
-                    android:background="@android:color/holo_green_light"
+                    android:textColor="#ffffff"
                     android:layout_width="68dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@color/colorAccent" />
+                    <!--android:background="@android:color/holo_green_light"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -156,6 +159,7 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category2"
+                    android:textColor="#ffffff"
                     android:background="@color/zxing_possible_result_points"
                     android:layout_width="71dp"
                     android:gravity="center" />
@@ -202,9 +206,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category3"
-                    android:background="@android:color/holo_red_light"
+                    android:textColor="#ffffff"
                     android:layout_width="72dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_green_light" />
+                <!--android:background="@android:color/holo_red_light"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -248,7 +254,8 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category4"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@color/colorAccent"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -294,9 +301,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category5"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_red_dark" />
+                <!--android:background="@android:color/holo_purple"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -340,7 +349,8 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category6"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
+                    android:background="@color/zxing_custom_viewfinder_laser"
                     android:layout_width="71dp"
                     android:gravity="center" />
 
@@ -386,9 +396,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category7"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_green_light" />
+                <!--android:background="@android:color/holo_green_dark"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -432,9 +444,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category8"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_blue_light" />
+                <!--android:background="@android:color/holo_orange_dark"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -478,9 +492,11 @@
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
                     android:id="@+id/category9"
-                    android:background="@android:color/holo_purple"
+                    android:textColor="#ffffff"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_orange_dark" />
+                <!--android:background="@android:color/holo_purple"-->
 
                 <LinearLayout
                     android:orientation="vertical"

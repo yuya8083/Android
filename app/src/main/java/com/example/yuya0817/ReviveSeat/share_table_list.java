@@ -12,10 +12,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+
+import static com.example.yuya0817.ReviveSeat.R.id.textView1;
 
 public class share_table_list extends Activity {
 
@@ -38,7 +43,6 @@ public class share_table_list extends Activity {
     private double shop_x,shop_y;
 
     Intent intent;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,7 +256,7 @@ public class share_table_list extends Activity {
             }
         });
 
-        Button list2=(Button)findViewById(R.id.list2);
+        Button list2 = (Button) findViewById(R.id.list2);
         list2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -322,7 +326,7 @@ public class share_table_list extends Activity {
             }
         });
 
-        Button list3=(Button)findViewById(R.id.list3);
+        Button list3 = (Button) findViewById(R.id.list3);
         list3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -392,7 +396,7 @@ public class share_table_list extends Activity {
             }
         });
 
-        Button list4=(Button)findViewById(R.id.list4);
+        Button list4 = (Button) findViewById(R.id.list4);
         list4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -462,7 +466,7 @@ public class share_table_list extends Activity {
             }
         });
 
-        Button list5=(Button)findViewById(R.id.list5);
+        Button list5 = (Button) findViewById(R.id.list5);
         list5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -819,6 +823,7 @@ public class share_table_list extends Activity {
                 finish();
             }
         });
-
     }
 }
+
+

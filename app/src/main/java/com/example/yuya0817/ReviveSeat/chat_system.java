@@ -2,12 +2,10 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -20,164 +18,128 @@ import io.socket.emitter.Emitter;
 
 public class chat_system extends Activity {
 
-    private ArrayAdapter<String> adapter;
-    private Socket socket;
-//    private Handler handler = new Handler();
-    private String text;
-    EditText editText;
+    public io.socket.client.Socket socket;
+    public TextView textView[]=new TextView[10];
+    public EditText editText;
+    public String text;
+    public int i=0;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_chat_system);
 
-        // ListViewの設定
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        ListView listView = (ListView)findViewById(R.id.listView1);
-        listView.setAdapter(adapter);
-        editText = (EditText)findViewById(R.id.editText1);
-        //editText = (EditText)findViewById(R.id.editText);
 
-        Button button=(Button)findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button send=(Button)findViewById(R.id.button1);
+        editText=(EditText)findViewById(R.id.editText1);
+        textView[0]=(TextView)findViewById(R.id.textView1);
+        textView[1]=(TextView)findViewById(R.id.textView2);
+        textView[2]=(TextView)findViewById(R.id.textView3);
+        textView[3]=(TextView)findViewById(R.id.textView4);
+        textView[4]=(TextView)findViewById(R.id.textView5);
+        textView[5]=(TextView)findViewById(R.id.textView6);
+        textView[6]=(TextView)findViewById(R.id.textView7);
+        textView[7]=(TextView)findViewById(R.id.textView8);
+        textView[8]=(TextView)findViewById(R.id.textView9);
+        textView[9]=(TextView)findViewById(R.id.textView10);
+
+
+
+
+
+
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");//http://133.25.196.30:2010
+        }
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+
+        /*socket.on(socket.EVENT_CONNECT,new Emitter.Listener(){
+            @Override
+            public void call(Object... args){
+                if (args[0]!=null){
+                    textView[i].setText(String.valueOf(args[0]));
+                    ++i;
+                }
+            }
+        }).on("chat_reception", new Emitter.Listener() {
+                    @Override
+                    public void call(final Object... args) {
+                        chat_system.super.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (i = 0; i < 10; ++i) {
+                                    if (args[i] != null) {
+                                        textView[i].setText(String.valueOf(args[0]));
+
+                                    }
+                                }
+                            }
+                        });
+
+                    }
+                });
+        socket.connect();*/
+
+        send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = editText.getText().toString();
-                System.out.println(text);
-                try {
-                    socket = IO.socket("https://reviveseatserver.herokuapp.com/");
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
+
+
+
+                text=editText.getText().toString();
+                editText.setText("");
+
+
+
                 socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-
                     @Override
                     public void call(Object... args) {
-//                        socket.emit("chat_send",text);
-                        socket.emit("test",text);
-                    }
-
-                }).on("test_back", new Emitter.Listener() {
-
-                    @Override
-                    public void call(Object... args) {
-                        System.out.println(String.valueOf(args[0]));
-                        JSONObject obj = (JSONObject)args[0];
-                        if((CharSequence) obj != null) {
-                            // メッセージが空でなければ追加
-                            adapter.insert(String.valueOf((CharSequence) obj), 0);
+                        //送信
+                        JSONObject obj = new JSONObject();
+                        if (text!=null) {
+                            socket.emit("chat_send", text);
                         }
-//                textView1.setText((CharSequence) obj);
-//                title.setText(String.valueOf(args[0]));
-
-
-//                titletext.setText("こんにちは");
-//                try {
-//                    JSONObject jsonObject = new JSONObject(String.valueOf(args[0]));
-//                    title.setText((Integer) jsonObject.get("[0].title"));
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                        //title.setText(String.valueOf(args[0]).getChars("[0].title"));
-//                socket.disconnect();
                     }
-
-                }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
-
+                }).on("chat_reception", new Emitter.Listener() {
                     @Override
-                    public void call(Object... args) {
-                        Log.d("4","4");
+                    public void call(final Object... args) {
+                        chat_system.super.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                i=0;
+                                textView[i].setText(String.valueOf(args[i]));
+
+                                //textView[1].setText(String.valueOf(args[1]));
+                                //for (i=0;i<10;++i){
+                                /*if (args[i] != "") {
+                                    textView[i].setText(String.valueOf(args[i]));
+                                }*/
+                                //textView[i-1].setGravity(Gravity.RIGHT);
+                                //}
+                                socket.disconnect();
+                            }
+                        });
                     }
+
+
+
 
                 });
                 socket.connect();
+
             }
         });
 
-//        try {
-//            connect();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    private void connect() throws MalformedURLException {
-//        SocketIO socket = new SocketIO("https://cmapp0001.herokuapp.com/");
-//        socket.connect(iocallback);
-//    }
-//
-//
-//
-//
-//    private IOCallback iocallback = new IOCallback() {
-//
-//
-//        @Override
-//        public void onDisconnect() {
-//
-//        }
-//
-//        @Override
-//        public void onConnect() {
-//            System.out.println("onConnect");
-//        }
-//
-//        @Override
-//        public void onMessage(String s, IOAcknowledge ioAcknowledge) {
-//
-//        }
-//
-//        @Override
-//        public void onMessage(JSONObject json, IOAcknowledge ack) {
-//            System.out.println("onMessage");
-//        }
-//
-//        @Override
-//        public void on(String event, IOAcknowledge ack, Object... args) {
-//            final JSONObject message = (JSONObject)args[0];
-//
-//            new Thread(new Runnable() {
-//                public void run() {
-//                    handler.post(new Runnable() {
-//                        public void run() {
-//                            try {
-//                                if(message.getString("message") != null) {
-//                                    // メッセージが空でなければ追加
-//                                    adapter.insert(message.getString("message"), 0);
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
-//                }
-//            }).start();
-//        }
-//        @Override
-//        public void onError(SocketIOException socketIOException) {
-//            System.out.println("onError");
-//            socketIOException.printStackTrace();
-//        }
-//    };
-//    public void sendEvent(View view){
-//        // 文字が入力されていなければ何もしない
-//        if (editText.getText().toString().length() == 0) {
-//            return;
-//        }
-//
-//
-//        try {
-//            // イベント送信
-//            JSONObject json = new JSONObject();
-//            json.put("message", editText.getText().toString());
-//            socket.emit("message:send", json);
-//
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-        // テキストフィールドをリセット
-        editText.setText("");
+
+
+
+
+
     }
 
 }

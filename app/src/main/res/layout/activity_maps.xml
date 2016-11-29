@@ -39,6 +39,7 @@
                 android:text="マップ"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:gravity="start|center"
                 android:id="@+id/maptext"
@@ -106,23 +107,34 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <Space
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="392dp">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_weight="100"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="348dp"
+                    android:layout_height="match_parent" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
         <!--tools:context="com.example.yuya0817.ReviveSeat.MapsActivity"-->
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -140,6 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/next"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:textColor="@android:color/background_light"
                 android:background="@color/zxing_custom_viewfinder_laser"

@@ -31,9 +31,10 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="191dp"
+            android:layout_width="167dp"
             android:layout_height="241dp"
             android:layout_gravity="end"
+            android:layout_marginLeft="15dp"
             >
 
             <Button
@@ -60,9 +61,10 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="170dp"
+            android:layout_width="166dp"
             android:layout_height="match_parent"
-            android:layout_gravity="end">
+            android:layout_gravity="end"
+            android:layout_marginRight="40dp">
 
             <Button
                 android:text="QRコード"
