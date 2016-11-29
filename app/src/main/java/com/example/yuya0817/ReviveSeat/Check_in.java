@@ -50,7 +50,7 @@ public class Check_in extends Activity {
         yoyakuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Check_in.this, chat_system.class);//予約画面へ
+                Intent intent4 = new Intent(Check_in.this, select_menu_food.class);//予約画面へ
                 startActivity(intent4);
             }
         });
