@@ -12,26 +12,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-import static com.example.yuya0817.ReviveSeat.R.id.textView1;
-
 public class share_table_list extends Activity {
 
     public Socket socket;
-    TextView titletext0,titletext1,titletext2,titletext3,titletext4,titletext5,
-            titletext6,titletext7,titletext8,titletext9,
-            category_idtext0,category_idtext1,category_idtext2,
-            category_idtext3,category_idtext4,category_idtext5,category_idtext6,
-            category_idtext7,category_idtext8,category_idtext9,
-            shopnametext0,shopnametext1,shopnametext2,shopnametext3,shopnametext4,
-            shopnametext5,shopnametext6,shopnametext7,shopnametext8,shopnametext9;
+//    TextView titletext0,titletext1,titletext2,titletext3,titletext4,titletext5,
+//            titletext6,titletext7,titletext8,titletext9,
+//            category_idtext0,category_idtext1,category_idtext2,
+//            category_idtext3,category_idtext4,category_idtext5,category_idtext6,
+//            category_idtext7,category_idtext8,category_idtext9,
+//            shopnametext0,shopnametext1,shopnametext2,shopnametext3,shopnametext4,
+//            shopnametext5,shopnametext6,shopnametext7,shopnametext8,shopnametext9;
+
+    TextView category_idtext[] = new TextView[10];
+    TextView shopnametext[] = new TextView[10];
+    TextView titletext[] = new TextView[10];
 
     String category_id[] = new String[10];
     String shopname[] = new String[10];
@@ -65,50 +64,50 @@ public class share_table_list extends Activity {
             title[i] = data.getStringExtra(i+".title");
             share_id[i] = data.getStringExtra(i+".shareid");
         }
-        category_idtext0 = (TextView)findViewById(R.id.category0);
-        category_idtext1 = (TextView)findViewById(R.id.category1);
-        category_idtext2 = (TextView)findViewById(R.id.category2);
-        category_idtext3 = (TextView)findViewById(R.id.category3);
-        category_idtext4 = (TextView)findViewById(R.id.category4);
-        category_idtext5 = (TextView)findViewById(R.id.category5);
-        category_idtext6 = (TextView)findViewById(R.id.category6);
-        category_idtext7 = (TextView)findViewById(R.id.category7);
-        category_idtext8 = (TextView)findViewById(R.id.category8);
-        category_idtext9 = (TextView)findViewById(R.id.category9);
+        category_idtext[0] = (TextView)findViewById(R.id.category0);
+        category_idtext[1] = (TextView)findViewById(R.id.category1);
+        category_idtext[2] = (TextView)findViewById(R.id.category2);
+        category_idtext[3] = (TextView)findViewById(R.id.category3);
+        category_idtext[4] = (TextView)findViewById(R.id.category4);
+        category_idtext[5] = (TextView)findViewById(R.id.category5);
+        category_idtext[6] = (TextView)findViewById(R.id.category6);
+        category_idtext[7] = (TextView)findViewById(R.id.category7);
+        category_idtext[8] = (TextView)findViewById(R.id.category8);
+        category_idtext[9] = (TextView)findViewById(R.id.category9);
 
-        shopnametext0 = (TextView)findViewById(R.id.shopname0);
-        shopnametext1 = (TextView)findViewById(R.id.shopname1);
-        shopnametext2 = (TextView)findViewById(R.id.shopname2);
-        shopnametext3 = (TextView)findViewById(R.id.shopname3);
-        shopnametext4 = (TextView)findViewById(R.id.shopname4);
-        shopnametext5 = (TextView)findViewById(R.id.shopname5);
-        shopnametext6 = (TextView)findViewById(R.id.shopname6);
-        shopnametext7 = (TextView)findViewById(R.id.shopname7);
-        shopnametext8 = (TextView)findViewById(R.id.shopname8);
-        shopnametext9 = (TextView)findViewById(R.id.shopname9);
+        shopnametext[0] = (TextView)findViewById(R.id.shopname0);
+        shopnametext[1] = (TextView)findViewById(R.id.shopname1);
+        shopnametext[2] = (TextView)findViewById(R.id.shopname2);
+        shopnametext[3] = (TextView)findViewById(R.id.shopname3);
+        shopnametext[4] = (TextView)findViewById(R.id.shopname4);
+        shopnametext[5] = (TextView)findViewById(R.id.shopname5);
+        shopnametext[6] = (TextView)findViewById(R.id.shopname6);
+        shopnametext[7] = (TextView)findViewById(R.id.shopname7);
+        shopnametext[8] = (TextView)findViewById(R.id.shopname8);
+        shopnametext[9] = (TextView)findViewById(R.id.shopname9);
 
-        titletext0 = (TextView)findViewById(R.id.title0);
-        titletext1 = (TextView)findViewById(R.id.title1);
-        titletext2 = (TextView)findViewById(R.id.title2);
-        titletext3 = (TextView)findViewById(R.id.title3);
-        titletext4 = (TextView)findViewById(R.id.title4);
-        titletext5 = (TextView)findViewById(R.id.title5);
-        titletext6 = (TextView)findViewById(R.id.title6);
-        titletext7 = (TextView)findViewById(R.id.title7);
-        titletext8 = (TextView)findViewById(R.id.title8);
-        titletext9 = (TextView)findViewById(R.id.title9);
+        titletext[0] = (TextView)findViewById(R.id.title0);
+        titletext[1] = (TextView)findViewById(R.id.title1);
+        titletext[2] = (TextView)findViewById(R.id.title2);
+        titletext[3] = (TextView)findViewById(R.id.title3);
+        titletext[4] = (TextView)findViewById(R.id.title4);
+        titletext[5] = (TextView)findViewById(R.id.title5);
+        titletext[6] = (TextView)findViewById(R.id.title6);
+        titletext[7] = (TextView)findViewById(R.id.title7);
+        titletext[8] = (TextView)findViewById(R.id.title8);
+        titletext[9] = (TextView)findViewById(R.id.title9);
 
 
-        TextView category_idtext[] = {category_idtext0,category_idtext1,category_idtext2,
-                category_idtext3,category_idtext4,category_idtext5,category_idtext6,
-                category_idtext7, category_idtext8,category_idtext9};
-
-        TextView shopnametext[] = {shopnametext0,shopnametext1,shopnametext2,shopnametext3,
-                shopnametext4,shopnametext5,shopnametext6,shopnametext7,
-                shopnametext8,shopnametext9};
-
-        TextView titletext[] = {titletext0,titletext1,titletext2,titletext3,titletext4,
-                titletext5,titletext6,titletext7,titletext8,titletext9};
+//        TextView category_idtext[] = {category_idtext0,category_idtext1,category_idtext2,
+//                category_idtext3,category_idtext4,category_idtext5,category_idtext6,
+//                category_idtext7, category_idtext8,category_idtext9};
+//
+//        TextView shopnametext[] = {shopnametext0,shopnametext1,shopnametext2,shopnametext3,
+//                shopnametext4,shopnametext5,shopnametext6,shopnametext7,
+//                shopnametext8,shopnametext9};
+//
+//        TextView titletext[] = {titletext0,titletext1,titletext2,titletext3,titletext4,
+//                titletext5,titletext6,titletext7,titletext8,titletext9};
 
         for (i=0; i<10; i++){
             category_idtext[i].setText(category_id[i]);
