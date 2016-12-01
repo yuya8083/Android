@@ -51,7 +51,7 @@ public class chat_system extends Activity {
 
 
         try {
-            socket = IO.socket("https://reviveseatserver.herokuapp.com/");//http://133.25.196.30:2010
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
         }
         catch (URISyntaxException e) {
             e.printStackTrace();

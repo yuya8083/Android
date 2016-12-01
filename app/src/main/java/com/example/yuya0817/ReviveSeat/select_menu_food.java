@@ -7,6 +7,14 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
 public class select_menu_food extends Activity {
 
     /**
@@ -14,17 +22,27 @@ public class select_menu_food extends Activity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    public io.socket.client.Socket socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_menu_food);
 
-        int priceall = 0, price[] = new int[12];
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
+        }
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+
+        final int priceall = 0, price[] = new int[12];
         int figureall = 12;
         int i = 0;
-        TextView pricetext[] = new TextView[12];
-        ToggleButton food[] = new ToggleButton[12];
+        final TextView pricetext[] = new TextView[12];
+        final TextView foodname[]=new TextView[12];
+        final ToggleButton food[] = new ToggleButton[12];
 
         TextView totalprice = (TextView) findViewById(R.id.totalprice);
         totalprice.setText(String.valueOf(priceall));
@@ -35,10 +53,42 @@ public class select_menu_food extends Activity {
         for (i=0;i<12;++i){
             price[i]=0;
         }
-        /*
+
+        foodname[0]=(TextView)findViewById(R.id.textView1);
         pricetext[0] = (TextView) findViewById(R.id.textView2);
         pricetext[0].setText(String.valueOf(price[0]));
 
+
+
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //送信
+                JSONObject obj = new JSONObject();
+                    socket.emit("menu_request", 1);
+
+            }
+        }).on("men_list", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                select_menu_food.super.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        foodname[0].setText(String.valueOf(args[0]));
+                        pricetext[0].setText(String.valueOf(args[0]));
+
+                        socket.disconnect();
+                    }
+                });
+            }
+
+
+
+
+        });
+        socket.connect();
+/*
         pricetext[1] = (TextView) findViewById(R.id.textView4);
         pricetext[1].setText(String.valueOf(price[1]));
 
