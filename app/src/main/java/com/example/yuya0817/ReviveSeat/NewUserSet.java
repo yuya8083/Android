@@ -20,11 +20,11 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
-import static com.example.yuya0817.ReviveSeat.R.id.pass;
-
 public class NewUserSet extends Activity {
 
-    private String username,password,password2,shareid;
+//    private ViewDto dto;
+
+    private String username,password,password2,userid;
     EditText editname,editpass,editpass2;
     private Socket socket;
     public SharedPreferences dataStore;
@@ -35,7 +35,7 @@ public class NewUserSet extends Activity {
         setContentView(R.layout.activity_new_user_set);
 
         editname = (EditText)findViewById(R.id.username);
-        editpass = (EditText)findViewById(pass);
+        editpass = (EditText)findViewById(R.id.pass);
         editpass2 = (EditText)findViewById(R.id.pass2);
 
         // "DataStore"という名前でインスタンスを生成
@@ -49,8 +49,6 @@ public class NewUserSet extends Activity {
                 username = editname.getText().toString();
                 password = editpass.getText().toString();
                 password2 = editpass2.getText().toString();
-
-                Log.d("-","ero");
 
                 if (username.isEmpty() && (password.isEmpty() || password2.isEmpty())) {
                     // 入力必須エラー
@@ -105,25 +103,20 @@ public class NewUserSet extends Activity {
 //                                    } catch (JSONException e) {
 //                                        e.printStackTrace();
 //                                    }
-                                    try {
-                                        JSONObject obj2 = (JSONObject)args[0];
-                                        shareid = obj2.getString("ユーザID");
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    System.out.println(shareid);
-                                    // 入力文字列を"input"に書き込む
-                                    SharedPreferences.Editor editor = dataStore.edit();
-                                    editor.putString("input", shareid);
-                                    editor.apply();
-//                        JSONObject obj2 = (JSONObject)args[0];
-//                        try {
-//                            share_id = obj2.getInt("share_id");
-//                        } catch (JSONException e) {
-//                            return;
-//                        }
-                                    //Log.d("recieve", String.valueOf(share_id));
-                                    //socket.on("",);
+                                    userid = String.valueOf(args[0]);
+                                    System.out.println(userid);
+
+//                                    // 画面の情報をDtoに詰め込む
+//                                    dto.setUserid(userid);
+
+                                    // Dtoに詰め込んだデータをファイルに保存する
+                                    TempDataUtil.store(NewUserSet.this, userid);
+
+//                                    // 入力文字列を"input"に書き込む
+//                                    SharedPreferences.Editor editor = dataStore.edit();
+//                                    editor.putString("input", userid);
+//                                    editor.apply();
+
                                     socket.disconnect();
                                 }
 

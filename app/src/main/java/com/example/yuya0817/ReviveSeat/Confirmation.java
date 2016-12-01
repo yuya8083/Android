@@ -159,6 +159,9 @@ public class Confirmation extends Activity {
                     public void call(Object... args) {
                         Log.d("3","3");
                         System.out.println(String.valueOf(args[0]));
+                        String str = String.valueOf(args[0]);
+//                        String str = String.valueOf(cs);
+                        System.out.println(str);
 //                        try {
 //                            JSONObject json = new JSONObject();
 //                            shareid = json.getString("share_id");

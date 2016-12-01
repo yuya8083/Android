@@ -40,7 +40,6 @@
                     android:id="@+id/back"
                     android:textColor="#ffffff"
                     android:background="@color/colorPrimary"
-                    android:onClick="onbackButtontapped"
                     android:layout_height="50dp" />
 
                 <TextView
@@ -59,17 +58,64 @@
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_height="100dp">
 
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView"
+                    android:id="@+id/category0"
+                    android:background="@color/colorPrimary"
                     android:textColor="#ffffff"
-                    android:background="@color/cast_intro_overlay_button_background_color"
                     android:layout_width="70dp"
                     android:gravity="center" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shopname0"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="お店の名前" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title0" />
+                </LinearLayout>
+
+                <Button
+                    android:text="ここにする"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list0"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:background="@drawable/list_border"
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp"
+                android:layout_height="100dp">
+
+                <TextView
+                    android:text="カテゴリ"
+                    android:layout_height="match_parent"
+                    android:id="@+id/category1"
+                    android:textColor="#ffffff"
+                    android:layout_width="68dp"
+                    android:gravity="center"
+                    android:background="@color/colorAccent" />
+                    <!--android:background="@android:color/holo_green_light"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -81,15 +127,15 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView1"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
+                        android:id="@+id/shopname1"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp" />
 
                     <TextView
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView2" />
+                        android:id="@+id/title1" />
                 </LinearLayout>
 
                 <Button
@@ -104,54 +150,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true"
-                android:layout_marginBottom="20dp"
-                android:layout_height="60dp">
-
-                <TextView
-                    android:text="カテゴリ"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView3"
-                    android:textColor="#ffffff"
-                    android:background="@android:color/holo_green_light"
-                    android:layout_width="68dp"
-                    android:gravity="center" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:text="お店の店名"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView4"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp" />
-
-                    <TextView
-                        android:text="タイトル"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView5" />
-                </LinearLayout>
-
-                <Button
-                    android:text="ここにする"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/list2"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp">
@@ -159,7 +158,7 @@
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView11"
+                    android:id="@+id/category2"
                     android:textColor="#ffffff"
                     android:background="@color/zxing_possible_result_points"
                     android:layout_width="71dp"
@@ -175,7 +174,7 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView12"
+                        android:id="@+id/shopname2"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp" />
 
@@ -183,7 +182,55 @@
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView13" />
+                        android:id="@+id/title2" />
+                </LinearLayout>
+
+                <Button
+                    android:text="ここにする"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list2"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/list_border"
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:text="カテゴリ"
+                    android:layout_height="match_parent"
+                    android:id="@+id/category3"
+                    android:textColor="#ffffff"
+                    android:layout_width="72dp"
+                    android:gravity="center"
+                    android:background="@android:color/holo_green_light" />
+                <!--android:background="@android:color/holo_red_light"-->
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="お店の店名"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shopname3"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:text="タイトル"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title3" />
                 </LinearLayout>
 
                 <Button
@@ -198,7 +245,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp">
@@ -206,54 +253,7 @@
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView14"
-                    android:textColor="#ffffff"
-                    android:background="@android:color/holo_red_light"
-                    android:layout_width="72dp"
-                    android:gravity="center" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:text="お店の店名"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView15"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
-
-                    <TextView
-                        android:text="タイトル"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView16" />
-                </LinearLayout>
-
-                <Button
-                    android:text="ここにする"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/list4"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:text="カテゴリ"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView17"
+                    android:id="@+id/category4"
                     android:textColor="#ffffff"
                     android:background="@color/colorAccent"
                     android:layout_width="71dp"
@@ -269,7 +269,7 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView18"
+                        android:id="@+id/shopname4"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp" />
 
@@ -277,7 +277,55 @@
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView19" />
+                        android:id="@+id/title4" />
+                </LinearLayout>
+
+                <Button
+                    android:text="ここにする"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list4"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/list_border"
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:text="カテゴリ"
+                    android:layout_height="match_parent"
+                    android:id="@+id/category5"
+                    android:textColor="#ffffff"
+                    android:layout_width="71dp"
+                    android:gravity="center"
+                    android:background="@android:color/holo_red_dark" />
+                <!--android:background="@android:color/holo_purple"-->
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="お店の店名"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shopname5"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:text="タイトル"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title5" />
                 </LinearLayout>
 
                 <Button
@@ -292,7 +340,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp">
@@ -300,54 +348,7 @@
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView20"
-                    android:textColor="#ffffff"
-                    android:background="@android:color/holo_purple"
-                    android:layout_width="71dp"
-                    android:gravity="center" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:text="お店の店名"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView21"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
-
-                    <TextView
-                        android:text="タイトル"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView22" />
-                </LinearLayout>
-
-                <Button
-                    android:text="ここにする"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/list6"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:text="カテゴリ"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView23"
+                    android:id="@+id/category6"
                     android:textColor="#ffffff"
                     android:background="@color/zxing_custom_viewfinder_laser"
                     android:layout_width="71dp"
@@ -363,7 +364,7 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView24"
+                        android:id="@+id/shopname6"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp" />
 
@@ -371,7 +372,55 @@
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView25" />
+                        android:id="@+id/title6" />
+                </LinearLayout>
+
+                <Button
+                    android:text="ここにする"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/list6"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/list_border"
+                android:alwaysDrawnWithCache="true"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:text="カテゴリ"
+                    android:layout_height="match_parent"
+                    android:id="@+id/category7"
+                    android:textColor="#ffffff"
+                    android:layout_width="71dp"
+                    android:gravity="center"
+                    android:background="@android:color/holo_green_light" />
+                <!--android:background="@android:color/holo_green_dark"-->
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="お店の店名"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/shopname7"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:text="タイトル"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title7" />
                 </LinearLayout>
 
                 <Button
@@ -386,7 +435,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp">
@@ -394,11 +443,12 @@
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView26"
+                    android:id="@+id/category8"
                     android:textColor="#ffffff"
-                    android:background="@android:color/holo_green_dark"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_blue_light" />
+                <!--android:background="@android:color/holo_orange_dark"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -410,7 +460,7 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView27"
+                        android:id="@+id/shopname8"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp" />
 
@@ -418,7 +468,7 @@
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView28" />
+                        android:id="@+id/title8" />
                 </LinearLayout>
 
                 <Button
@@ -433,7 +483,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:background="@drawable/list_border"
                 android:alwaysDrawnWithCache="true"
                 android:layout_marginBottom="20dp">
@@ -441,11 +491,12 @@
                 <TextView
                     android:text="カテゴリ"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView29"
+                    android:id="@+id/category9"
                     android:textColor="#ffffff"
-                    android:background="@android:color/holo_orange_dark"
                     android:layout_width="71dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:background="@android:color/holo_orange_dark" />
+                <!--android:background="@android:color/holo_purple"-->
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -457,7 +508,7 @@
                         android:text="お店の店名"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView30"
+                        android:id="@+id/shopname9"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp" />
 
@@ -465,7 +516,7 @@
                         android:text="タイトル"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView31" />
+                        android:id="@+id/title9" />
                 </LinearLayout>
 
                 <Button
@@ -473,53 +524,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/list9"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/list_border"
-                android:alwaysDrawnWithCache="true"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:text="カテゴリ"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView32"
-                    android:textColor="#ffffff"
-                    android:background="?android:attr/textColorHint"
-                    android:layout_width="71dp"
-                    android:gravity="center" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:text="お店の店名"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView33"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="10dp" />
-
-                    <TextView
-                        android:text="タイトル"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView34" />
-                </LinearLayout>
-
-                <Button
-                    android:text="ここにする"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/list10"
                     android:layout_weight="1" />
 
             </LinearLayout>
