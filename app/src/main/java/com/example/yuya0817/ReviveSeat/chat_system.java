@@ -109,28 +109,24 @@ public class chat_system extends Activity {
                 }).on("chat_reception", new Emitter.Listener() {
                     @Override
                     public void call(final Object... args) {
-                        chat_system.super.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                i=0;
-                                textView[0].setText(String.valueOf(args[0]));
 
-                                //textView[1].setText(String.valueOf(args[1]));
-                                //for (i=0;i<10;++i){
+                        textView[0].setText(String.valueOf(args[0]));
+                        //textView[1].setText(String.valueOf(args[1]));
+                        //for (i=0;i<10;++i){
                                 /*if (args[i] != "") {
                                     textView[i].setText(String.valueOf(args[i]));
                                 }*/
-                                //textView[i-1].setGravity(Gravity.RIGHT);
-                                //}
-                                socket.disconnect();
-                            }
-                        });
+                        //textView[i-1].setGravity(Gravity.RIGHT);
+                        //}
+                        socket.disconnect();
                     }
+                        });
 
 
 
 
-                });
+
+
 
 
             }

@@ -60,11 +60,11 @@ public class select_menu_food extends Activity {
 
 
 
+        socket.connect();
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 //送信
-                socket.connect();
                 JSONObject obj = new JSONObject();
                     socket.emit("menu_request", 1);
 
@@ -72,9 +72,6 @@ public class select_menu_food extends Activity {
         }).on("men_list", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
-                select_menu_food.super.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
                         JSONObject json = (JSONObject) args[0];
                         try {
@@ -86,8 +83,8 @@ public class select_menu_food extends Activity {
 
                         socket.disconnect();
                     }
-                });
-            }
+                
+
 
 
 
