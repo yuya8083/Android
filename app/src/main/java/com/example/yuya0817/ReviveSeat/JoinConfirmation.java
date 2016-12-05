@@ -213,6 +213,7 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
                 });
                 Intent intent = new Intent(JoinConfirmation.this, orner_wait.class);
                 intent.putExtra("shareid", decide[0]);
+                intent.putExtra("name", hname);
                 startActivity(intent);
             }
         });

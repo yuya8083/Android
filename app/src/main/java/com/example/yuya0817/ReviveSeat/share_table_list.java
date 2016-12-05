@@ -43,6 +43,8 @@ public class share_table_list extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_table_list);
 
+        //画面の右上に検索ボタンを作る
+
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
             Log.d("1","1");

@@ -15,13 +15,17 @@ import io.socket.emitter.Emitter;
 
 public class arrive_wait extends Activity {
     public Socket socket;
-    Intent intent;
+    Intent intent,data;
     int i;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arrive_wait);
+
+        data = getIntent();
+        name = data.getStringExtra("name");
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -45,6 +49,7 @@ public class arrive_wait extends Activity {
             @Override
             public void call(Object... args) {
                 intent = new Intent(arrive_wait.this, Sharing.class);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });

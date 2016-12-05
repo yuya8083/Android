@@ -53,17 +53,17 @@ public class NewUserSet extends Activity {
                 if (username.isEmpty() && (password.isEmpty() || password2.isEmpty())) {
                     // 入力必須エラー
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                    builder.setMessage("ユーザ名とパスワードが入力されていません");
+                    builder.setMessage("ユーザ名とパスワードを入力してください");
                     builder.show();
                 }else if (username.isEmpty()){
                     // 入力必須エラー
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                    builder.setMessage("ユーザ名が入力されていません");
+                    builder.setMessage("ユーザ名を入力してください");
                     builder.show();
                 }else if (password.isEmpty() || password2.isEmpty()){
                     // 入力必須エラー
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewUserSet.this);
-                    builder.setMessage("パスワードが入力されていません");
+                    builder.setMessage("パスワードを入力してください");
                     builder.show();
                 }else {
                     if(Objects.equals(password, password2)){

@@ -22,6 +22,7 @@ public class JoinQrcode extends Activity {
     private Socket socket;
     Intent intent,data;
     int i,flag,shareid;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class JoinQrcode extends Activity {
 
         data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
+        name = data.getStringExtra("name");
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -69,6 +71,7 @@ public class JoinQrcode extends Activity {
                     intent = new Intent(JoinQrcode.this, JoinSharing.class);
                 }while (flag == 0);
                 intent.putExtra("shareid", shareid);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
 
