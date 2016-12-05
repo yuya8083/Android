@@ -2,6 +2,7 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,6 +94,7 @@ public class chat_system extends Activity {
 
                 text=editText.getText().toString();
                 editText.setText("");
+                //textView[0].setText("a");
 
 
 
@@ -101,24 +103,25 @@ public class chat_system extends Activity {
                     @Override
                     public void call(Object... args) {
                         //送信
-                        JSONObject obj = new JSONObject();
                         if (text!=null) {
-                            socket.emit("chat_send", text);
+                            socket.emit("chat_send", "aaa");
+                            //textView[0].setText("aa");
                         }
                     }
                 }).on("chat_reception", new Emitter.Listener() {
                     @Override
                     public void call(final Object... args) {
 
+                        JSONObject json = new JSONObject();
                         textView[0].setText(String.valueOf(args[0]));
-                        //textView[1].setText(String.valueOf(args[1]));
+                        textView[0].setText("aaa");
                         //for (i=0;i<10;++i){
                                 /*if (args[i] != "") {
                                     textView[i].setText(String.valueOf(args[i]));
                                 }*/
-                        //textView[i-1].setGravity(Gravity.RIGHT);
+                        textView[i-1].setGravity(Gravity.RIGHT);
                         //}
-                        socket.disconnect();
+                        //socket.disconnect();
                     }
                         });
 
@@ -133,6 +136,13 @@ public class chat_system extends Activity {
         });
 
 
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

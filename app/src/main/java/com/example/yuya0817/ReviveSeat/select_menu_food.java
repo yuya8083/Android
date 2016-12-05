@@ -3,11 +3,13 @@ package com.example.yuya0817.ReviveSeat;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,11 +29,13 @@ public class select_menu_food extends Activity {
     public io.socket.client.Socket socket;
     int priceall = 0, price[] = new int[12];
     int figureall = 0;
-    int i = 0;
-    final TextView pricetext[] = new TextView[12];
+    int i = 0,an;
+    TextView pricetext[] = new TextView[12];
     TextView foodname[]=new TextView[12];
     ToggleButton food[] = new ToggleButton[12];
     public TextView totalfigure,totalprice;
+    String fn,in;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,10 +54,11 @@ public class select_menu_food extends Activity {
         }
 
 
-        for (i=0;i<12;++i){
-            price[i]=0;
+        for (i=0;i<10;++i){
+            price[i]=100;
         }
 
+        food[0]=(ToggleButton)findViewById(R.id.food1);
         foodname[0]=(TextView)findViewById(R.id.textView1);
         pricetext[0] = (TextView) findViewById(R.id.textView2);
         pricetext[0].setText(String.valueOf(price[0]));
@@ -65,23 +70,26 @@ public class select_menu_food extends Activity {
             @Override
             public void call(Object... args) {
                 //送信
-                JSONObject obj = new JSONObject();
                     socket.emit("menu_request", 1);
 
             }
-        }).on("men_list", new Emitter.Listener() {
+        }).on("menu_list", new Emitter.Listener() {
             @Override
             public void call(final Object... args) {
 
-                        JSONObject json = (JSONObject) args[0];
-                        try {
-                            foodname[0].setText(json.getString("menu"));
-                            pricetext[0].setText(json.getInt("price"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        socket.disconnect();
+                try {
+                    JSONArray array = (JSONArray)args[0];
+                    JSONObject json = array.getJSONObject(0);
+                    fn=json.getString("menu");
+                    an=json.getInt("price");
+                    //in=json.getString("img");
+                    foodname[0].setText(fn);
+                    pricetext[0].setText(an);
+                    //food[0].setText(in);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                socket.disconnect();
                     }
                 
 
@@ -91,7 +99,7 @@ public class select_menu_food extends Activity {
 
         });
 
-/*
+
         pricetext[1] = (TextView) findViewById(R.id.textView4);
         pricetext[1].setText(String.valueOf(price[1]));
 
@@ -119,11 +127,6 @@ public class select_menu_food extends Activity {
         pricetext[9] = (TextView) findViewById(R.id.textView20);
         pricetext[9].setText(String.valueOf(price[9]));
 
-        pricetext[10] = (TextView) findViewById(R.id.textView22);
-        pricetext[10].setText(String.valueOf(price[10]));
-
-        pricetext[11] = (TextView) findViewById(R.id.textView24);
-        pricetext[11].setText(String.valueOf(price[11]));*/
 
 
         food[0] = (ToggleButton) findViewById(R.id.food1);
@@ -132,8 +135,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[0].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -145,8 +152,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[1].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -159,8 +170,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[2].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -172,8 +187,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[3].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -185,8 +204,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[4].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -197,8 +220,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[5].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -210,8 +237,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[6].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -223,8 +254,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[7].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -236,8 +271,12 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[8].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
@@ -249,13 +288,28 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[9].isChecked()) {
                     ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
             }
         });
+
+
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+
 
 
 
