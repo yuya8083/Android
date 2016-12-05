@@ -29,6 +29,8 @@ public class TableSet extends Activity {
     private DialogFragment dialogFragment;
     private FragmentManager flagmentManager;
 
+    AlertDialog.Builder builder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,11 @@ public class TableSet extends Activity {
                 startActivity(intent2);
             }
         });*/
+
+        item = "";
+        outhour = "";
+        outminute = "";
+
         category = (TextView)findViewById(R.id.categoryset);
         time = (TextView)findViewById(R.id.timeset);
         category.setClickable(true);
@@ -89,18 +96,55 @@ public class TableSet extends Activity {
             public void onClick(View v) {
                 title = titletext.getText().toString();
                 text = hosoku.getText().toString();
-                Intent intent = new Intent(TableSet.this, select_share_sheet_host.class);
-                // intentへ添え字付で値を保持させる
-                intent.putExtra( "title", title);
-                intent.putExtra( "item", item );
-                intent.putExtra( "text", text );
-                intent.putExtra( "hour", outhour);
-                intent.putExtra( "minute", outminute);
-                // 遷移先から返却されてくる際の識別コード
-                int requestCode = 1001;
-                // 返却値を考慮したActivityの起動を行う
-                startActivityForResult( intent, requestCode );
+                if (title.isEmpty() && item.isEmpty() && outhour.isEmpty() && outminute.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("タイトル、カテゴリ、シェア終了時刻を入力してください");
+                    builder.show();
+                }else if (title.isEmpty() && item.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("タイトル、カテゴリを入力してください");
+                    builder.show();
+                }else if (title.isEmpty() && outhour.isEmpty() && outminute.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("タイトル、シェア終了時刻を入力してください");
+                    builder.show();
+                }else if (item.isEmpty() && outhour.isEmpty() && outminute.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("カテゴリ、シェア終了時刻を入力してください");
+                    builder.show();
+                }else if (title.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("タイトルを入力してください");
+                    builder.show();
+                }else if (item.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("カテゴリを入力してください");
+                    builder.show();
+                }else if (outhour.isEmpty() && outminute.isEmpty()){
+                    // 入力必須エラー
+                    builder = new AlertDialog.Builder(TableSet.this);
+                    builder.setMessage("シェア終了時刻を入力してください");
+                    builder.show();
+                }else {
+                    Intent intent = new Intent(TableSet.this, select_share_sheet_host.class);
+                    // intentへ添え字付で値を保持させる
+                    intent.putExtra( "title", title);
+                    intent.putExtra( "item", item );
+                    intent.putExtra( "text", text );
+                    intent.putExtra( "hour", outhour);
+                    intent.putExtra( "minute", outminute);
+                    // 遷移先から返却されてくる際の識別コード
+                    int requestCode = 1001;
+                    // 返却値を考慮したActivityの起動を行う
+                    startActivityForResult( intent, requestCode );
 //                startActivity(intent);
+                }
             }
         });
 

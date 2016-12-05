@@ -27,10 +27,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public io.socket.client.Socket socket;
     private GoogleMap mMap;
-    private TextView ct;
-    private TextView sn;
+    private TextView ct,sn;
     public double xy;
     int shareid;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
+        name = data.getStringExtra("name");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -110,6 +111,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Intent intent = new Intent(MapsActivity.this, JoinQrcode.class);
                 intent.putExtra("shareid", shareid);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });

@@ -1,6 +1,7 @@
 package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ public class select_share_sheet_guest extends Activity {
 
     private ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
     private String horg1,horg2,horg3,horg4,seat1,seat2,seat3,seat4;
+    private boolean s1,s2,s3,s4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +56,11 @@ public class select_share_sheet_guest extends Activity {
                     if (toggleButton1.isChecked()) {
                         horg1 = "ゲスト";
                         seat1 = "2";
+                        s1 = true;
                     } else {
                         horg1 = "空席";
                         seat1 = "0";
+                        s1 = false;
                     }
 
                 }
@@ -76,9 +80,11 @@ public class select_share_sheet_guest extends Activity {
                     if (toggleButton2.isChecked()) {
                         horg2 = "ゲスト";
                         seat2 = "2";
+                        s2 = true;
                     } else {
                         horg2 = "空席";
                         seat2 = "0";
+                        s2 = false;
                     }
 
                 }
@@ -98,9 +104,11 @@ public class select_share_sheet_guest extends Activity {
                     if (toggleButton3.isChecked()) {
                         horg3 = "ゲスト";
                         seat3 = "2";
+                        s3 = true;
                     } else {
                         horg3 = "空席";
                         seat3 = "0";
+                        s3 = false;
                     }
 
                 }
@@ -120,9 +128,11 @@ public class select_share_sheet_guest extends Activity {
                     if (toggleButton4.isChecked()) {
                         horg4 = "ゲスト";
                         seat4 = "2";
+                        s4 = true;
                     } else {
                         horg4 = "空席";
                         seat4 = "0";
+                        s4 = false;
                     }
 
                 }
@@ -133,23 +143,30 @@ public class select_share_sheet_guest extends Activity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(select_share_sheet_guest.this, Confirmation.class);
+                if (s1 || s2 || s3 || s4){
+                    Intent intent = new Intent(select_share_sheet_guest.this, Confirmation.class);
 
-                // intentへ添え字付で値を保持させる
-                intent.putExtra( "title", title);
-                intent.putExtra( "item", item );
-                intent.putExtra( "hour", hour);
-                intent.putExtra( "minute", minute);
-                intent.putExtra( "text", text );
-                intent.putExtra("sheet1",horg1);
-                intent.putExtra("sheet2",horg2);
-                intent.putExtra("sheet3",horg3);
-                intent.putExtra("sheet4",horg4);
-                intent.putExtra("seat1",seat1);
-                intent.putExtra("seat2",seat2);
-                intent.putExtra("seat3",seat3);
-                intent.putExtra("seat4",seat4);
-                startActivity(intent);
+                    // intentへ添え字付で値を保持させる
+                    intent.putExtra( "title", title);
+                    intent.putExtra( "item", item );
+                    intent.putExtra( "hour", hour);
+                    intent.putExtra( "minute", minute);
+                    intent.putExtra( "text", text );
+                    intent.putExtra("sheet1",horg1);
+                    intent.putExtra("sheet2",horg2);
+                    intent.putExtra("sheet3",horg3);
+                    intent.putExtra("sheet4",horg4);
+                    intent.putExtra("seat1",seat1);
+                    intent.putExtra("seat2",seat2);
+                    intent.putExtra("seat3",seat3);
+                    intent.putExtra("seat4",seat4);
+                    startActivity(intent);
+                }else {
+                    // 入力必須エラー
+                    AlertDialog.Builder builder = new AlertDialog.Builder(select_share_sheet_guest.this);
+                    builder.setMessage("ゲストの席を選択してください");
+                    builder.show();
+                }
             }
         });
 

@@ -20,9 +20,11 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+import static com.example.yuya0817.ReviveSeat.R.id.guest;
+
 public class Evaluation extends Activity {
     private Socket socket;
-    private String comment;
+    private String comment,name;
     Button button;
     int stringToValue,recieveuserid,senduserid;
     TextView tv;
@@ -35,11 +37,11 @@ public class Evaluation extends Activity {
         recieveuserid = 1;
         senduserid = 2;
 
-        tv = (TextView)findViewById(R.id.guest);
+        tv = (TextView)findViewById(guest);
 
         Intent data = getIntent();
-        String guest = data.getStringExtra("ゲスト");
-        tv.setText(guest);
+        name = data.getStringExtra("name");
+        tv.setText(name);
 
         RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
         // リスナー登録

@@ -34,7 +34,9 @@ public class select_menu_food extends Activity {
     TextView foodname[]=new TextView[12];
     ToggleButton food[] = new ToggleButton[12];
     public TextView totalfigure,totalprice;
-    String fn,in;
+    String fn;
+    String in;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,42 @@ public class select_menu_food extends Activity {
         pricetext[0] = (TextView) findViewById(R.id.textView2);
         pricetext[0].setText(String.valueOf(price[0]));
 
+        pricetext[1] = (TextView) findViewById(R.id.textView4);
+        pricetext[1].setText(String.valueOf(price[1]));
+        food[1]=(ToggleButton)findViewById(R.id.food2);
+
+        pricetext[2] = (TextView) findViewById(R.id.textView6);
+        pricetext[2].setText(String.valueOf(price[2]));
+        food[2]=(ToggleButton)findViewById(R.id.food3);
+
+        pricetext[3] = (TextView) findViewById(R.id.textView8);
+        pricetext[3].setText(String.valueOf(price[3]));
+        food[3]=(ToggleButton)findViewById(R.id.food4);
+
+        pricetext[4] = (TextView) findViewById(R.id.textView10);
+        pricetext[4].setText(String.valueOf(price[4]));
+        food[4]=(ToggleButton)findViewById(R.id.food5);
+
+        pricetext[5] = (TextView) findViewById(R.id.textView12);
+        pricetext[5].setText(String.valueOf(price[5]));
+        food[5]=(ToggleButton)findViewById(R.id.food6);
+
+        pricetext[6] = (TextView) findViewById(R.id.textView14);
+        pricetext[6].setText(String.valueOf(price[6]));
+        food[6]=(ToggleButton)findViewById(R.id.food7);
+
+        pricetext[7] = (TextView) findViewById(R.id.textView16);
+        pricetext[7].setText(String.valueOf(price[7]));
+        food[7]=(ToggleButton)findViewById(R.id.food8);
+
+        pricetext[8] = (TextView) findViewById(R.id.textView18);
+        pricetext[8].setText(String.valueOf(price[8]));
+        food[8]=(ToggleButton)findViewById(R.id.food9);
+
+        pricetext[9] = (TextView) findViewById(R.id.textView20);
+        pricetext[9].setText(String.valueOf(price[9]));
+        food[9]=(ToggleButton)findViewById(R.id.food10);
+
 
 
         socket.connect();
@@ -70,7 +108,8 @@ public class select_menu_food extends Activity {
             @Override
             public void call(Object... args) {
                 //送信
-                    socket.emit("menu_request", 1);
+                id=1;
+                socket.emit("menu_request", id);
 
             }
         }).on("menu_list", new Emitter.Listener() {
@@ -90,8 +129,8 @@ public class select_menu_food extends Activity {
                     e.printStackTrace();
                 }
                 socket.disconnect();
-                    }
-                
+            }
+
 
 
 
@@ -100,36 +139,8 @@ public class select_menu_food extends Activity {
         });
 
 
-        pricetext[1] = (TextView) findViewById(R.id.textView4);
-        pricetext[1].setText(String.valueOf(price[1]));
-
-        pricetext[2] = (TextView) findViewById(R.id.textView6);
-        pricetext[2].setText(String.valueOf(price[2]));
-
-        pricetext[3] = (TextView) findViewById(R.id.textView8);
-        pricetext[3].setText(String.valueOf(price[3]));
-
-        pricetext[4] = (TextView) findViewById(R.id.textView10);
-        pricetext[4].setText(String.valueOf(price[4]));
-
-        pricetext[5] = (TextView) findViewById(R.id.textView12);
-        pricetext[5].setText(String.valueOf(price[5]));
-
-        pricetext[6] = (TextView) findViewById(R.id.textView14);
-        pricetext[6].setText(String.valueOf(price[6]));
-
-        pricetext[7] = (TextView) findViewById(R.id.textView16);
-        pricetext[7].setText(String.valueOf(price[7]));
-
-        pricetext[8] = (TextView) findViewById(R.id.textView18);
-        pricetext[8].setText(String.valueOf(price[8]));
-
-        pricetext[9] = (TextView) findViewById(R.id.textView20);
-        pricetext[9].setText(String.valueOf(price[9]));
 
 
-
-        food[0] = (ToggleButton) findViewById(R.id.food1);
         food[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +157,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[1] = (ToggleButton) findViewById(R.id.food2);
+
         food[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,7 +175,7 @@ public class select_menu_food extends Activity {
         });
 
 
-        food[2] = (ToggleButton) findViewById(R.id.food3);
+
         food[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,7 +192,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[3] = (ToggleButton) findViewById(R.id.food4);
+
         food[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,7 +209,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[4] = (ToggleButton) findViewById(R.id.food5);
+
         food[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +225,7 @@ public class select_menu_food extends Activity {
                 totalfigure.setText(String.valueOf(figureall));
             }
         });
-        food[5] = (ToggleButton) findViewById(R.id.food6);
+
         food[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -231,7 +242,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[6] = (ToggleButton) findViewById(R.id.food7);
+
         food[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,7 +259,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[7] = (ToggleButton) findViewById(R.id.food8);
+
         food[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -265,7 +276,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[8] = (ToggleButton) findViewById(R.id.food9);
+
         food[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,7 +293,7 @@ public class select_menu_food extends Activity {
             }
         });
 
-        food[9] = (ToggleButton) findViewById(R.id.food10);
+
         food[9].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

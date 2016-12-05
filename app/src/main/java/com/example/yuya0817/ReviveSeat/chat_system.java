@@ -19,7 +19,7 @@ import io.socket.emitter.Emitter;
 
 public class chat_system extends Activity {
 
-    public io.socket.client.Socket socket;
+    public Socket socket;
     public TextView textView[]=new TextView[10];
     public EditText editText;
     public String text;
@@ -136,6 +136,7 @@ public class chat_system extends Activity {
         });
 
 
+
         Button returnButton = (Button) findViewById(R.id.back);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +144,6 @@ public class chat_system extends Activity {
                 finish();
             }
         });
-
 
 
 

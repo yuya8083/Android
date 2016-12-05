@@ -26,6 +26,7 @@ public class JoinEvaluation extends Activity {
     Button button;
     int stringToValue,recieveuserid,senduserid;
     TextView tv;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,8 @@ public class JoinEvaluation extends Activity {
         tv = (TextView)findViewById(R.id.guest);
 
         Intent data = getIntent();
-        String host = data.getStringExtra("ホスト");
-//        tv.setText("test user");
+        name = data.getStringExtra("name");
+        tv.setText(name);
 
         RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
         // リスナー登録

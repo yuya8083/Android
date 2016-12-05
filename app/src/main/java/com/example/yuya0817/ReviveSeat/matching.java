@@ -39,10 +39,10 @@ public class matching extends Activity {
         name = data.getStringExtra("name");
         hyoka = data.getIntExtra("hyoka", 0);
 
-        TextView geust = (TextView)findViewById(R.id.geust);
+        TextView guest = (TextView)findViewById(R.id.guest);
         RatingBar bar = (RatingBar) findViewById(R.id.ratingBar);
 
-        geust.setText(name);
+        guest.setText(name);
         bar.setRating(hyoka);
 
         Button cancel=(Button)findViewById(R.id.cancel);
@@ -101,6 +101,7 @@ public class matching extends Activity {
                 while (flag == 0){
                     intent = new Intent(matching.this, arrive_wait.class);
                 }
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });

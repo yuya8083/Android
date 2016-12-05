@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class Check_in extends Activity {
     int shareid;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +17,7 @@ public class Check_in extends Activity {
 
         Intent data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
+        name = data.getStringExtra("name");
 
         Button mapp = (Button) findViewById(R.id.map);
         mapp.setOnClickListener(new View.OnClickListener() {
@@ -23,6 +25,7 @@ public class Check_in extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(Check_in.this, MapsActivity.class);
                 intent.putExtra("shareid", shareid);
+                intent.putExtra("name", name);
                 startActivity(intent);
             }
         });
@@ -33,6 +36,7 @@ public class Check_in extends Activity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(Check_in.this, JoinQrcode.class);
                 intent2.putExtra("shareid", shareid);
+                intent2.putExtra("name", name);
                 startActivity(intent2);
             }
         });
