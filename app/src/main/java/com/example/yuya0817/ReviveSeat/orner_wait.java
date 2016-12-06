@@ -19,7 +19,8 @@ public class orner_wait extends Activity {
     public Socket socket;
     int i,shareid;
     Intent intent,data;
-    String name;
+    String name,shop_name,shop_address;
+    private double shop_x,shop_y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,10 @@ public class orner_wait extends Activity {
         data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
         name = data.getStringExtra("name");
+        shop_name = data.getStringExtra("shop_name");
+        shop_address = data.getStringExtra("shop_address");
+        shop_x = data.getDoubleExtra("shop_x", 0);
+        shop_y = data.getDoubleExtra("shop_y", 0);
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -58,6 +63,10 @@ public class orner_wait extends Activity {
                     intent = new Intent(orner_wait.this, Check_in.class);
                     intent.putExtra("shareid", shareid);
                     intent.putExtra("name", name);
+                    intent.putExtra("shop_name", shop_name);
+                    intent.putExtra("shop_address", shop_address);
+                    intent.putExtra("shop_x", shop_x);
+                    intent.putExtra("shop_y", shop_y);
                     startActivity(intent);
                 }
             }

@@ -10,63 +10,81 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.yuya0817.ReviveSeat.orner_wait">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        style="#000000" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_height="50dp"
-        android:text="キャンセル"
-        android:id="@+id/cancel"
-        android:textColor="#ffffff"
-        android:background="#f80606"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp"
-        android:layout_width="150dp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="オーナーの許可待ち中"
-        android:id="@+id/textView2"
-        android:layout_marginTop="63dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="オーナーの許可待ち中"
+            android:id="@+id/textView2"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:gravity="center" />
 
-    <!--<ImageView-->
-        <!--android:id="@+id/cycle"-->
-        <!--android:layout_width="200dp"-->
-        <!--android:layout_height="200dp"-->
-        <!--android:src="@drawable/cycling"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_centerHorizontal="true" />-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-        <!--android:text="オーナーの許可待ち中"-->
-        <!--android:id="@+id/textView2"-->
-        <!--android:layout_above="@+id/cycle"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="60dp" />-->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            style="#000000"
+            android:layout_weight="3" />
 
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:text="キャンセル"-->
-        <!--android:id="@+id/cancel"-->
-        <!--android:textColor="#ffffff"-->
-        <!--android:background="#f80606"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="49dp" />-->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_height="match_parent"
+                android:text="キャンセル"
+                android:id="@+id/cancel"
+                android:textColor="#ffffff"
+                android:background="#f80606"
+                android:layout_alignParentBottom="false"
+                android:layout_centerHorizontal="false"
+                android:layout_width="match_parent"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -117,20 +117,37 @@
             </LinearLayout>
         </LinearLayout>
 
-        <RelativeLayout
+        <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.18">
+            android:layout_weight="0.3" />
 
-        </RelativeLayout>
-
-        <Button
-            android:text="次へ"
-            android:layout_width="100dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/next"
-            android:layout_weight="0.08"
-            android:layout_gravity="center" />
+            android:layout_weight="0.1">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="次へ"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/next"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@color/zxing_custom_viewfinder_laser"
+                android:textColor="#ffffff" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>

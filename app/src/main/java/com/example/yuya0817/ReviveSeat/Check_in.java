@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class Check_in extends Activity {
     int shareid;
-    String name;
+    String name,shop_name,shop_address;
+    private double shop_x,shop_y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,10 @@ public class Check_in extends Activity {
         Intent data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
         name = data.getStringExtra("name");
+        shop_name = data.getStringExtra("shop_name");
+        shop_address = data.getStringExtra("shop_address");
+        shop_x = data.getDoubleExtra("shop_x", 0);
+        shop_y = data.getDoubleExtra("shop_y", 0);
 
         Button mapp = (Button) findViewById(R.id.map);
         mapp.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +31,10 @@ public class Check_in extends Activity {
                 Intent intent = new Intent(Check_in.this, MapsActivity.class);
                 intent.putExtra("shareid", shareid);
                 intent.putExtra("name", name);
+                intent.putExtra("shop_name", shop_name);
+                intent.putExtra("shop_address", shop_address);
+                intent.putExtra("shop_x", shop_x);
+                intent.putExtra("shop_y", shop_y);
                 startActivity(intent);
             }
         });
