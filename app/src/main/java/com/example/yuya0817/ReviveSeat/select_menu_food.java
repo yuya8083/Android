@@ -2,10 +2,22 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class select_menu_food extends Activity {
 
@@ -14,136 +26,301 @@ public class select_menu_food extends Activity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    public io.socket.client.Socket socket;
+    int priceall = 0, price[] = new int[12];
+    int figureall = 0;
+    int i = 0,an;
+    TextView pricetext[] = new TextView[12];
+    TextView foodname[]=new TextView[12];
+    ToggleButton food[] = new ToggleButton[12];
+    public TextView totalfigure,totalprice;
+    String fn;
+    String in;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_menu_food);
 
-        int priceall = 0, price[] = new int[12];
-        int figureall = 12;
-        int i = 0;
-        TextView pricetext[] = new TextView[12];
-        ToggleButton food[] = new ToggleButton[12];
-
-        TextView totalprice = (TextView) findViewById(R.id.totalprice);
+        totalfigure = (TextView) findViewById(R.id.totalfigure);
+        totalprice = (TextView) findViewById(R.id.totalprice);
         totalprice.setText(String.valueOf(priceall));
 
-        TextView totalfigure = (TextView) findViewById(R.id.totalfigure);
-        totalfigure.setText(String.valueOf(figureall));
 
-        for (i=0;i<12;++i){
-            price[i]=0;
+        try {
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
         }
-        /*
+        catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+
+        for (i=0;i<10;++i){
+            price[i]=100;
+        }
+
+        food[0]=(ToggleButton)findViewById(R.id.food1);
+        foodname[0]=(TextView)findViewById(R.id.textView1);
         pricetext[0] = (TextView) findViewById(R.id.textView2);
         pricetext[0].setText(String.valueOf(price[0]));
 
         pricetext[1] = (TextView) findViewById(R.id.textView4);
         pricetext[1].setText(String.valueOf(price[1]));
+        food[1]=(ToggleButton)findViewById(R.id.food2);
 
         pricetext[2] = (TextView) findViewById(R.id.textView6);
         pricetext[2].setText(String.valueOf(price[2]));
+        food[2]=(ToggleButton)findViewById(R.id.food3);
 
         pricetext[3] = (TextView) findViewById(R.id.textView8);
         pricetext[3].setText(String.valueOf(price[3]));
+        food[3]=(ToggleButton)findViewById(R.id.food4);
 
         pricetext[4] = (TextView) findViewById(R.id.textView10);
         pricetext[4].setText(String.valueOf(price[4]));
+        food[4]=(ToggleButton)findViewById(R.id.food5);
 
         pricetext[5] = (TextView) findViewById(R.id.textView12);
         pricetext[5].setText(String.valueOf(price[5]));
+        food[5]=(ToggleButton)findViewById(R.id.food6);
 
         pricetext[6] = (TextView) findViewById(R.id.textView14);
         pricetext[6].setText(String.valueOf(price[6]));
+        food[6]=(ToggleButton)findViewById(R.id.food7);
 
         pricetext[7] = (TextView) findViewById(R.id.textView16);
         pricetext[7].setText(String.valueOf(price[7]));
+        food[7]=(ToggleButton)findViewById(R.id.food8);
 
         pricetext[8] = (TextView) findViewById(R.id.textView18);
         pricetext[8].setText(String.valueOf(price[8]));
+        food[8]=(ToggleButton)findViewById(R.id.food9);
 
         pricetext[9] = (TextView) findViewById(R.id.textView20);
         pricetext[9].setText(String.valueOf(price[9]));
+        food[9]=(ToggleButton)findViewById(R.id.food10);
 
-        pricetext[10] = (TextView) findViewById(R.id.textView22);
-        pricetext[10].setText(String.valueOf(price[10]));
 
-        pricetext[11] = (TextView) findViewById(R.id.textView24);
-        pricetext[11].setText(String.valueOf(price[11]));*/
 
-/*
-        food[0] = (ToggleButton) findViewById(R.id.food1);
-        if (food[0].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
+        socket.connect();
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //送信
+                id=1;
+                socket.emit("menu_request", id);
 
-        food[1] = (ToggleButton) findViewById(R.id.food2);
-        if (food[1].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
+            }
+        }).on("menu_list", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
 
-        food[2] = (ToggleButton) findViewById(R.id.food3);
-        if (food[2].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
+                try {
+                    JSONArray array = (JSONArray)args[0];
+                    JSONObject json = array.getJSONObject(0);
+                    fn=json.getString("menu");
+                    an=json.getInt("price");
+                    //in=json.getString("img");
+                    foodname[0].setText(fn);
+                    pricetext[0].setText(an);
+                    //food[0].setText(in);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                socket.disconnect();
+            }
 
-        food[3] = (ToggleButton) findViewById(R.id.food4);
-        if (food[3].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
 
-        food[4] = (ToggleButton) findViewById(R.id.food5);
-        if (food[4].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
 
-        food[5] = (ToggleButton) findViewById(R.id.food6);
-        if (food[5].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
 
-        food[6] = (ToggleButton) findViewById(R.id.food7);
-        if (food[6].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
 
-        food[7] = (ToggleButton) findViewById(R.id.food8);
-        if (food[7].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
 
-        food[8] = (ToggleButton) findViewById(R.id.food9);
-        if (food[8].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
+        });
 
-        food[9] = (ToggleButton) findViewById(R.id.food10);
-        if (food[9].isChecked()) {
-            ++figureall;
-        } else {
-            --figureall;
-        }
-*/
+
+
+
+        food[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[0].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[1].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+
+        food[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[2].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[3].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[4].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+        food[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[5].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[6].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[7].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[8].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+        food[9].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (food[9].isChecked()) {
+                    ++figureall;
+                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                } else {
+                    --figureall;
+                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    totalprice.setText(String.valueOf(priceall));
+                }
+                totalfigure.setText(String.valueOf(figureall));
+            }
+        });
+
+
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
+
 
 
 

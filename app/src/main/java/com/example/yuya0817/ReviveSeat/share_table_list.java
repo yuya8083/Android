@@ -230,7 +230,9 @@ public class share_table_list extends Activity {
                 });
 
                 while (flag == 0) {
-                    intent = new Intent(share_table_list.this, JoinConfirmation.class);
+
+                    intent = new Intent(share_table_list.this, chat_system.class);
+
                 }
 
                 intent.putExtra("hname", hname);
@@ -300,7 +302,9 @@ public class share_table_list extends Activity {
                 });
 
                 while (flag == 0) {
-                    intent = new Intent(share_table_list.this, JoinConfirmation.class);
+
+                    intent = new Intent(share_table_list.this, select_menu_food.class);
+
                 }
 
                 intent.putExtra("hname", hname);

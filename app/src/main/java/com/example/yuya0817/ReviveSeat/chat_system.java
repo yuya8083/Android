@@ -2,6 +2,7 @@ package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,7 +52,7 @@ public class chat_system extends Activity {
 
 
         try {
-            socket = IO.socket("https://reviveseatserver.herokuapp.com/");//http://133.25.196.30:2010
+            socket = IO.socket("https://reviveseatserver.herokuapp.com/");
         }
         catch (URISyntaxException e) {
             e.printStackTrace();
@@ -93,47 +94,59 @@ public class chat_system extends Activity {
 
                 text=editText.getText().toString();
                 editText.setText("");
+                //textView[0].setText("a");
 
 
 
+                socket.connect();
                 socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
                     public void call(Object... args) {
                         //送信
-                        JSONObject obj = new JSONObject();
                         if (text!=null) {
-                            socket.emit("chat_send", text);
+                            socket.emit("chat_send", "aaa");
+                            //textView[0].setText("aa");
                         }
                     }
                 }).on("chat_reception", new Emitter.Listener() {
                     @Override
                     public void call(final Object... args) {
-                        chat_system.super.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                i=0;
-                                textView[i].setText(String.valueOf(args[i]));
 
-                                //textView[1].setText(String.valueOf(args[1]));
-                                //for (i=0;i<10;++i){
+                        JSONObject json = new JSONObject();
+                        textView[0].setText(String.valueOf(args[0]));
+                        textView[0].setText("aaa");
+                        //for (i=0;i<10;++i){
                                 /*if (args[i] != "") {
                                     textView[i].setText(String.valueOf(args[i]));
                                 }*/
-                                //textView[i-1].setGravity(Gravity.RIGHT);
-                                //}
-                                socket.disconnect();
-                            }
-                        });
+                        textView[i-1].setGravity(Gravity.RIGHT);
+                        //}
+                        //socket.disconnect();
                     }
+                        });
 
 
 
 
-                });
-                socket.connect();
+
+
+
 
             }
         });
+
+
+
+        Button returnButton = (Button) findViewById(R.id.back);
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
     }
 
 }

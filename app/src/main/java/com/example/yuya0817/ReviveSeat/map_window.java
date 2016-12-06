@@ -26,7 +26,7 @@ public class map_window extends Activity {
     }
 
     private void connect() {
-        TextView tv = (TextView) findViewById(R.id.textView17);
+        TextView tv = (TextView) findViewById(R.id.textView13);
         Socket connection = null;
         BufferedReader reader = null;
         try {
