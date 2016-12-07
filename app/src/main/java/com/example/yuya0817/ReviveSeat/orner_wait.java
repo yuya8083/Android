@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
@@ -17,9 +21,9 @@ import io.socket.emitter.Emitter;
 public class orner_wait extends Activity {
 
     public Socket socket;
-    int i,shareid;
-    Intent intent,data;
-    String name;
+    int i=0,shareid,id,price;
+    Intent intent,intent2,data;
+    String name,menu,image,price1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class orner_wait extends Activity {
         data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
         name = data.getStringExtra("name");
+        intent2=new Intent(orner_wait.this,select_menu_food.class);
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -38,7 +43,49 @@ public class orner_wait extends Activity {
 
         findViewById(R.id.progressBar).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
 
-        socket.on("answer_back", new Emitter.Listener() {
+        socket.connect();
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                //送信
+                id=1;
+                socket.emit("menu_request", id);
+
+            }
+        }).on("menu_list", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+
+
+                try {
+
+                    JSONArray array = (JSONArray)args[0];
+                    for (i=0;i<10;++i) {
+                        JSONObject json = array.getJSONObject(i);
+                        menu = json.getString("menu");
+                        price=json.getInt("price");
+                        image=json.getString("img");
+                        price1=String.valueOf(price);
+                        intent2.putExtra(i+".menu", menu);
+                        intent2.putExtra(i+".price", price1);
+                        intent2.putExtra(i+".image", image);
+                    }
+                    startActivity(intent2);
+                } catch (JSONException e) {
+                    Log.d("1","1");
+                    e.printStackTrace();
+                }
+                socket.disconnect();
+            }
+
+
+
+
+
+
+        });
+
+       /*socket.on("answer_back", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 System.out.println(String.valueOf(args[0]));
@@ -62,7 +109,7 @@ public class orner_wait extends Activity {
                 }
             }
 
-        });
+        });*/
 //            @Override
 //            public void call(final Object... args) {
 //                orner_wait.super.runOnUiThread(new Runnable() {
@@ -83,7 +130,7 @@ public class orner_wait extends Activity {
 //                });
 //            }
 //        });
-        socket.connect();
+
 
         Button returnButton = (Button) findViewById(R.id.cancel);
         returnButton.setOnClickListener(new View.OnClickListener() {

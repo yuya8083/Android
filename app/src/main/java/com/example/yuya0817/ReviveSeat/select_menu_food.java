@@ -1,6 +1,7 @@
 package com.example.yuya0817.ReviveSeat;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,15 +10,9 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.URISyntaxException;
 
 import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 
 public class select_menu_food extends Activity {
 
@@ -29,14 +24,14 @@ public class select_menu_food extends Activity {
     public io.socket.client.Socket socket;
     int priceall = 0, price[] = new int[12];
     int figureall = 0;
-    int i = 0,an;
+    int i = 0,id;
     TextView pricetext[] = new TextView[12];
     TextView foodname[]=new TextView[12];
     ToggleButton food[] = new ToggleButton[12];
     public TextView totalfigure,totalprice;
-    String fn;
-    String in;
-    int id;
+    String name[]=new String[10],image[]=new String[10],priceres[]=new String[10];
+    Intent getdata;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +41,7 @@ public class select_menu_food extends Activity {
         totalfigure = (TextView) findViewById(R.id.totalfigure);
         totalprice = (TextView) findViewById(R.id.totalprice);
         totalprice.setText(String.valueOf(priceall));
+        getdata=getIntent();
 
 
         try {
@@ -59,6 +55,14 @@ public class select_menu_food extends Activity {
         for (i=0;i<10;++i){
             price[i]=100;
         }
+
+        for (i=0;i<10;++i) {
+            name[i] = getdata.getStringExtra(i+".menu");
+            priceres[i] = getdata.getStringExtra(i+".price");
+            image[i] = getdata.getStringExtra(i+".img");
+        }
+
+
 
         food[0]=(ToggleButton)findViewById(R.id.food1);
         foodname[0]=(TextView)findViewById(R.id.textView1);
@@ -102,8 +106,10 @@ public class select_menu_food extends Activity {
         food[9]=(ToggleButton)findViewById(R.id.food10);
 
 
+        foodname[0].setText(name[0]);
+        pricetext[0].setText(priceres[0]);
 
-        socket.connect();
+        /*socket.connect();
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -118,14 +124,17 @@ public class select_menu_food extends Activity {
 
                 try {
                     JSONArray array = (JSONArray)args[0];
-                    JSONObject json = array.getJSONObject(0);
-                    fn=json.getString("menu");
-                    an=json.getInt("price");
-                    //in=json.getString("img");
-                    foodname[0].setText(fn);
-                    pricetext[0].setText(an);
-                    //food[0].setText(in);
+                    for (i=0;i<10;++i) {
+                        JSONObject json = array.getJSONObject(i);
+                        fn = json.getString("menu");
+                        price[i] = json.getInt("price");
+                        //in=json.getString("img");
+                        foodname[i].setText(fn);
+                        pricetext[i].setText(String.valueOf(price[i]));
+                        //food[0].setText(in);
+                    }
                 } catch (JSONException e) {
+                    Log.d("1","1");
                     e.printStackTrace();
                 }
                 socket.disconnect();
@@ -136,7 +145,7 @@ public class select_menu_food extends Activity {
 
 
 
-        });
+        });*/
 
 
 
