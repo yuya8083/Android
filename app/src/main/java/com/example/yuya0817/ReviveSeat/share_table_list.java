@@ -815,6 +815,15 @@ public class share_table_list extends Activity {
             }
         });
 
+        Button table_search = (Button) findViewById(R.id.table_search);
+        table_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(share_table_list.this, TableSearch.class);
+                startActivity(intent);
+            }
+        });
+
         Button returnButton = (Button) findViewById(R.id.back);
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

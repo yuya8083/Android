@@ -20,7 +20,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/reviveseat_icon"
         android:label="Revive Seat"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Light.NoTitleBar">
