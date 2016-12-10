@@ -23,33 +23,42 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:text="Back"
                 android:id="@+id/back"
                 android:textColor="#ffffff"
                 android:background="@color/colorPrimary"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:text="テーブル検索"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:gravity="start|center"
+                android:gravity="center"
                 android:id="@+id/maptext"
-                android:layout_weight="3" />
+                android:layout_weight="1" />
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3" />
+                android:layout_width="70dp"
+                android:layout_height="match_parent" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="選択項目を選択してください"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/flame_listview"
+            android:gravity="start|center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/choose"
+            android:layout_weight="1" />
 
         <Space
             android:layout_width="match_parent"
@@ -63,9 +72,9 @@
             android:gravity="start|center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="カテゴリーを選択してください"
-            android:id="@+id/categoryset"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
+            android:id="@+id/category"
+            android:layout_weight="1"
+            android:textColor="@color/wallet_dim_foreground_holo_dark" />
 
         <Space
             android:layout_width="match_parent"
@@ -76,10 +85,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/cafename"
-            android:layout_weight="1"
-            android:hint="店名を入力してください" />
+            android:id="@+id/shopname"
+            android:layout_weight="0.1"
+            android:hint="店名を入力してください"
+            android:textColorHint="@color/wallet_dim_foreground_holo_dark"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
 
         <Space
             android:layout_width="match_parent"
@@ -93,23 +104,9 @@
             android:gravity="start|center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="距離を選択してください"
-            android:id="@+id/radian"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            tools:context="com.example.yuya0817.ReviveSeat.TableSearch"
-            android:layout_weight="100" />
+            android:id="@+id/distance"
+            android:layout_weight="1"
+            android:textColor="@color/wallet_dim_foreground_holo_dark" />
 
         <Space
             android:layout_width="match_parent"
@@ -120,7 +117,36 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="15">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="10" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3">
 
             <Space
                 android:layout_width="wrap_content"
