@@ -303,7 +303,7 @@ public class share_table_list extends Activity {
 
                 while (flag == 0) {
 
-                    intent = new Intent(share_table_list.this, select_menu_food.class);
+                    intent = new Intent(share_table_list.this, Check_in.class);
 
                 }
 

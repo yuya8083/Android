@@ -22,35 +22,37 @@
             android:layout_weight="1">
 
             <Button
-                android:layout_width="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:text="Back"
+            android:id="@+id/back"
+                android:background="@color/colorPrimary"
+            android:textColor="#ffffff"
+            android:onClick="onbackButtontapped (TableSet)" />
+
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="match_parent"
-                android:text="Back"
-                android:id="@+id/back"
-                android:layout_weight="1"
-                android:background="@color/zxing_custom_viewfinder_laser"
-                android:textColor="#ffffff"
-                android:onClick="onbackButtontapped (TableSet)" />
+                android:layout_width="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="テーブル設定"
+                    android:id="@+id/tableset"
+                    android:layout_alignBottom="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="false"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+            </LinearLayout>
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3" />
+                android:layout_width="70dp"
+                android:layout_height="match_parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="テーブル設定"
-                android:id="@+id/tableset"
-                android:layout_alignBottom="@+id/back"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="4" />
         </LinearLayout>
 
         <Space

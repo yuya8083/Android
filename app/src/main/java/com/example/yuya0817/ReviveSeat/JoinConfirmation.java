@@ -26,9 +26,13 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
+import static com.example.yuya0817.ReviveSeat.R.id.map;
+
 public class JoinConfirmation extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+//    LatLng oldPos = null;
+
     private Socket socket;
     String hname,titles,endtime,explain,shop_address,shop_name
             ,seatinfo_st,seat1,seat2,seat3,seat4,userid;
@@ -37,6 +41,7 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
     TextView guest,cafename,title,category,time,hosoku,num,address;
     ToggleButton toggleButton1,toggleButton2,toggleButton3,toggleButton4;
     int decide[] = new int[2];
+//    ScrollView scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,8 +190,21 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(map);
         mapFragment.getMapAsync(this);
+
+//        scrollView = (ScrollView)findViewById(R.id.scrollview);
+
+//        scrollView.setOnTouchListener( new View.OnTouchListener(){
+//            @Override
+//            public boolean onTouch( View v, MotionEvent event ) {
+//                if (onCameraChange){
+//                    return true;
+//                }else{
+//                    return false;
+//                }
+//            }
+//        });
 
         Button myButton=(Button)findViewById(R.id.join);
         myButton.setOnClickListener(new View.OnClickListener() {
@@ -214,6 +232,10 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
                 Intent intent = new Intent(JoinConfirmation.this, orner_wait.class);
                 intent.putExtra("shareid", decide[0]);
                 intent.putExtra("name", hname);
+                intent.putExtra("shop_name", shop_name);
+                intent.putExtra("shop_address", shop_address);
+                intent.putExtra("shop_x", shop_x);
+                intent.putExtra("shop_y", shop_y);
                 startActivity(intent);
             }
         });
@@ -241,6 +263,15 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+//        scrollView.onInterceptTouchEvent(){
+//        }
+//        scrollView.setOnClickListener(new View.OnTouchListener(){
+//            @Override
+//            public boolean OnTouch(View v, MotionEvent event){
+//                return false;
+//            }
+//        });
+
         // Add a marker in Sydney and move the camera
 //        LatLng sydney = new LatLng(-34, 151);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
@@ -249,9 +280,20 @@ public class JoinConfirmation extends FragmentActivity implements OnMapReadyCall
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng(shop_y, shop_x), 15);
         mMap.addMarker(new MarkerOptions().position(new LatLng(shop_y, shop_x)).title(shop_name));
         mMap.moveCamera(cUpdate);
+
+//        //カメラ位置変更のイベントが呼ばれる
+//        mMap.setOnCameraMoveListener((GoogleMap.OnCameraMoveListener) JoinConfirmation.this);
     }
 
-//    public void onbackButtontapped(View view){
-//        finish();
+//    public void onCameraMoveListener(CameraPosition pos) {
+//        if(oldPos != null){
+//            LatLng newPos = pos.target;
+//
+//            //カメラが動いたらスクロールと判定
+//            if(!oldPos.equals(newPos)){
+//                //スクロールした時の処理
+//            }
+//        }
+//        oldPos = pos.target;
 //    }
 }

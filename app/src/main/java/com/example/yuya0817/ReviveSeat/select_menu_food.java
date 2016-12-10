@@ -29,8 +29,7 @@ public class select_menu_food extends Activity {
     TextView foodname[]=new TextView[12];
     ToggleButton food[] = new ToggleButton[12];
     public TextView totalfigure,totalprice;
-    String name[]=new String[10],image[]=new String[10],priceres[]=new String[10];
-    Intent getdata;
+    String name[]=new String[10],image[]=new String[10];
 
 
     @Override
@@ -41,7 +40,7 @@ public class select_menu_food extends Activity {
         totalfigure = (TextView) findViewById(R.id.totalfigure);
         totalprice = (TextView) findViewById(R.id.totalprice);
         totalprice.setText(String.valueOf(priceall));
-        getdata=getIntent();
+        Intent data=getIntent();
 
 
         try {
@@ -52,62 +51,68 @@ public class select_menu_food extends Activity {
         }
 
 
-        for (i=0;i<10;++i){
-            price[i]=100;
-        }
 
         for (i=0;i<10;++i) {
-            name[i] = getdata.getStringExtra(i+".menu");
-            priceres[i] = getdata.getStringExtra(i+".price");
-            image[i] = getdata.getStringExtra(i+".img");
+            name[i] = data.getStringExtra(i+".menu");
+            price[i] = data.getIntExtra(i+".price",0);
+            image[i] = data.getStringExtra(i+".img");
         }
 
 
+        price[0]=data.getIntExtra("price",0);
 
-        food[0]=(ToggleButton)findViewById(R.id.food1);
         foodname[0]=(TextView)findViewById(R.id.textView1);
         pricetext[0] = (TextView) findViewById(R.id.textView2);
         pricetext[0].setText(String.valueOf(price[0]));
+        food[0]=(ToggleButton)findViewById(R.id.food1);
+        foodname[0].setText(name[0]);
 
+        foodname[1]=(TextView)findViewById(R.id.textView1);
         pricetext[1] = (TextView) findViewById(R.id.textView4);
         pricetext[1].setText(String.valueOf(price[1]));
         food[1]=(ToggleButton)findViewById(R.id.food2);
 
+        foodname[2]=(TextView)findViewById(R.id.textView1);
         pricetext[2] = (TextView) findViewById(R.id.textView6);
         pricetext[2].setText(String.valueOf(price[2]));
         food[2]=(ToggleButton)findViewById(R.id.food3);
 
+        foodname[3]=(TextView)findViewById(R.id.textView1);
         pricetext[3] = (TextView) findViewById(R.id.textView8);
         pricetext[3].setText(String.valueOf(price[3]));
         food[3]=(ToggleButton)findViewById(R.id.food4);
 
+        foodname[4]=(TextView)findViewById(R.id.textView1);
         pricetext[4] = (TextView) findViewById(R.id.textView10);
         pricetext[4].setText(String.valueOf(price[4]));
         food[4]=(ToggleButton)findViewById(R.id.food5);
 
+        foodname[5]=(TextView)findViewById(R.id.textView1);
         pricetext[5] = (TextView) findViewById(R.id.textView12);
         pricetext[5].setText(String.valueOf(price[5]));
         food[5]=(ToggleButton)findViewById(R.id.food6);
 
+        foodname[6]=(TextView)findViewById(R.id.textView1);
         pricetext[6] = (TextView) findViewById(R.id.textView14);
         pricetext[6].setText(String.valueOf(price[6]));
         food[6]=(ToggleButton)findViewById(R.id.food7);
 
+        foodname[7]=(TextView)findViewById(R.id.textView1);
         pricetext[7] = (TextView) findViewById(R.id.textView16);
         pricetext[7].setText(String.valueOf(price[7]));
         food[7]=(ToggleButton)findViewById(R.id.food8);
 
+        foodname[8]=(TextView)findViewById(R.id.textView1);
         pricetext[8] = (TextView) findViewById(R.id.textView18);
         pricetext[8].setText(String.valueOf(price[8]));
         food[8]=(ToggleButton)findViewById(R.id.food9);
 
+        foodname[9]=(TextView)findViewById(R.id.textView1);
         pricetext[9] = (TextView) findViewById(R.id.textView20);
         pricetext[9].setText(String.valueOf(price[9]));
         food[9]=(ToggleButton)findViewById(R.id.food10);
 
 
-        foodname[0].setText(name[0]);
-        pricetext[0].setText(priceres[0]);
 
         /*socket.connect();
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
@@ -139,12 +144,6 @@ public class select_menu_food extends Activity {
                 }
                 socket.disconnect();
             }
-
-
-
-
-
-
         });*/
 
 
@@ -155,11 +154,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[0].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+price[0];
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-price[0];
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -171,12 +170,14 @@ public class select_menu_food extends Activity {
             @Override
             public void onClick(View v) {
                 if (food[1].isChecked()) {
+                    int a=0;
+                    a=Integer.valueOf(price[1]);
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+a;
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-price[1];
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -190,11 +191,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[2].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[2].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[2].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -207,11 +208,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[3].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[3].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[3].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -224,11 +225,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[4].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[4].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[4].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -240,11 +241,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[5].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[5].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[5].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -257,11 +258,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[6].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[6].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[6].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -274,11 +275,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[7].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[7].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[7].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -291,11 +292,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[8].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[8].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[8].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));
@@ -308,11 +309,11 @@ public class select_menu_food extends Activity {
             public void onClick(View v) {
                 if (food[9].isChecked()) {
                     ++figureall;
-                    priceall=priceall+Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall+Integer.parseInt(pricetext[9].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 } else {
                     --figureall;
-                    priceall=priceall-Integer.parseInt(pricetext[0].getText().toString());
+                    priceall=priceall-Integer.parseInt(pricetext[9].getText().toString());
                     totalprice.setText(String.valueOf(priceall));
                 }
                 totalfigure.setText(String.valueOf(figureall));

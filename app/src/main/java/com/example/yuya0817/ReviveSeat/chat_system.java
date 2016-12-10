@@ -104,7 +104,7 @@ public class chat_system extends Activity {
                     public void call(Object... args) {
                         //送信
                         if (text!=null) {
-                            socket.emit("chat_send", "aaa");
+                            socket.emit("chat_send",text);
                             //textView[0].setText("aa");
                         }
                     }
@@ -114,7 +114,6 @@ public class chat_system extends Activity {
 
                         JSONObject json = new JSONObject();
                         textView[0].setText(String.valueOf(args[0]));
-                        textView[0].setText("aaa");
                         //for (i=0;i<10;++i){
                                 /*if (args[i] != "") {
                                     textView[i].setText(String.valueOf(args[i]));

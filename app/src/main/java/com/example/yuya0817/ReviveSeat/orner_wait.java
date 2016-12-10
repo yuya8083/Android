@@ -21,9 +21,12 @@ import io.socket.emitter.Emitter;
 public class orner_wait extends Activity {
 
     public Socket socket;
+
     int i=0,shareid,id,price;
     Intent intent,intent2,data;
-    String name,menu,image,price1;
+    String menu,image,price1;
+    String name,shop_name,shop_address;
+    private double shop_x,shop_y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,11 @@ public class orner_wait extends Activity {
         data = getIntent();
         shareid = data.getIntExtra("shareid", 0);
         name = data.getStringExtra("name");
-        intent2=new Intent(orner_wait.this,select_menu_food.class);
+        intent2=new Intent(orner_wait.this,Check_in.class);
+        shop_name = data.getStringExtra("shop_name");
+        shop_address = data.getStringExtra("shop_address");
+        shop_x = data.getDoubleExtra("shop_x", 0);
+        shop_y = data.getDoubleExtra("shop_y", 0);
 
         try {
             socket = IO.socket("https://reviveseatserver.herokuapp.com/");
@@ -43,49 +50,8 @@ public class orner_wait extends Activity {
 
         findViewById(R.id.progressBar).startAnimation(AnimationUtils.loadAnimation(this, R.anim.a1));
 
-        socket.connect();
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                //送信
-                id=1;
-                socket.emit("menu_request", id);
 
-            }
-        }).on("menu_list", new Emitter.Listener() {
-            @Override
-            public void call(final Object... args) {
-
-
-                try {
-
-                    JSONArray array = (JSONArray)args[0];
-                    for (i=0;i<10;++i) {
-                        JSONObject json = array.getJSONObject(i);
-                        menu = json.getString("menu");
-                        price=json.getInt("price");
-                        image=json.getString("img");
-                        price1=String.valueOf(price);
-                        intent2.putExtra(i+".menu", menu);
-                        intent2.putExtra(i+".price", price1);
-                        intent2.putExtra(i+".image", image);
-                    }
-                    startActivity(intent2);
-                } catch (JSONException e) {
-                    Log.d("1","1");
-                    e.printStackTrace();
-                }
-                socket.disconnect();
-            }
-
-
-
-
-
-
-        });
-
-       /*socket.on("answer_back", new Emitter.Listener() {
+       socket.on("answer_back", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
                 System.out.println(String.valueOf(args[0]));
@@ -105,11 +71,15 @@ public class orner_wait extends Activity {
                     intent = new Intent(orner_wait.this, Check_in.class);
                     intent.putExtra("shareid", shareid);
                     intent.putExtra("name", name);
+                    intent.putExtra("shop_name", shop_name);
+                    intent.putExtra("shop_address", shop_address);
+                    intent.putExtra("shop_x", shop_x);
+                    intent.putExtra("shop_y", shop_y);
                     startActivity(intent);
                 }
             }
 
-        });*/
+        });
 //            @Override
 //            public void call(final Object... args) {
 //                orner_wait.super.runOnUiThread(new Runnable() {
