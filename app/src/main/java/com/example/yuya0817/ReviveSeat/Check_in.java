@@ -19,9 +19,9 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 
 public class Check_in extends Activity {
-    int shareid,price,id;
+    int shareid,price[]=new int[10],id;
     private int i;
-    String name,shop_name,shop_address,menu,image,price1;
+    String name,shop_name,shop_address,menu[]=new String[10],image[]=new String[10],price1;
     private double shop_x,shop_y;
     Socket socket;
     TextView textView;
@@ -90,7 +90,7 @@ public class Check_in extends Activity {
         yoyakuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent4 = new Intent(Check_in.this, select_menu_food.class);//予約画面へ
+
                 //socket.connect();
                 socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
                     @Override
@@ -105,19 +105,19 @@ public class Check_in extends Activity {
                         try {
 
                             JSONArray datas = (JSONArray)args[0];
-                            for (i=0;i<10;++i) {
+                            for (i=0;i<8;++i) {
+
                                 JSONObject data = datas.getJSONObject(i);
-                                menu = data.getString("menu");
-                                price=data.getInt("price");
-                                //image=data.getString("img");
+                                menu[i] = data.getString("menu");
+                                price[i]=data.getInt("price");
+                                //image[i]=data.getString("img");
                                 //price=100;
-                                intent4.putExtra(i+".menu", menu);
-                                intent4.putExtra(i+".price", price);
                                 //intent4.putExtra(i+".image", image);
                                 //textView.setText("");
-                                Log.d("1", menu);
+                                Log.d("1", menu[i]);
+                                Log.d("2", String.valueOf(price[i]));
+                                //Log.d("3",image[i]);
                             }
-                            intent4.putExtra("price",price);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -125,6 +125,14 @@ public class Check_in extends Activity {
                     }
                 });
                 socket.connect();
+                intent4 = new Intent(Check_in.this, select_menu_food.class);//予約画面へ
+                for (i=0;i<8;++i){
+                    intent4.putExtra(i+".menu", menu[i]);
+                    intent4.putExtra(i+".price", price[i]);
+                    //intent4.putExtra(i+"img",image[i]);
+                    //Log.d("3",menu[i]);
+                    //Log.d("4", String.valueOf(price[i]));
+                }
                 startActivity(intent4);
             }
         });
